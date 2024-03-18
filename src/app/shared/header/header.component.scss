@@ -1,0 +1,25 @@
+.logo {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px 20px 50px;
+
+    .company-logo,
+    .user-logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .company-name{
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 22px;
+    }
+    .user-name{
+        color: var(--secondary);
+        font-weight: 500;
+        font-size: 18px;
+    }
+    .company-name,  .user-name{
+        padding-left: 10px;
+    }
+}
