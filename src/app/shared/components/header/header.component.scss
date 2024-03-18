@@ -23,3 +23,23 @@
         padding-left: 10px;
     }
 }
+.header{
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+    z-index: 1;
+    transition: all .2 ease;
+    // background: var(--primary);
+    // padding: 1rem 1.5rem 0 1.5rem;
+    position: fixed;
+    top: 0;
+
+}
+.head-trimmed {
+    width: calc(100% - 15rem);
+    margin-left: 15rem;
+}
+
+.head-md-screen {
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+}

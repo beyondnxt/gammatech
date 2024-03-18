@@ -4,12 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/components/dashboard/dashboard.component';
 import { SharedModule } from './shared/modules/shared.module';
+import { SideNavComponent } from './shared/components/side-nav/side-nav.component';
+import { BodyComponent } from './shared/components/body/body.component';
+import { LayoutComponent } from './shared/components/layout/layout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    SideNavComponent,
+    BodyComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,

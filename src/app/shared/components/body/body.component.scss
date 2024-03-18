@@ -1,0 +1,25 @@
+.body{
+    width: calc(100% - 5rem);
+    height: 100vh!important;
+    margin-left: 5rem;
+    padding-top: 72px;
+    z-index: 0;
+    position: relative;
+    top: 0px;
+    transition: all .2s ease;
+    background:var(--bg-primary);
+    // padding: 3rem;
+}
+.body-trimmed{
+    width: calc(100% - 15rem);
+    margin-left: 15rem;
+}
+.body-md-screen{
+    width: calc(100% - 5rem);
+    margin-left: 5rem; 
+}
+
+.set-trimmed{
+    margin-left: 15rem;
+    width: calc(100% - 15rem);
+}
