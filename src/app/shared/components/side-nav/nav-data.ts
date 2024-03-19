@@ -6,7 +6,7 @@ export const navBarData = [
         menu: 'dashboard'
     },
     {
-        routerlink: 'users',
+        routerlink: 'user',
         icon: 'fal fa-user',
         label: 'Users',
         menu: 'user'
@@ -18,33 +18,15 @@ export const navBarData = [
         menu: 'role'
     },
     {
-        routerlink: 'companies',
+        routerlink: 'barCode',
         icon: 'fal fa-building',
-        label: 'Company',
-        menu: 'company'
+        label: 'Barcode',
+        menu: 'barCode'
     },
     {
-        routerlink: 'product',
+        routerlink: 'toteBox',
         icon: 'fal fa-hand-holding-box',
-        label: 'Twine Size',
+        label: 'Tote Box',
         menu: 'product'
-    },
-    {
-        routerlink: 'inwards',
-        icon: 'fal fa-list-alt',
-        label: 'Inwards',
-        menu: 'inward'
-    },
-    {
-        routerlink: 'inventory',
-        icon: 'fal fa-truck-moving',
-        label: 'Inventory',
-        menu: 'inventory'
-    },
-    {
-        routerlink: 'dispatch', 
-        icon: 'fal fa-inbox-out',
-        label: 'Dispatched',
-        menu: 'dispatch'
     }
 ]

@@ -1,0 +1,60 @@
+<div class="col-lg-12" [formGroup]="userDetails">
+    <div class="col-lg-12 closeAlign head">
+        <div>
+            <p class="pt-3 pl">{{data ? 'Update User' : 'Add User'}}</p>
+        </div>
+        <div>
+            <button mat-icon-button mat-dialog-close tabindex="-1" class="close-button"><mat-icon
+                    class="closeColor">close</mat-icon></button>
+        </div>
+    </div>
+    <div class="main-container user-form">
+        <div class="row inputFields">
+            <div class="col-lg-6">
+                <label for="" class="label">First Name</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First Name" formControlName="firstName">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Last Name</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" formControlName="lastName">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Email</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Password</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Password" formControlName="password">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Mobile</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Mobile" formControlName="mobile">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Role</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Role" formControlName="role">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Status</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Status" formControlName="status">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 addBtn">
+                <button class="addUser" (click)="addUser()">{{data ? 'Update' : 'Add'}}</button>
+            </div>
+        </div>
+    </div>
+</div>

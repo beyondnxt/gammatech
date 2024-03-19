@@ -1,0 +1,63 @@
+
+::ng-deep .mat-mdc-form-field {
+    width: 100%;
+  }
+  
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px !important;
+    border: 1px solid #B2B2B2;
+    align-items: center !important;
+    border-radius: 4px !important;
+  }
+  
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+    padding-left: 5px !important;
+  }
+  
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: black !important;
+  }
+  
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    caret-color: black !important;
+  }
+  
+  ::ng-deep .mdc-line-ripple {
+    display: none !important;
+  }
+  
+  ::placeholder {
+    color: #B2B2B2 !important;
+    font-size: 14px;
+  }
+  
+  .label {
+    color: #0C4069;
+  }
+  
+  .main-container {
+    background: #FFFFFF;
+    padding: 20px;
+  }
+
+  .cp{
+    cursor: pointer;
+  }
+  ::ng-deep .mat-mdc-select-value-text {
+    color: black;
+  }
+  ::ng-deep .mat-mdc-select-arrow svg {
+    color: #B2B2B2;
+  }
+  ::ng-deep .mat-mdc-select-placeholder {
+    color: #B2B2B2 !important;
+    font-size: 14px;
+  
+  }
+  ::ng-deep  div.mat-mdc-select-panel {
+background-color: var(--bg-secondary)  !important;
+  }
+  ::ng-deep .mat-mdc-form-field-error-wrapper{
+    padding-left: 0 !important;
+}

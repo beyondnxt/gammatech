@@ -97,11 +97,11 @@
     .sidenav-nav-item:hover {
       .sidenav-nav-link {
         background-color: var(--bg);
-        color: #FFFFFF;
+        color: #000000;
       }
   
       .sidenav-link-icon {
-        color: #FFFFFF !important;
+        color: #000000 !important;
       }
     }
   }
@@ -110,6 +110,6 @@
     background: var(--bg);
     .sidenav-link-icon,
     .sidenav-link-text {
-      color: #FFFFFF;
+      color: #000000;
     }
   }

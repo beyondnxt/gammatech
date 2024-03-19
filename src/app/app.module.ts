@@ -7,6 +7,10 @@ import { SharedModule } from './shared/modules/shared.module';
 import { SideNavComponent } from './shared/components/side-nav/side-nav.component';
 import { BodyComponent } from './shared/components/body/body.component';
 import { LayoutComponent } from './shared/components/layout/layout.component';
+import { UserComponent } from './pages/user/components/users/user.component';
+import { AddUserComponent } from './pages/user/components/add-user/add-user.component';
+import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,11 +20,15 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
     SideNavComponent,
     BodyComponent,
     LayoutComponent,
+    UserComponent,
+    AddUserComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
