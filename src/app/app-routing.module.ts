@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/components/dashboard/dashboard.component';
 import { UserComponent } from './pages/user/components/users/user.component';
 import { LoginComponent } from './shared/components/login/login.component';
+import { WorkOrderComponent } from './pages/work-order/components/work-order/work-order.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,12 @@ const routes: Routes = [
     component: UserComponent,
     loadChildren: () =>
       import("./pages/user/users.module").then(m => m.UsersModule)
+  },
+  {
+    path: 'work-order',
+    component: WorkOrderComponent,
+    loadChildren: () =>
+      import("./pages/work-order/work-order.module").then(m => m.WorkOrderModule)
   },
 ];
 

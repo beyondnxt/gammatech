@@ -28,5 +28,11 @@ export const navBarData = [
         icon: 'fal fa-hand-holding-box',
         label: 'Tote Box',
         menu: 'product'
+    },
+    {
+        routerlink: 'work-order',
+        icon: 'fal fa-hand-holding-box',
+        label: 'Work Order',
+        menu: 'work-order'
     }
 ]
