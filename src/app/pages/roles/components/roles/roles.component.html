@@ -1,0 +1,4 @@
+
+
+<app-add-btn [label]="'Add Role +'" (action)="addRole()"></app-add-btn>
+<app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (edit)="editRole($event)" (deleteItem)="deleteRole($event)"></app-scanner-table>

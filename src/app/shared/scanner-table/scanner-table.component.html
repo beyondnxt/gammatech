@@ -3,15 +3,13 @@
       <table class="rwd-table">
         <tbody>
           <tr class="head-tr">
-            <th>Box Number</th>
-            <th>In Time</th>
-            <th>Out Time</th>
-            <th>Current Pass</th>
-            <th>No of pass</th>
-            <th>Current Status</th>
-            <th></th>
+            <th *ngIf="let headers of tableHeaders">
+              <ng-container>
+                {{headers}}
+              </ng-container>
+            </th>
           </tr>
-          <tr>
+          <!-- <tr>
             <td data-th="Supplier Code">
               UPS5005
             </td>
@@ -217,7 +215,7 @@
             <td data-th="Net Amount">
               <a href="">VIEW DETAILS</a>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>

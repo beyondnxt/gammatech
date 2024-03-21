@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-scanner-table',
@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 })
 export class ScannerTableComponent {
 
-  
+  @Input() tableHeaders: any = [];
+  @Input() tableValues: any = [];
+
+  ngOnInit(){
+    console.log('head----', this.tableHeaders);
+  }
 }

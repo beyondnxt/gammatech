@@ -12,4 +12,7 @@ export class UserService {
   getUsers(): Observable<any>{
     return this.http.get(environment.BASE_URL + '/user');
   }
+  deleteUser(id:string): Observable<any> {
+    return this.http.delete(environment.BASE_URL + `/user/${id}`);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-scanner-table',
@@ -6,6 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./scanner-table.component.scss']
 })
 export class ScannerTableComponent {
-
+  
+  @Input() tableHeaders: any = [];
+  @Input() tableValues: any = [];
+  @Output() edit = new EventEmitter();
+  @Output() deleteItem = new EventEmitter();
+  
+  ngOnInit(){
+    // console.log('head----', this.tableHeaders);
+  }
   
 }
