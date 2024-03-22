@@ -12,12 +12,18 @@
     justify-content: center;
 }
 
+.marAlign{
+    height: 100%;
+    margin: 15px;
+}
+
 .padd {
     // padding: 10px;
 }
 
 .height {
-    height: 100vh;
+    height: calc(100vh - 3rem);
+    overflow: hidden;
 }
 
 :host {
@@ -75,4 +81,9 @@
 .welcome{
     font-size: 28px;
     font-weight: 600;
+}
+@media screen and (min-width:100px) and (max-width:768px){
+    .bg{
+        display: none;
+    }
 }
