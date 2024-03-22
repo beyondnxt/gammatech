@@ -19,4 +19,13 @@ export class AdminService {
   updateUser(id:string,payload: any): Observable<any> {
     return this.http.put(environment.BASE_URL + `/user/${id}`, payload);
   }
+  changePassword(payload: any):Observable<any> {
+    return this.http.put(environment.BASE_URL + '/auth/changePassword', payload);
+  }
+  sendMail(payload: any):Observable<any> {
+    return this.http.post(environment.BASE_URL + '/auth/email/changePassword', payload);
+  }
+  forgetPassword(id: string, payload: any):Observable<any> {
+    return this.http.put(environment.BASE_URL + `/auth/resetPasswordUsingId/${id}`, payload);
+  }
 }

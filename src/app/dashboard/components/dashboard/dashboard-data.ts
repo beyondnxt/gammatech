@@ -1,60 +1,69 @@
 export const tableHeaders = [
     {
         name: 'Box Number',
-        key: 'boxNumber',
+        key: 'barcode',
     },
     {
         name: 'In Time',
-        key: 'inTime',
+        key: 'loadingTime',
     },
     {
         name: 'Out Time',
-        key: 'outTime',
+        key: 'unLoadingTime',
     },
     {
         name: 'Current Pass',
-        key: 'currentPass',
+        key: 'runningPass',
     },
     {
         name: 'No of pass',
-        key: 'noofPass',
+        key: 'noOfPass',
     },
     {
         name: 'Current Status',
         key: 'currentStatus',
     },
     {
-        name: 'Action',
-        key: 'action',
+        name: 'Shift',
+        key: 'shiftTime',
+    },
+    {
+        name: 'User',
+        key: 'userName',
+    },
+    {
+        name:'Action',
+        key:'action',
+        viewDetail:true,
     }
 ]
 
 export const tableValues = [
-    {
-        boxNumber:'UPS5005',
-        inTime:'2 Pm',
-        outTime:'3 Pm',
-        currentPass:'2',
-        noofPass:'4',
-        currentStatus:'Loaded',
-        action:'Action'
-    },
-    {
-        boxNumber:'UPS5005',
-        inTime:'2 Pm',
-        outTime:'3 Pm',
-        currentPass:'2',
-        noofPass:'4',
-        currentStatus:'Loaded',
-        action:'Action'
-    },
-    {
-        boxNumber:'UPS5005',
-        inTime:'2 Pm',
-        outTime:'3 Pm',
-        currentPass:'2',
-        noofPass:'4',
-        currentStatus:'Loaded',
-        action:'Action'
-    }
+    // {
+    //     boxNumber:'UPS5005',
+    //     inTime:'2 Pm',
+    //     outTime:'3 Pm',
+    //     currentPass:'2',
+    //     noofPass:'4',
+    //     currentStatus:'Loaded',
+    //     action:'Action'
+    // },
+    // {
+    //     boxNumber:'UPS5005',
+    //     inTime:'2 Pm',
+    //     outTime:'3 Pm',
+    //     currentPass:'2',
+    //     noofPass:'4',
+    //     currentStatus:'Loaded',
+    //     action:'Action'
+    // },
+    // {
+    //     boxNumber:'UPS5005',
+    //     inTime:'2 Pm',
+    //     outTime:'3 Pm',
+    //     currentPass:'2',
+    //     noofPass:'4',
+    //     currentStatus:'Loaded',
+    //     action:'Action'
+    // }
 ]

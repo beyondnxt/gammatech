@@ -11,6 +11,7 @@ export class ScannerTableComponent {
   @Input() tableValues: any = [];
   @Output() edit = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
+  @Output() viewDetail = new EventEmitter();
   
   ngOnInit(){
     // console.log('head----', this.tableHeaders);

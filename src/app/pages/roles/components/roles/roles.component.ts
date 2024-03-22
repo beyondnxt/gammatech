@@ -5,6 +5,7 @@ import { RoleHelper } from './role.helper';
 import { AddRolesComponent } from '../add-roles/add-roles.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { CommonService } from 'src/app/providers/core/common.service';
 
 @Component({
   selector: 'app-roles',
@@ -13,12 +14,11 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
 })
 export class RolesComponent {
 
-  constructor(private roleService:RoleService, private roleHelper:RoleHelper, private dialog: MatDialog){}
+  constructor(private roleService:RoleService, private roleHelper:RoleHelper, private dialog: MatDialog, private service:CommonService){}
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
 
   ngOnInit(){
-    console.log('hii');
     this.getRoleDetails();
   }
 
@@ -26,9 +26,7 @@ export class RolesComponent {
   getRoleDetails(){
     this.roleService.getRoleDetail().subscribe({
       next: (res: any) => {
-        console.log('res----',res.roles);
         this.tableValues = this.roleHelper.mapUserData(res.roles);
-        // console.log('menu-----', this.tableValues);
       },
       error: (err) => {
       },
@@ -51,6 +49,7 @@ export class RolesComponent {
   }
 
   editRole(data: any){
+    console.log('53----',data);
     this.dialog.open(AddRolesComponent, {
       width: '653px',
       height: 'max-content',
@@ -79,7 +78,16 @@ export class RolesComponent {
   }
 
   deleteRoleDetails(id: string){
-
+    this.roleService.deleteRole(id).subscribe({
+      next: (res: any) => {
+        this.service.showSnackbar("Role Deleted Successfully");
+        this.getRoleDetails();
+      },
+      error: (err) => {
+      },
+      complete() {
+     },
+    })
   }
 
 }

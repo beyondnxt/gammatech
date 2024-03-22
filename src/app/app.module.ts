@@ -14,6 +14,10 @@ import { HttpInterceptorService } from './providers/httpinterceptor/http-interce
 import { AddBtnComponent } from './shared/components/add-btn/add-btn.component';
 import { RolesComponent } from './pages/roles/components/roles/roles.component';
 import { AddRolesComponent } from './pages/roles/components/add-roles/add-roles.component';
+import { ToteboxComponent } from './pages/totebox/component/totebox/totebox.component';
+import { AddToteBoxComponent } from './pages/totebox/component/add-tote-box/add-tote-box.component';
+import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
+import { ForgetPageComponent } from './shared/components/forget-page/forget-page.component';
 
 
 @NgModule({
@@ -26,6 +30,10 @@ import { AddRolesComponent } from './pages/roles/components/add-roles/add-roles.
     AddBtnComponent,
     RolesComponent,
     AddRolesComponent,
+    ToteboxComponent,
+    AddToteBoxComponent,
+    ChangePasswordComponent,
+    ForgetPageComponent
   ],
   imports: [
     BrowserModule,

@@ -14,8 +14,10 @@
                 <label for="" class="label">First Name</label>
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="First Name" formControlName="firstName">
-                    <mat-error *ngIf="userDetails?.get('firstName')?.hasError('required')">First Name required</mat-error>
-                    <mat-error *ngIf="userDetails?.get('firstName')?.hasError('pattern')">First Name must be alphabetic</mat-error>
+                    <mat-error *ngIf="userDetails?.get('firstName')?.hasError('required')">First Name
+                        required</mat-error>
+                    <mat-error *ngIf="userDetails?.get('firstName')?.hasError('pattern')">First Name must be
+                        alphabetic</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-lg-6">
@@ -23,7 +25,8 @@
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Last Name" formControlName="lastName">
                     <mat-error *ngIf="userDetails?.get('lastName')?.hasError('required')">Last Name required</mat-error>
-                    <mat-error *ngIf="userDetails?.get('lastName')?.hasError('pattern')">Last Name must be alphabetic</mat-error>
+                    <mat-error *ngIf="userDetails?.get('lastName')?.hasError('pattern')">Last Name must be
+                        alphabetic</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-lg-6">
@@ -46,25 +49,31 @@
                 <label for="" class="label">Mobile</label>
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Mobile" formControlName="phoneNumber">
-                    <mat-error *ngIf="userDetails?.get('phoneNumber')?.hasError('required')">Mobile Number required</mat-error>
-                    <mat-error *ngIf="userDetails?.get('phoneNumber')?.hasError('pattern')">Invalid Mobile Number</mat-error>
+                    <mat-error *ngIf="userDetails?.get('phoneNumber')?.hasError('required')">Mobile Number
+                        required</mat-error>
+                    <mat-error *ngIf="userDetails?.get('phoneNumber')?.hasError('pattern')">Invalid Mobile
+                        Number</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-lg-6">
                 <label for="" class="label">Role</label>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Role" formControlName="role">
-                </mat-form-field>
+                <mat-form-field>
+                    <mat-select placeholder="Select Role" formControlName="roleId" floatlLabel="never">
+                      <mat-option *ngFor="let role of roleList" [value]="role?.id">{{role?.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
             </div>
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <label for="" class="label">Status</label>
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Status" formControlName="status">
+                    <mat-select placeholder="Status" formControlName="status">
+                        <mat-option value="true">Active</mat-option>
+                        <mat-option value="false">Inactive</mat-option>
+                      </mat-select>
                 </mat-form-field>
-            </div>
+            </div> -->
             <div class="col-lg-6 addBtn">
                 <app-add-btn [label]="this.data ? 'Update' : 'Add' " (click)="addNewUser()"></app-add-btn>
-                <!-- <button class="addUser" (click)="addUser()">{{data ? 'Update' : 'Add'}}</button> -->
             </div>
         </div>
     </div>

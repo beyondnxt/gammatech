@@ -25,7 +25,8 @@
               </ng-container>
 
               <ng-container *ngIf="key.type != 'boolean'">
-                <span>{{values[key.key]}}</span>
+                <!-- <span *ngIf="values[key] == isEmpty " class="emtyClass"></span> -->
+                <span >{{values[key.key]}}</span>
               </ng-container>
 
               <ng-container *ngIf="key.edit">
@@ -34,6 +35,9 @@
                 <span><img style="margin-left: 10px;" src="./../../../../assets/icons/trash.svg" alt=""
                     (click)="deleteItem.emit(values.id)"></span>
         
+              </ng-container>
+              <ng-container *ngIf="key.viewDetail">
+                <span><img src="./../../../../assets/icons/eye.png" alt="" (click)="viewDetail.emit(values)"></span>
               </ng-container>
 
             </td>

@@ -17,12 +17,12 @@ export const tableHeaders = [
     },
     {
         name: 'Role',
-        key: 'roleId',
+        key: 'roleName',
     },
-    {
-        name: 'Status',
-        key: 'status',
-    },
+    // {
+    //     name: 'Status',
+    //     key: 'status',
+    // },
     {
         name: 'Action',
         key: 'action',
@@ -31,31 +31,31 @@ export const tableHeaders = [
 ]
 
 export const tableValues = [
-    {
-        firstName:'UPS5005',
-        lastName:'2 Pm',
-        email:'3 Pm',
-        phoneNumber:'2',
-        roleId:'4',
-        status:'Loaded',
-        action:'Action'
-    },
-    {
-        firstName:'UPS5005',
-        lastName:'2 Pm',
-        email:'3 Pm',
-        phoneNumber:'2',
-        roleId:'4',
-        status:'Loaded',
-        action:'Action'
-    }, 
-    {
-        firstName:'UPS5005',
-        lastName:'2 Pm',
-        email:'3 Pm',
-        phoneNumber:'2',
-        roleId:'4',
-        status:'Loaded',
-        action:'Action'
-    }
+    // {
+    //     firstName:'UPS5005',
+    //     lastName:'2 Pm',
+    //     email:'3 Pm',
+    //     phoneNumber:'2',
+    //     roleId:'4',
+    //     status:'Loaded',
+    //     action:'Action'
+    // },
+    // {
+    //     firstName:'UPS5005',
+    //     lastName:'2 Pm',
+    //     email:'3 Pm',
+    //     phoneNumber:'2',
+    //     roleId:'4',
+    //     status:'Loaded',
+    //     action:'Action'
+    // }, 
+    // {
+    //     firstName:'UPS5005',
+    //     lastName:'2 Pm',
+    //     email:'3 Pm',
+    //     phoneNumber:'2',
+    //     roleId:'4',
+    //     status:'Loaded',
+    //     action:'Action'
+    // }
 ]

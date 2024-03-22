@@ -5,6 +5,8 @@ import { UserComponent } from './pages/user/components/users/user.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { WorkOrderComponent } from './pages/work-order/components/work-order/work-order.component';
 import { RolesComponent } from './pages/roles/components/roles/roles.component';
+import { ToteboxComponent } from './pages/totebox/component/totebox/totebox.component';
+import { ForgetPageComponent } from './shared/components/forget-page/forget-page.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'change-password/:userId',
+    component: ForgetPageComponent,
   },
   {
     path: 'dashboards',
@@ -38,7 +44,13 @@ const routes: Routes = [
     path: 'roles',
     component: RolesComponent,
     loadChildren: () =>
-      import("./pages/work-order/work-order.module").then(m => m.WorkOrderModule)
+      import("./pages/roles/roles.module").then(m => m.RolesModule)
+  },
+  {
+    path: 'tote-box',
+    component: ToteboxComponent,
+    loadChildren: () =>
+      import("./pages/totebox/totebox.module").then(m => m.ToteboxModule)
   },
 ];
 

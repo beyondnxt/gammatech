@@ -1,0 +1,30 @@
+.head{
+    background: #0d6efdb8;
+    margin: auto;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.pl{
+    padding-left: 10px;
+}
+.inputFields{
+    width:100%;
+    padding:0px 10px 0px 10px;
+}
+.addUser{
+    padding:10px;
+    border-radius:10px;
+    background-color:#0d6efd;
+    border:1px solid #0d6efd;
+    color:#FFFFFF;
+    width:50%;
+}
+.addBtn {
+    display: grid; 
+    place-items: center;
+}
+// .closeAlign {
+//     display: flex;
+//     justify-content: space-between;
+// }
