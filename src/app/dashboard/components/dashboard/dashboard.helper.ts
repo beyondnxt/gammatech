@@ -21,6 +21,8 @@ export class DashboardHelper {
                 unLoadingTime: element?.unLoadingTime ? element?.unLoadingTime : '',
                 updatedOn: element?.updatedOn ? element?.updatedOn : '',
                 timeArr:element?.time ? element?.time : '',
+                currentStatus:'completed',
+                userName:element?.userName ? element?.userName : '',
              })
         });
         return template;

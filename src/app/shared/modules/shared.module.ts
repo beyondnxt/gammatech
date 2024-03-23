@@ -16,7 +16,7 @@ import { SideNavComponent } from '../components/side-nav/side-nav.component';
         LoginComponent,
         LayoutComponent,
         BodyComponent,
-        SideNavComponent
+        SideNavComponent,
     ],
     imports: [
         CommonModule,
@@ -29,7 +29,7 @@ import { SideNavComponent } from '../components/side-nav/side-nav.component';
         LoginComponent,
         LayoutComponent,
         BodyComponent,
-        SideNavComponent
+        SideNavComponent,
     ]
 })
 

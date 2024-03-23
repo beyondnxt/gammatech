@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import * as data from './dashboard-data';
 import { DashboardService } from 'src/app/providers/dashboard/dashboard.service';
 import { DashboardHelper } from './dashboard.helper';
+import { ShowDetailComponent } from 'src/app/shared/components/show-detail/show-detail.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +12,7 @@ import { DashboardHelper } from './dashboard.helper';
 })
 export class DashboardComponent {
 
-  constructor(private dashboardService:DashboardService, private dashboardHelper:DashboardHelper) {}
+  constructor(private dialog:MatDialog,private dashboardService:DashboardService, private dashboardHelper:DashboardHelper) {}
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
 
@@ -21,7 +23,7 @@ export class DashboardComponent {
   getAllDetails(){
     this.dashboardService.getAllDetails().subscribe({
       next: (res: any) => {
-        this.tableValues = this.dashboardHelper.mapUserData(res.workOrders);
+        this.tableValues = this.dashboardHelper.mapUserData(res.data);
       },
       error: (err) => {
       },
@@ -31,6 +33,16 @@ export class DashboardComponent {
   }
 
   viewDetails(data: any){
-    console.log(data);
+    this.dialog.open(ShowDetailComponent, {
+      width: '700px',
+      height: 'max-content',
+      disableClose: true,
+      panelClass: 'user-dialog-container',
+      data:data,
+    }).afterClosed().subscribe((res) => {
+      if(res){
+      }
+    });
   }
+  
 }

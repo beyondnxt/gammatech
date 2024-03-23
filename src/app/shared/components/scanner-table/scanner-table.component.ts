@@ -12,7 +12,8 @@ export class ScannerTableComponent {
   @Output() edit = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
   @Output() viewDetail = new EventEmitter();
-  
+  @Output() toggleDrawer = new EventEmitter();
+
   ngOnInit(){
     // console.log('head----', this.tableHeaders);
   }
