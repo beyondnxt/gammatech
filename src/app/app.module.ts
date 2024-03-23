@@ -18,6 +18,7 @@ import { ToteboxComponent } from './pages/totebox/component/totebox/totebox.comp
 import { AddToteBoxComponent } from './pages/totebox/component/add-tote-box/add-tote-box.component';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 import { ForgetPageComponent } from './shared/components/forget-page/forget-page.component';
+import { ShowDetailComponent } from './shared/components/show-detail/show-detail.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ForgetPageComponent } from './shared/components/forget-page/forget-page
     ToteboxComponent,
     AddToteBoxComponent,
     ChangePasswordComponent,
-    ForgetPageComponent
+    ForgetPageComponent,
+    ShowDetailComponent,
   ],
   imports: [
     BrowserModule,

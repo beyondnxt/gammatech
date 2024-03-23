@@ -72,4 +72,24 @@
     margin-left: auto;
     margin-right: auto;
  }
+ .container {
+  display: flex;
+}
+
+.box-section, .form-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.form-section {
+  background-color: #f0f0f0;
+}
+
  
