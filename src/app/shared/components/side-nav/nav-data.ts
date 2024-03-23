@@ -18,13 +18,7 @@ export const navBarData = [
         menu: 'role'
     },
     {
-        routerlink: 'barCode',
-        icon: 'fal fa-building',
-        label: 'Barcode',
-        menu: 'barCode'
-    },
-    {
-        routerlink: 'toteBox',
+        routerlink: 'tote-box',
         icon: 'fal fa-hand-holding-box',
         label: 'Tote Box',
         menu: 'product'

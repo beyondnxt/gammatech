@@ -63,6 +63,7 @@ export class UserComponent {
   }
 
   deleteUser(id: string){
+    console.log('id----', id);
     this.dialog.open(ConfirmDialogComponent, {
       width: '500px',
       height: 'max-content',

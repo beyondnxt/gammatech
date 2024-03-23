@@ -10,12 +10,12 @@ export const tableHeaders = [
     },
     {
         name: 'Users',
-        key: 'users',
+        key: 'user',
         type: 'boolean',
     },
     {
         name: 'Roles',
-        key: 'roles',
+        key: 'role',
         type: 'boolean',
     },
     {
@@ -25,12 +25,12 @@ export const tableHeaders = [
     },
     {
         name: 'Tote Box',
-        key: 'tote box',
+        key: 'toteBox',
         type: 'boolean',
     },
     {
         name: 'Work Order',
-        key: 'work order',
+        key: 'workOrder',
         type: 'boolean',
     },
     {

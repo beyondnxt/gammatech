@@ -1,0 +1,34 @@
+<div class="col-lg-12" [formGroup]="toteBoxDetails">
+    <div class="col-lg-12 closeAlign head">
+        <div>
+            <p class="pt-3 pl">{{data ? 'Update Box' : 'Add Box'}}</p>
+        </div>
+        <div>
+            <button mat-icon-button mat-dialog-close tabindex="-1" class="close-button"><mat-icon
+                    class="closeColor">close</mat-icon></button>
+        </div>
+    </div>
+    <div class="main-container user-form">
+        <div class="row inputFields">
+            <div class="col-lg-6">
+                <label for="" class="label">Box Name</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First Name" formControlName="toteBoxName">
+                    <mat-error *ngIf="toteBoxDetails?.get('firstName')?.hasError('required')">Box Name
+                        required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Barcode</label>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" formControlName="barcode">
+                    <mat-error *ngIf="toteBoxDetails?.get('lastName')?.hasError('required')">Barcode required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 addBtn">
+                <app-add-btn [label]="this.data ? 'Update' : 'Add' " (click)="addNewBox()"></app-add-btn>
+                <!-- <button class="addUser" (click)="addUser()">{{data ? 'Update' : 'Add'}}</button> -->
+            </div>
+        </div>
+    </div>
+</div>

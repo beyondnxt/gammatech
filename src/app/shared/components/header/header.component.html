@@ -6,8 +6,36 @@
             <span class="company-name"></span>
         </div>
         <div class="user-logo">
-            <img src="./../../../../assets/icons/user.png" alt="">
-            <span class="user-name">Ajay G S</span>
+            <!-- <img src="./../../../../assets/icons/user.png" alt=""> -->
+            <!-- <span class="user-name">Ajay G S</span> -->
+            <div class="dropdown">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <img src="./../../../../assets/icons/user.png" class="rounded-circle" height="25"
+                        alt="Black and White Portrait of a Man" loading="lazy" />
+                </button>
+                <mat-menu #menu="matMenu">
+                    <div class="headerNav">
+                        <div mat-menu-item (click)="logOut()" class="headerDiv logoutBorder">
+                            <span class="headerMenu">
+                                <mat-icon class="pt-1">exit_to_app</mat-icon><span>Logout</span>
+                            </span>
+                        </div>
+                        <div mat-menu-item (click)="changePassword()" class="headerDiv">
+                            <span class="headerMenu">
+                                <mat-icon class="pt-1">vpn_key</mat-icon><span>Change Password</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- <button mat-menu-item (click)="logOut()">
+                      <mat-icon>exit_to_app</mat-icon>
+                      <span>Logout</span>
+                    </button>
+                    <button mat-menu-item (click)="changePassword()">
+                        <mat-icon>vpn_key</mat-icon>
+                        <span>Change Password</span>
+                      </button> -->
+                </mat-menu>
+            </div>
         </div>
         </div>
     </div>

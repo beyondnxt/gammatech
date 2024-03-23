@@ -1,0 +1,3 @@
+
+<app-add-btn [label]="'Add Box +'" (action)="addBox()"></app-add-btn>
+<app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (edit)="editBoxDetails($event)" (deleteItem)="deleteBoxDetails($event)"></app-scanner-table>

@@ -7,7 +7,7 @@ import { AddRolesComponent } from './components/add-roles/add-roles.component';
 
 @NgModule({
   declarations: [
-    AddRolesComponent
+    // AddRolesComponent
   ],
   imports: [
     CommonModule,
