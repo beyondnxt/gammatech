@@ -7,6 +7,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { LayoutComponent } from '../components/layout/layout.component';
 import { BodyComponent } from '../components/body/body.component';
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
+import { FormDataComponent } from '../components/form-data/form-data.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SideNavComponent } from '../components/side-nav/side-nav.component';
         LayoutComponent,
         BodyComponent,
         SideNavComponent,
+        FormDataComponent
     ],
     imports: [
         CommonModule,
@@ -30,6 +32,7 @@ import { SideNavComponent } from '../components/side-nav/side-nav.component';
         LayoutComponent,
         BodyComponent,
         SideNavComponent,
+        FormDataComponent
     ]
 })
 

@@ -1,4 +1,4 @@
-<ng-container *ngIf="router.url != '/login' && router.url.indexOf('change-password') <0 " >
+<ng-container>
     <app-header [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-header>
 <app-side-nav (onToggleSideNav)="onToggleSideNav($event)"></app-side-nav>
 <app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
