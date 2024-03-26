@@ -22,4 +22,16 @@ export class ToteboxService {
   postBox(payload: any): Observable<any> {
     return this.http.post(environment.BASE_URL + `/tote`, payload);
   }
+  getToteBoxes(data: boolean, query: any){
+    return this.http.get(environment.BASE_URL + `/tote?isEmpty=${data}${query}`);
+  }
+  loadToteBox(payload: any){
+    return this.http.post(environment.BASE_URL + `/work-order`, payload);
+  }
+  getCompletedBoxes(data: boolean){
+    return this.http.get(environment.BASE_URL + `/tote?isCompleted=${data}`);
+  }
+  unloadToteBox(payload: any, barCode: any){
+    return this.http.put(environment.BASE_URL + `/work-order/updateUnloadingTime/${barCode}`, payload);
+  }
 }

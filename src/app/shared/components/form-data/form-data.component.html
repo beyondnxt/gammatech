@@ -16,26 +16,27 @@
     <div class="main-container">
         <div class="row">
             <div class="col-lg-6">
-                <label for="" class="label">Box Number: </label>
+                <label for="" class="label">Barcode: </label>
                 <mat-form-field class="example-full-width mb-2">
-                    <input matInput placeholder="Box Number" [value]="data?.name" formControlName="boxNumber">
+                    <input matInput placeholder="Box Number" [readonly]="true" [(ngModel)]="data.barcode" formControlName="boxNumber">
                 </mat-form-field>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6" *ngIf="!from">
+                {{from}}
                 <label for="" class="label">No of Pass: </label>
                 <mat-form-field class="example-full-width mb-2">
                     <input matInput placeholder="No of Pass" formControlName="noofPass">
                 </mat-form-field>
             </div>
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <label for="" class="label">User Name : </label>
                 <mat-form-field class="example-full-width mb-2">
                     <mat-select placeholder="Select User" formControlName="userName" floatlLabel="never">
                         <mat-option *ngFor="let user of users" [value]="user?.id">{{user?.firstName }}</mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
+            </div> -->
             <div class="col-lg-6">
                 <label for="" class="label">Shift : </label>
                 <mat-form-field class="example-full-width mb-2">
@@ -49,14 +50,8 @@
         </div>
     </div>
     <div class="btnAlign mb-2">
-        <!-- <app-add-btn mat-icon-button mat-dialog-close [label]="'Load'"></app-add-btn> -->
 
-        <!-- <span style="margin-left: 10px; margin-right: 10px;" *ngIf="data.mail"> -->
-            <!-- <app-add-btn></app-add-btn> -->
-        <!-- </span> -->
+        <app-add-btn [label]="lable" (click)="onSubmit()"></app-add-btn>
 
-        <!-- <span style="margin-left: 10px; margin-right: 10px;" *ngIf="data.changePwd">
-            <app-add-btn [label]="'Update'" (action)="updatePassword()"></app-add-btn>
-        </span> -->
     </div>
 </div>

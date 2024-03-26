@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ToteboxComponent
 },
 {
-    path:'add-role',
+    path:'add-tote-box',
     component:AddToteBoxComponent
 }
 ];

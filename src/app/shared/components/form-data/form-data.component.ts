@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UserHelper } from 'src/app/pages/user/components/users/user.helper';
 import { UserService } from 'src/app/providers/user/user.service';
@@ -10,35 +10,26 @@ import { UserService } from 'src/app/providers/user/user.service';
 })
 export class FormDataComponent {
   @Input() data: any;
+  @Input() lable: any;
+  @Output() loadToteBox = new EventEmitter();
   users: any;
+  from: any;
   constructor(private fb:FormBuilder, private userService:UserService, private userHelper:UserHelper) {}
 
   formData=this.fb.group({
     boxNumber:[''],
     noofPass:[''],
-    userName:[''],
     shift:[],
   })
 
   ngOnInit(){
-    this.getAllUsers();
+    this.from = this.data.from;
+    this.data =  this.data[0];
+    console.log(this.from);
+  }
+  onSubmit(){
+    const formDataValues = this.formData.getRawValue();
+    this.loadToteBox.emit(formDataValues);
   }
 
-  getAllUsers(){
-    this.userService.getUsers().subscribe({
-      next: (res) => {
-        this.users = this.userHelper.mapUserData(res.data);
-      },
-      error: (err) => {
-
-      },
-      complete(){
-
-      },
-    })
-  }
-
-  LoadBox(){
-    
-  }
 }

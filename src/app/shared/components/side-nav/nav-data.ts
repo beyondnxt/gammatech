@@ -24,16 +24,22 @@ export const navBarData = [
         menu: 'product'
     },
     {
-        routerlink: 'work-order',
-        icon: 'fal fa-hand-holding-box',
-        label: 'Loaded Box',
-        menu: 'work-order'
-    },
-    {
         routerlink: 'unloaded-box',
-        icon: 'fal fa-hand-holding-box',
+        icon: 'fal fa-key',
         label: 'Unloaded Box',
         menu: 'unloaded-box'
+    },
+    {
+        routerlink: 'completed',
+        icon: 'fal fa-hand-holding-box',
+        label: 'Completed',
+        menu: 'completed'
     }
+    // {
+    //     routerlink: 'work-order',
+    //     icon: 'fal fa-hand-holding-box',
+    //     label: 'Loaded Box',
+    //     menu: 'work-order'
+    // }
     
 ]

@@ -45,6 +45,7 @@ export class UserComponent {
       panelClass: 'user-dialog-container',
     }).afterClosed().subscribe((res) => {
       if(res){
+        this.getAllUsers(); 
       }
     });
   }

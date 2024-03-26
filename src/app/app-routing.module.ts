@@ -8,6 +8,8 @@ import { RolesComponent } from './pages/roles/components/roles/roles.component';
 import { ToteboxComponent } from './pages/totebox/component/totebox/totebox.component';
 import { ForgetPageComponent } from './shared/components/forget-page/forget-page.component';
 import { LayoutComponent } from './shared/components/layout/layout.component';
+import { UnloadComponent } from './pages/unload/components/unload/unload.component';
+import { CompletedComponent } from './pages/completed/components/completed/completed.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,18 @@ const routes: Routes = [
         component: ToteboxComponent,
         loadChildren: () =>
           import("./pages/totebox/totebox.module").then(m => m.ToteboxModule)
+      },
+      {
+        path: 'unloaded-box',
+        component: UnloadComponent,
+        loadChildren: () =>
+          import("./pages/unload/unload.module").then(m => m.UnloadModule)
+      },
+      {
+        path: 'completed',
+        component: CompletedComponent,
+        loadChildren: () =>
+          import("./pages/completed/completed.module").then(m => m.CompletedModule)
       },
       {
         path: '',

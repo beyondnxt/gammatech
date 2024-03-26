@@ -1,0 +1,9 @@
+<div class="wrap" [formGroup]="search">
+    <div class="search">
+        <input type="text" class="searchTerm" placeholder="Search boxes" formControlName="keyWord"
+            (input)="searchData.emit(search.value.keyWord)">
+        <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</div>
