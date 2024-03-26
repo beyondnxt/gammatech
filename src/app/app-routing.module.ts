@@ -71,51 +71,6 @@ const routes: Routes = [
 
 ];
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     redirectTo: '/login',
-//     pathMatch: 'full'
-//   },
-//   {
-//     path: 'login',
-//     component: LoginComponent
-//   },
-//   {
-//     path: 'change-password/:userId',
-//     component: ForgetPageComponent,
-//   },
-//   {
-//     path: 'dashboards',
-//     component: DashboardComponent,
-//     loadChildren: () =>
-//     import("./dashboard/dashboard.module").then(m => m.DashboardModule)
-//   },
-//   {
-//     path: 'user',
-//     component: UserComponent,
-//     loadChildren: () =>
-//       import("./pages/user/users.module").then(m => m.UsersModule)
-//   },
-//   {
-//     path: 'work-order',
-//     component: WorkOrderComponent,
-//     loadChildren: () =>
-//       import("./pages/work-order/work-order.module").then(m => m.WorkOrderModule)
-//   },
-//   {
-//     path: 'roles',
-//     component: RolesComponent,
-//     loadChildren: () =>
-//       import("./pages/roles/roles.module").then(m => m.RolesModule)
-//   },
-//   {
-//     path: 'tote-box',
-//     component: ToteboxComponent,
-//     loadChildren: () =>
-//       import("./pages/totebox/totebox.module").then(m => m.ToteboxModule)
-//   },
-// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

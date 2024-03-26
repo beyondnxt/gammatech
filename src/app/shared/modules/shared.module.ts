@@ -8,6 +8,11 @@ import { LayoutComponent } from '../components/layout/layout.component';
 import { BodyComponent } from '../components/body/body.component';
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { FormDataComponent } from '../components/form-data/form-data.component';
+import { AddBtnComponent } from '../components/add-btn/add-btn.component';
+import { ChangePasswordComponent } from '../components/change-password/change-password.component';
+import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
+import { ForgetPageComponent } from '../components/forget-page/forget-page.component';
+import { ShowDetailComponent } from '../components/show-detail/show-detail.component';
 
 
 @NgModule({
@@ -18,7 +23,12 @@ import { FormDataComponent } from '../components/form-data/form-data.component';
         LayoutComponent,
         BodyComponent,
         SideNavComponent,
-        FormDataComponent
+        FormDataComponent,
+        AddBtnComponent,
+        ChangePasswordComponent,
+        ConfirmDialogComponent,
+        ForgetPageComponent,
+        ShowDetailComponent
     ],
     imports: [
         CommonModule,
@@ -32,7 +42,12 @@ import { FormDataComponent } from '../components/form-data/form-data.component';
         LayoutComponent,
         BodyComponent,
         SideNavComponent,
-        FormDataComponent
+        FormDataComponent,
+        AddBtnComponent,
+        ChangePasswordComponent,
+        ConfirmDialogComponent,
+        ForgetPageComponent,
+        ShowDetailComponent
     ]
 })
 
