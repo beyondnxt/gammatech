@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import * as data from './dashboard-data';
 import { DashboardService } from 'src/app/providers/dashboard/dashboard.service';
 import { DashboardHelper } from './dashboard.helper';
 import { ShowDetailComponent } from 'src/app/shared/components/show-detail/show-detail.component';
 import { MatDialog } from '@angular/material/dialog';
 import { WebSocketService } from 'src/app/providers/core/web-socket.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { CommonService } from 'src/app/providers/core/common.service';
 
 
 @Component({
@@ -13,12 +15,13 @@ import { WebSocketService } from 'src/app/providers/core/web-socket.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  
-
-
-  constructor(private websocketService: WebSocketService, private dialog:MatDialog, private dashboardService:DashboardService, private dashboardHelper:DashboardHelper) {}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private websocketService: WebSocketService, private dialog:MatDialog, private dashboardService:DashboardService, private dashboardHelper:DashboardHelper, public service:CommonService) {}
  tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
+  currentPage = 0;
+  totalCount = 0;
+  apiLoader = false;
 
   ngOnInit(){
     this.getAllDetails();
@@ -27,15 +30,28 @@ export class DashboardComponent {
   }
 
   getAllDetails(){
-    this.dashboardService.getAllDetails().subscribe({
+    this.apiLoader = true;
+    const pageData = {
+      pageSize: this.service?.calculatePaginationVal(),
+      page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
+    }
+
+    this.dashboardService.getAllDetails(pageData).subscribe({
       next: (res: any) => {
+        this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
+        this.totalCount = res.total;
       },
       error: (err) => {
       },
       complete() {
       },
     })
+  }
+
+  onPageChange(event: any): void {
+    this.currentPage = this.paginator.pageIndex;
+    this.getAllDetails();
   }
 
   viewDetails(data: any){

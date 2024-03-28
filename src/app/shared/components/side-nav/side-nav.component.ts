@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { navBarData } from './nav-data';
 import { Subscription } from 'rxjs';
+import { RoleService } from 'src/app/providers/role/role.service';
 
 interface sideNavToggle {
   screenWidth: number;
@@ -29,13 +30,29 @@ export class SideNavComponent implements OnInit {
       this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
     }
   }
-  constructor(
+  constructor( private roleService:RoleService
   ) { }
 
   ngOnInit() {
     this.screenWidth = window.innerWidth;
+    this.roleId = localStorage.getItem('roleId') ? localStorage.getItem('roleId') : '';
+    this.roleId && this.getRoleInfo();
   }
 
+
+  getRoleInfo() {
+    this.roleService.getRoleById(this.roleId).subscribe({
+      next: (res) => {
+        console.log('46-----', res);
+        this.showMenu = res?.menuAccess;
+      },
+      error: (err: any) => {
+        return;
+      },
+      complete: () => {
+      }
+    });
+  }
 
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;

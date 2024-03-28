@@ -11,6 +11,5 @@ export class ShowDetailComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(){
-    // console.log('data-----',this.data);
   }
 }

@@ -10,8 +10,8 @@ export class ToteboxService {
 
   constructor(public http: HttpClient) { }
 
-  getBoxes(){
-    return this.http.get(environment.BASE_URL + '/tote');
+  getBoxes(pageData: any){
+    return this.http.get(environment.BASE_URL + `/tote?page=${pageData.page}`);
   }
   updateBox(id:string,payload: any): Observable<any> {
     return this.http.put(environment.BASE_URL + `/tote/${id}`, payload);
@@ -29,7 +29,7 @@ export class ToteboxService {
     return this.http.post(environment.BASE_URL + `/work-order`, payload);
   }
   getCompletedBoxes(data: boolean){
-    return this.http.get(environment.BASE_URL + `/tote?isCompleted=${data}`);
+    return this.http.get(environment.BASE_URL + `/work-order?isCompleted=true&isEmpty=false`);
   }
   unloadToteBox(payload: any, barCode: any){
     return this.http.put(environment.BASE_URL + `/work-order/updateUnloadingTime/${barCode}`, payload);

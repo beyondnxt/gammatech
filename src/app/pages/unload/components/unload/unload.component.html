@@ -10,15 +10,11 @@
     <div class="mt-3">
         <div class="row">
             <div class="col-lg-4">
-                <div class="box-section">
-                    <div class="box" *ngFor="let box of boxData" (click)="openForm()">
-                      {{ box.toteBoxName }}
-                    </div>
-                  </div>
+                <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (detail)="openForm()"></app-scanner-table>
             </div>
             <div class="col-lg-8" *ngIf="isShow">
                 <div class="form-section">
-                    <app-form-data [data]="boxData" [lable]="'Load'" (loadToteBox)="loadToteBox($event)"></app-form-data>
+                    <app-form-data [data]="tableValues" [lable]="'Load'" (loadToteBox)="loadToteBox($event)"></app-form-data>
                   </div>
             </div>
         </div>

@@ -21,13 +21,13 @@ export const navBarData = [
         routerlink: 'tote-box',
         icon: 'fal fa-hand-holding-box',
         label: 'Tote Box',
-        menu: 'product'
+        menu: 'toteBox'
     },
     {
         routerlink: 'unloaded-box',
         icon: 'fal fa-key',
-        label: 'Unloaded Box',
-        menu: 'unloaded-box'
+        label: 'Empty Boxes',
+        menu: 'unload'
     },
     {
         routerlink: 'completed',

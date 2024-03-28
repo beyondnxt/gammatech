@@ -24,9 +24,13 @@
                 </ng-template>
               </ng-container>
 
-              <ng-container *ngIf="key.type != 'boolean'">
+              <ng-container *ngIf="key.type != 'boolean' && key.type != 'form'">
                 <!-- <span *ngIf="values[key] == isEmpty " class="emtyClass"></span> -->
-                <span >{{values[key.key]}}</span>
+                <span>{{values[key.key]}}</span>
+              </ng-container>
+
+              <ng-container *ngIf="key.type=='form'">
+                <span (click)="detail.emit()">{{values[key.key]}}</span>
               </ng-container>
 
               <ng-container *ngIf="key.edit">
@@ -34,7 +38,7 @@
                 <span><img src="./../../../../assets/icons/edit.svg" alt="" (click)="edit.emit(values)"></span>
                 <span><img style="margin-left: 10px;" src="./../../../../assets/icons/trash.svg" alt=""
                     (click)="deleteItem.emit(values.id)"></span>
-        
+
               </ng-container>
               <ng-container *ngIf="key.viewDetail">
                 <span><img src="./../../../../assets/icons/eye.png" alt="" (click)="viewDetail.emit(values)"></span>
@@ -44,214 +48,7 @@
           </ng-container>
         </tr>
       </ng-container>
-      
-      <!-- <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr>
-      <tr>
-        <td data-th="Supplier Code">
-          UPS5005
-        </td>
-        <td data-th="Supplier Name">
-          2 Pm
-        </td>
-        <td data-th="Invoice Number">
-          3 Pm
-        </td>
-        <td data-th="Invoice Date">
-          2
-        </td>
-        <td data-th="Due Date">
-         4
-        </td>
-        <td data-th="Net Amount">
-          Loaded
-        </td>
-        <td data-th="Net Amount">
-          <a href="">VIEW DETAILS</a>
-        </td>
-      </tr> -->
+
     </tbody>
   </table>
 </div>

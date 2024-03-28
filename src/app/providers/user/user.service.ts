@@ -9,8 +9,8 @@ import { environment } from 'src/Environments/environment';
 export class UserService {
   constructor(public http: HttpClient) { }
 
-  getUsers(): Observable<any>{
-    return this.http.get(environment.BASE_URL + '/user');
+  getUsers(pageData: any): Observable<any>{
+    return this.http.get(environment.BASE_URL + `/user?page=${pageData.page}`);
   }
   deleteUser(id:string): Observable<any> {
     return this.http.delete(environment.BASE_URL + `/user/${id}`);

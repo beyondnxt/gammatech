@@ -25,7 +25,6 @@ export class FormDataComponent {
   ngOnInit(){
     this.from = this.data.from;
     this.data =  this.data[0];
-    console.log(this.from);
   }
   onSubmit(){
     const formDataValues = this.formData.getRawValue();

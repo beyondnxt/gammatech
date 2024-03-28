@@ -1,15 +1,19 @@
 export const tableHeaders = [
     {
         name: 'Box Number',
-        key: 'barcode',
+        key: 'toteBoxName',
     },
     {
-        name: 'In Time',
+        name: 'Loading',
         key: 'loadingTime',
     },
     {
-        name: 'Out Time',
-        key: 'unLoadingTime',
+        name: 'Shift',
+        key: 'loadingShift',
+    },
+    {
+        name: 'User',
+        key: 'loadingUser',
     },
     {
         name: 'Current Pass',
@@ -24,12 +28,16 @@ export const tableHeaders = [
         key: 'currentStatus',
     },
     {
+        name: 'Unloading',
+        key: 'unLoadingTime',
+    },
+    {
         name: 'Shift',
-        key: 'shiftTime',
+        key: 'unLoadingShift',
     },
     {
         name: 'User',
-        key: 'userName',
+        key: 'unLoadingUser',
     },
     {
         name:'Action',

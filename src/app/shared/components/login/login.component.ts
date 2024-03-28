@@ -29,7 +29,6 @@ export class LoginComponent {
           this.setLocalStorage(res);
         },
         error: (err) => {
-          console.log(err);
           this.service.showSnackbar(err.error.message);
         },
         complete: () => {
@@ -40,7 +39,6 @@ export class LoginComponent {
   }
 
   setLocalStorage(res: any){
-    console.log(res);
     localStorage.setItem('userId', res?.userId);
     localStorage.setItem('authToken', res?.token);
     localStorage.setItem('roleId', res?.roleId);

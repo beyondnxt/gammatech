@@ -15,6 +15,7 @@ import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dia
 import { ForgetPageComponent } from '../components/forget-page/forget-page.component';
 import { ShowDetailComponent } from '../components/show-detail/show-detail.component';
 import { RouterModule } from '@angular/router';
+import { TableLoaderComponent } from '../components/table-loader/table-loader.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RouterModule } from '@angular/router';
         SideNavComponent,
         SearchComponent,
         FormDataComponent,
-        ShowDetailComponent
+        ShowDetailComponent,
+        TableLoaderComponent
     ],
     imports: [
         CommonModule,
@@ -52,7 +54,8 @@ import { RouterModule } from '@angular/router';
         SideNavComponent,
         SearchComponent,
         FormDataComponent,
-        ShowDetailComponent
+        ShowDetailComponent,
+        TableLoaderComponent
     ]
 })
 

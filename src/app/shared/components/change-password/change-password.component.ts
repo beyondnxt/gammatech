@@ -20,7 +20,6 @@ export class ChangePasswordComponent {
   })
 
   SendEmail(){
-    // console.log('50----', this.changePassword.getRawValue());
     const payload = { email: this.changePassword.getRawValue().email };
     this.adminService.sendMail(payload).subscribe({
       next: (res: any) => {

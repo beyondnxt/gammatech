@@ -21,14 +21,12 @@ export class ForgetPageComponent {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.userId = params['userId'];
-      console.log('User ID:', this.userId);
     });
   }
 
   updatePassword(){
     if(this.forgetPasswordForm.valid){
       const formData = this.forgetPasswordForm.getRawValue();
-      console.log(formData);
       // const password = formData.confirmPassword;
       if(formData.newPassword == formData.confirmPassword)
       {

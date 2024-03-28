@@ -11,6 +11,5 @@ export class ScannerTableComponent {
   @Input() tableValues: any = [];
 
   ngOnInit(){
-    console.log('head----', this.tableHeaders);
   }
 }

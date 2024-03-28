@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import * as data from './roles-data';
 import { RoleService } from 'src/app/providers/role/role.service';
 import { RoleHelper } from './role.helper';
@@ -6,6 +6,7 @@ import { AddRolesComponent } from '../add-roles/add-roles.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { CommonService } from 'src/app/providers/core/common.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-roles',
@@ -13,20 +14,33 @@ import { CommonService } from 'src/app/providers/core/common.service';
   styleUrls: ['./roles.component.scss']
 })
 export class RolesComponent {
-
-  constructor(private roleService:RoleService, private roleHelper:RoleHelper, private dialog: MatDialog, private service:CommonService){}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private roleService:RoleService, private roleHelper:RoleHelper, private dialog: MatDialog, public service:CommonService){}
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
-
+  totalCount = 0;
+  currentPage = 0;
+  apiLoader = false;
   ngOnInit(){
     this.getRoleDetails();
   }
-
+  onPageChange(event: any): void {
+    this.currentPage = this.paginator.pageIndex;
+    this.getRoleDetails();
+  }
 
   getRoleDetails(){
-    this.roleService.getRoleDetail().subscribe({
+    this.apiLoader = true;
+    const pageData = {
+      pageSize: this.service?.calculatePaginationVal(),
+      page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1
+    }
+
+    this.roleService.getRoleDetail(pageData).subscribe({
       next: (res: any) => {
+        this.apiLoader = false;
         this.tableValues = this.roleHelper.mapUserData(res.roles);
+        this.totalCount = res.total;
       },
       error: (err) => {
       },
@@ -49,7 +63,6 @@ export class RolesComponent {
   }
 
   editRole(data: any){
-    console.log('53----',data);
     this.dialog.open(AddRolesComponent, {
       width: '653px',
       height: 'max-content',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonService } from 'src/app/providers/core/common.service';
 import { ToteboxService } from 'src/app/providers/tote-box/totebox.service';
+import * as data from './unload-data';
 
 @Component({
   selector: 'app-unload',
@@ -10,10 +11,11 @@ import { ToteboxService } from 'src/app/providers/tote-box/totebox.service';
 export class UnloadComponent {
   isShow = false;
   query: any;
-  boxData: any;
   selectedBoxData: any;
   lable: any = "Load";
   showFrom = false;
+  tableHeaders = data.tableHeaders;
+  tableValues = data.tableValues;
   constructor(private toteboxService:ToteboxService, private service:CommonService) {}
   ngOnInit(){
     this.getUnloadBoxes();
@@ -23,7 +25,7 @@ export class UnloadComponent {
     this.toteboxService.getToteBoxes(true, this.query).subscribe({
       next: (res) => {
         const toteBoxes = (res as any).data;
-        this.boxData = toteBoxes;
+        this.tableValues = toteBoxes;
       },
       error: (err) => {
 
@@ -40,7 +42,7 @@ export class UnloadComponent {
     this.toteboxService.getToteBoxes(true, this.query).subscribe({
       next: (res) => {
         const toteBoxes = (res as any).data;
-        this.boxData = toteBoxes;
+        this.tableValues = toteBoxes;
         toteBoxes.length == 1 && (this.showFrom=true);
       },
       error: (err) => {

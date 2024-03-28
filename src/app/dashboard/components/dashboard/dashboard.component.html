@@ -47,6 +47,7 @@
     </div>
     <div class="tabs-align">
         <div class="center-align">
+
             <input type="radio" name="size" id="size_1" value="small" checked />
             <label for="size_1">Loaded Box</label>
 
@@ -63,7 +64,8 @@
         <div class="wrapper">
             <!-- <div class="label">Submit your search</div> -->
             <div class="searchBar">
-                <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search by box number..." />
+                <input id="searchQueryInput" type="text" name="searchQueryInput"
+                    placeholder="Search by box number..." />
                 <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                     <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="#666666"
@@ -75,5 +77,18 @@
     </div>
 </div>
 <div class="mt-3">
-<app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (viewDetail)="viewDetails($event)"></app-scanner-table>
+
+    <ng-container *ngIf="apiLoader">
+        <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"
+            [columns]="tableHeaders.length"></app-table-loader>
+    </ng-container>
+    <ng-container>
+        <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues"
+            (viewDetail)="viewDetails($event)"></app-scanner-table>
+
+        <mat-paginator #paginator [showFirstLastButtons]="true" class="demo-paginator" aria-label="Select page"
+            [pageIndex]="currentPage" (page)="onPageChange($event)" [pageSize]="service.calculatePaginationVal()"
+            [length]="totalCount">
+        </mat-paginator>
+    </ng-container>
 </div>

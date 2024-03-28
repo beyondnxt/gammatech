@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import * as data from './totebox-data';
 import { CommonService } from 'src/app/providers/core/common.service';
 import { ToteboxService } from 'src/app/providers/tote-box/totebox.service';
@@ -6,6 +6,7 @@ import { AddToteBoxComponent } from '../add-tote-box/add-tote-box.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { ToteboxHelper } from './totebox.helper';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-totebox',
@@ -13,20 +14,31 @@ import { ToteboxHelper } from './totebox.helper';
   styleUrls: ['./totebox.component.scss']
 })
 export class ToteboxComponent {
-
-  constructor(private dialog:MatDialog, private service: CommonService, private toteboxService: ToteboxService, private boxHelper:ToteboxHelper) { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private dialog:MatDialog, public service: CommonService, private toteboxService: ToteboxService, private boxHelper:ToteboxHelper) { }
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
+  currentPage = 0;
+  totalCount = 0;
+  apiLoader = false;
 
   ngOnInit() {
     this.getAllBoxes();
   }
 
   getAllBoxes() {
-    this.toteboxService.getBoxes().subscribe({
+    this.apiLoader = true;
+    const pageData = {
+      pageSize: this.service?.calculatePaginationVal(),
+      page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
+    }
+
+    this.toteboxService.getBoxes(pageData).subscribe({
       next: (res) => {
+        this.apiLoader = false;
         const toteBoxes = (res as any).data;
         this.tableValues = this.boxHelper.mapUserData(toteBoxes);
+        this.totalCount = (res as any).total;
       },
       error: (err) => {
 
@@ -35,6 +47,11 @@ export class ToteboxComponent {
 
       },
     })
+  }
+
+  onPageChange(event: any): void {
+    this.currentPage = this.paginator.pageIndex;
+    this.getAllBoxes();
   }
 
   addBox() {

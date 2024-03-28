@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonService } from 'src/app/providers/core/common.service';
 import { ToteboxService } from 'src/app/providers/tote-box/totebox.service';
+import * as data from './completed-data';
 
 @Component({
   selector: 'app-completed',
@@ -12,8 +13,10 @@ export class CompletedComponent {
   query: any;
   boxData: any;
   selectedBoxData: any;
-  lable: any = "Load";
   showFrom = false;
+  tableHeaders = data.tableHeaders;
+  tableValues = data.tableValues;
+  
   constructor(private toteboxService:ToteboxService, private service:CommonService) {}
   ngOnInit(){
     this.getCompletedBoxes();
@@ -21,9 +24,8 @@ export class CompletedComponent {
   getCompletedBoxes(){
     this.toteboxService.getCompletedBoxes(true).subscribe({
       next: (res) => {
-        console.log('1----', res);
         const toteBoxes = (res as any).data;
-        this.boxData = toteBoxes;
+        this.tableValues = toteBoxes;
       },
       error: (err) => {
       },
@@ -35,11 +37,11 @@ export class CompletedComponent {
   searchBox(barCode: any){
     this.isShow = false;
     this.query='&barcode='+barCode;
-    this.toteboxService.getToteBoxes(true, this.query).subscribe({
+    this.toteboxService.getToteBoxes(false, this.query).subscribe({
       next: (res) => {
         const toteBoxes = (res as any).data;
         toteBoxes.from = 'completed';
-        this.boxData = toteBoxes;
+        this.tableValues = toteBoxes;
         toteBoxes.length == 1 && (this.showFrom=true);
       },
       error: (err) => {
@@ -67,7 +69,7 @@ export class CompletedComponent {
       },
     })
   }
-  
+
   openForm(){
     this.showFrom && (this.isShow=true);
   }

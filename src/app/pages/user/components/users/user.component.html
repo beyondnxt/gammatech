@@ -1,3 +1,15 @@
 
 <app-add-btn [label]="'Add User +'" (action)="addUser()"></app-add-btn>
+
 <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (edit)="editUser($event)" (deleteItem)="deleteUser($event)"></app-scanner-table>
+
+<ng-container *ngIf="apiLoader">
+    <app-table-loader [valueColumns]="this.service.calculatePaginationVal()" [columns]="tableHeaders.length"></app-table-loader>
+</ng-container>
+<ng-container>
+    <!-- *ngIf="this.totalCount>this.pageCount" -->
+    <mat-paginator #paginator [showFirstLastButtons]="true" class="demo-paginator" aria-label="Select page"
+        [pageIndex]="currentPage" (page)="onPageChange($event)" [pageSize]="service.calculatePaginationVal()"
+        [length]="totalCount">
+        </mat-paginator>
+</ng-container>

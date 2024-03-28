@@ -18,19 +18,24 @@ export const tableHeaders = [
         key: 'role',
         type: 'boolean',
     },
-    {
-        name: 'Barcode',
-        key: 'barcode',
-        type: 'boolean',
-    },
+    // {
+    //     name: 'Barcode',
+    //     key: 'barcode',
+    //     type: 'boolean',
+    // },
     {
         name: 'Tote Box',
         key: 'toteBox',
         type: 'boolean',
     },
     {
-        name: 'Work Order',
-        key: 'workOrder',
+        name: 'Empty Boxes',
+        key: 'unload',
+        type: 'boolean',
+    },
+    {
+        name: 'Completed',
+        key: 'completed',
         type: 'boolean',
     },
     {

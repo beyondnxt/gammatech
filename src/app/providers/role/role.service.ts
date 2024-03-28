@@ -10,8 +10,11 @@ export class RoleService {
 
   constructor(public http:HttpClient) { }
 
-  getRoleDetail(): Observable<any> {
+  getRole(): Observable<any> {
     return this.http.get(environment.BASE_URL + `/role`);
+  }
+  getRoleDetail(pageData: any): Observable<any> {
+    return this.http.get(environment.BASE_URL + `/role?page=${pageData.page}`);
   }
   updateRole(id:string,payload: any): Observable<any> {
     return this.http.put(environment.BASE_URL + `/role/${id}`, payload);
@@ -21,5 +24,8 @@ export class RoleService {
   }
   postRole(payload: any): Observable<any> {
     return this.http.post(environment.BASE_URL + `/role`, payload);
+  }
+  getRoleById(id:string): Observable<any> {
+    return this.http.get(environment.BASE_URL + `/role/${id}`);
   }
 }

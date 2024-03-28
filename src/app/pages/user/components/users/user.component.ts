@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
@@ -6,6 +6,7 @@ import { UserService } from 'src/app/providers/user/user.service';
 import * as data from './user-data';
 import { UserHelper } from './user.helper';
 import { CommonService } from 'src/app/providers/core/common.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user',
@@ -13,28 +14,43 @@ import { CommonService } from 'src/app/providers/core/common.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  constructor(private dialog:MatDialog, private userService: UserService, private userHelper: UserHelper, private service: CommonService) {}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private dialog:MatDialog, private userService: UserService, private userHelper: UserHelper, public service: CommonService) {}
 
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
-
+  currentPage = 0;
+  totalCount = 0;
+  apiLoader = false;
   ngOnInit(){
     this.getAllUsers();
-    // this.getUsers();
   }
 
   getAllUsers(){
-    this.userService.getUsers().subscribe({
+    this.apiLoader = true;
+    const pageData = {
+      pageSize: this.service?.calculatePaginationVal(),
+      page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1
+    }
+    this.userService.getUsers(pageData).subscribe({
       next: (res) => {
+        this.apiLoader = false;
         this.tableValues = this.userHelper.mapUserData(res.data);
+        this.totalCount = res.total;
       },
       error: (err) => {
-
+        this.apiLoader = false;
       },
       complete(){
 
       },
     })
+  }
+
+  onPageChange(event: any): void {
+    this.currentPage = this.paginator.pageIndex;
+    this.getAllUsers();
   }
 
   addUser(){
@@ -59,12 +75,12 @@ export class UserComponent {
       data:data
     }).afterClosed().subscribe((res) => {
       if(res){
+        this.getAllUsers(); 
       }
     });
   }
 
   deleteUser(id: string){
-    console.log('id----', id);
     this.dialog.open(ConfirmDialogComponent, {
       width: '500px',
       height: 'max-content',

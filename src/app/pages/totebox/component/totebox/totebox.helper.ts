@@ -5,7 +5,6 @@ import { Injectable } from "@angular/core";
 })
 export class ToteboxHelper {
     mapUserData(serviceData: any) {
-        // console.log("8-------", serviceData);
         let template:any = []
         serviceData.forEach((element: any) => {
             template.push({

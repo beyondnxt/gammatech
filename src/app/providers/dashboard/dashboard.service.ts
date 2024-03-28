@@ -9,7 +9,7 @@ export class DashboardService {
 
   constructor(public http:HttpClient) { }
 
-  getAllDetails(){
-    return this.http.get(environment.BASE_URL + `/work-order`);
+  getAllDetails(pageData: any){
+    return this.http.get(environment.BASE_URL + `/work-order?page=${pageData.page}`);
   }
 }
