@@ -10,6 +10,12 @@
     <div class="mt-3">
         <div class="row">
             <div class="col-lg-4">
+
+                <ng-container *ngIf="apiLoader">
+                    <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"
+                        [columns]="tableHeaders.length"></app-table-loader>
+                </ng-container>
+                
                 <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (detail)="openForm()"></app-scanner-table>
             </div>
             <div class="col-lg-8" *ngIf="isShow">

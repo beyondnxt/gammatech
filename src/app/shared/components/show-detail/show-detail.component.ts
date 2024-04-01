@@ -9,7 +9,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ShowDetailComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
-
+  timeArr: any;
   ngOnInit(){
+    this.timeArr = this.data.timeArr;
   }
 }

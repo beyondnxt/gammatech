@@ -40,7 +40,7 @@
                     (click)="deleteItem.emit(values.id)"></span>
 
               </ng-container>
-              <ng-container *ngIf="key.viewDetail">
+              <ng-container *ngIf="key.viewDetail && values.timeArr.length>0">
                 <span><img src="./../../../../assets/icons/eye.png" alt="" (click)="viewDetail.emit(values)"></span>
               </ng-container>
 

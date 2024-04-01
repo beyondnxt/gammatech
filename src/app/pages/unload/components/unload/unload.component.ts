@@ -16,14 +16,17 @@ export class UnloadComponent {
   showFrom = false;
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
-  constructor(private toteboxService:ToteboxService, private service:CommonService) {}
+  apiLoader = false;
+  constructor(private toteboxService:ToteboxService, public service:CommonService) {}
   ngOnInit(){
     this.getUnloadBoxes();
   }
   getUnloadBoxes(){
+    this.apiLoader = true;
     this.query = '';
     this.toteboxService.getToteBoxes(true, this.query).subscribe({
       next: (res) => {
+        this.apiLoader = false;
         const toteBoxes = (res as any).data;
         this.tableValues = toteBoxes;
       },

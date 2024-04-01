@@ -16,14 +16,16 @@ export class CompletedComponent {
   showFrom = false;
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
-  
-  constructor(private toteboxService:ToteboxService, private service:CommonService) {}
+  apiLoader = false;
+  constructor(private toteboxService:ToteboxService, public service:CommonService) {}
   ngOnInit(){
     this.getCompletedBoxes();
   }
   getCompletedBoxes(){
+    this.apiLoader = true;
     this.toteboxService.getCompletedBoxes(true).subscribe({
       next: (res) => {
+        this.apiLoader = false;
         const toteBoxes = (res as any).data;
         this.tableValues = toteBoxes;
       },

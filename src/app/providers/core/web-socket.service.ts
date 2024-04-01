@@ -33,6 +33,15 @@ export class WebSocketService {
     });
   }
 
+  receiveUpdateStatus(): Observable<any> {
+    console.log("enter into 2nd scanner");
+    return new Observable((observable) => {
+      this.webSocket.emit('get-scannerTwo-data', 'Connect');
+     this.webSocket.on('get-scannerTwo-data', (data: any) => {
+        observable.next(data);
+      });
+    });
+  }
 
   getUsers(): Observable<any> {
     return new Observable((observable) => {

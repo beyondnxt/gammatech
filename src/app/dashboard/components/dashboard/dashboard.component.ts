@@ -27,6 +27,7 @@ export class DashboardComponent {
     this.getAllDetails();
     // this.initializeSocketConnection();
     this.receiveSocketResponse();
+    this.secondScannerUpdate();
   }
 
   getAllDetails(){
@@ -82,6 +83,21 @@ export class DashboardComponent {
       {
         next: (res) => {
          console.log('res::',res);
+        },
+        error: (err) => {
+          console.log(err);
+         },
+        complete: () => {
+       }
+      }
+    );
+   }
+
+   secondScannerUpdate(){
+    this.websocketService.receiveUpdateStatus().subscribe(
+      {
+        next: (res) => {
+         console.log('scanner----22222-----',res);
         },
         error: (err) => {
           console.log(err);
