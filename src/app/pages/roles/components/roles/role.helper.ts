@@ -16,6 +16,7 @@ export class RoleHelper {
                 unload: element?.menuAccess?.unload ? element?.menuAccess?.unload: '',
                 toteBox: element?.menuAccess?.toteBox ? element?.menuAccess?.toteBox: '',
                 completed: element?.menuAccess?.completed ? element?.menuAccess?.completed: '',
+                notification: element?.menuAccess?.notification ? element?.menuAccess?.notification: '',
                 id:element?.id ? element.id : ''
             })
         });

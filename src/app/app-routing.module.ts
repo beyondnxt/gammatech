@@ -10,6 +10,7 @@ import { ForgetPageComponent } from './shared/components/forget-page/forget-page
 import { LayoutComponent } from './shared/components/layout/layout.component';
 import { UnloadComponent } from './pages/unload/components/unload/unload.component';
 import { CompletedComponent } from './pages/completed/components/completed/completed.component';
+import { NotificationComponent } from './pages/notification/components/notification.component';
 
 const routes: Routes = [
   {
@@ -67,14 +68,10 @@ const routes: Routes = [
           import("./pages/completed/completed.module").then(m => m.CompletedModule)
       },
       {
-        path: '',
-        children: [
-          {
-            path: 'sales',
-            loadChildren: () =>
-            import("./dashboard/dashboard.module").then(m => m.DashboardModule)
-          },
-        ]
+        path: 'notification',
+        component: NotificationComponent,
+        loadChildren: () =>
+          import("./pages/notification/notification.module").then(m => m.NotificationModule)
       }
     ]
   },

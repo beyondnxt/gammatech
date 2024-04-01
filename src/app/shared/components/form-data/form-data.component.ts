@@ -18,7 +18,7 @@ export class FormDataComponent {
 
   formData=this.fb.group({
     boxNumber:[''],
-    noofPass:[''],
+    noofPass:[3],
     shift:[],
   })
 

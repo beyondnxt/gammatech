@@ -22,6 +22,8 @@ export class DashboardComponent {
   currentPage = 0;
   totalCount = 0;
   apiLoader = false;
+  query = '';
+  count: any = '';
 
   ngOnInit(){
     this.getAllDetails();
@@ -37,11 +39,12 @@ export class DashboardComponent {
       page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
     }
 
-    this.dashboardService.getAllDetails(pageData).subscribe({
+    this.dashboardService.getAllDetails(pageData, this.query).subscribe({
       next: (res: any) => {
         this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
         this.totalCount = res.total;
+        this.count = res.totalCounts;
       },
       error: (err) => {
       },
@@ -97,7 +100,7 @@ export class DashboardComponent {
     this.websocketService.receiveUpdateStatus().subscribe(
       {
         next: (res) => {
-         console.log('scanner----22222-----',res);
+          this.getAllDetails();
         },
         error: (err) => {
           console.log(err);
@@ -108,6 +111,14 @@ export class DashboardComponent {
     );
    }
   
+   searchBox(boxName: any){
+
+    this.query='&toteBoxName='+boxName;
+    (boxName && this.paginator) && ( this.paginator.pageIndex = 0);
+    this.currentPage = 0;
+    this.getAllDetails();
+  }
+
    // Disconnects socket connection
   //  disconnectSocket() {
   //   this.websocketService.disconnectSocket();

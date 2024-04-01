@@ -43,7 +43,6 @@ export class SideNavComponent implements OnInit {
   getRoleInfo() {
     this.roleService.getRoleById(this.roleId).subscribe({
       next: (res) => {
-        console.log('46-----', res);
         this.showMenu = res?.menuAccess;
       },
       error: (err: any) => {

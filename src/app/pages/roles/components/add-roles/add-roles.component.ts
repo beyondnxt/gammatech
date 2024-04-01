@@ -22,6 +22,7 @@ export class AddRolesComponent {
       completed: [false],
       toteBox: [false],
       unload: [false],
+      notification: [false],
     }),
   })
 
@@ -37,7 +38,7 @@ export class AddRolesComponent {
           "toteBox": this.dialogData.toteBox,
           "unload": this.dialogData.unload,
           "completed": this.dialogData.completed,
-
+          "notification": this.dialogData.notification,
         }
       };
       this.roleData.patchValue(data);

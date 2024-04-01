@@ -9,6 +9,7 @@ export class ScannerTableComponent {
 
   @Input() tableHeaders: any = [];
   @Input() tableValues: any = [];
+  isSelectAll: boolean = false;
 
   ngOnInit(){
   }

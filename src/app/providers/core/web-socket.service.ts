@@ -34,11 +34,11 @@ export class WebSocketService {
   }
 
   receiveUpdateStatus(): Observable<any> {
-    console.log("enter into 2nd scanner");
     return new Observable((observable) => {
-      this.webSocket.emit('get-scannerTwo-data', 'Connect');
-     this.webSocket.on('get-scannerTwo-data', (data: any) => {
+      this.webSocket.emit('get-scanner-data', 'Connect');
+     this.webSocket.on('get-scanner-data', (data: any) => {
         observable.next(data);
+        console.log('11----', data);
       });
     });
   }

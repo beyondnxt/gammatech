@@ -39,6 +39,11 @@ export const tableHeaders = [
         type: 'boolean',
     },
     {
+        name: 'Notification',
+        key: 'notification',
+        type: 'boolean',
+    },
+    {
         name: 'Action',
         key: 'action',
         edit:true

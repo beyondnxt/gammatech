@@ -4,15 +4,20 @@
     <tbody>
       <tr class="head-tr">
         <th *ngFor="let headers of tableHeaders">
-          <ng-container>
-            {{ headers.name }}
+          <ng-container *ngIf="headers.checkboxColumn; else headerCell">
+            <mat-checkbox [(ngModel)]="isSelectAll" (change)="selectAllValues($event)"></mat-checkbox>
           </ng-container>
+          <ng-template #headerCell>{{ headers.name }}</ng-template>
         </th>
       </tr>
       <ng-container *ngFor="let values of tableValues; let j=index">
         <tr>
           <ng-container *ngFor="let key of tableHeaders let i= index">
             <td>
+              <ng-container *ngIf="key.key == 'checkBox'">
+                <mat-checkbox  [checked]="values['checked'] ? true : false" (change)="onCheckboxChange($event,values.id)"></mat-checkbox>
+              </ng-container>
+              
               <ng-container *ngIf="key.type == 'boolean' ">
                 <ng-container *ngIf="values[key.key] == true; else elseBlock">
                   <span><i class="fal fa-check"></i></span>

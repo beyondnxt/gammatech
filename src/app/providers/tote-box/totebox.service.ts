@@ -34,4 +34,7 @@ export class ToteboxService {
   unloadToteBox(payload: any, barCode: any){
     return this.http.put(environment.BASE_URL + `/work-order/updateUnloadingTime/${barCode}`, payload);
   }
+  getAllNotifiedData(pageData: any){
+    return this.http.get(environment.BASE_URL + `/work-order?isNotify=true`);
+  }
 }

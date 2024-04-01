@@ -26,7 +26,7 @@
                 {{from}}
                 <label for="" class="label">No of Pass: </label>
                 <mat-form-field class="example-full-width mb-2">
-                    <input matInput placeholder="No of Pass" formControlName="noofPass">
+                    <input matInput placeholder="No of Pass" value=3 formControlName="noofPass">
                 </mat-form-field>
             </div>
             <!-- <div class="col-lg-6">
@@ -41,9 +41,9 @@
                 <label for="" class="label">Shift : </label>
                 <mat-form-field class="example-full-width mb-2">
                         <mat-select placeholder="Shift" formControlName="shift">
-                            <mat-option value="AM">Morning Shift</mat-option>
-                            <mat-option value="PM">Evening Shift</mat-option>
-                            <mat-option value="N">Night Shift</mat-option>
+                            <mat-option value="AM">Morning Shift(6AM to 2PM)</mat-option>
+                            <mat-option value="PM">Evening Shift(2PM to 10PM)</mat-option>
+                            <mat-option value="N">Night Shift(10PM to 6AM)</mat-option>
                         </mat-select>
                 </mat-form-field>
             </div>

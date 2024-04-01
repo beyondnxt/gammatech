@@ -34,6 +34,12 @@ export const navBarData = [
         icon: 'fal fa-hand-holding-box',
         label: 'Completed',
         menu: 'completed'
+    },
+    {
+        routerlink: 'notification',
+        icon: 'fal fa-hand-holding-box',
+        label: 'Notification',
+        menu: 'notification'
     }
     // {
     //     routerlink: 'work-order',
