@@ -19,25 +19,25 @@ export const navBarData = [
     },
     {
         routerlink: 'tote-box',
-        icon: 'fal fa-hand-holding-box',
+        icon: 'fal fa-light fa-box',
         label: 'Tote Box',
         menu: 'toteBox'
     },
     {
         routerlink: 'unloaded-box',
-        icon: 'fal fa-key',
+        icon: 'fal fa-box-open',
         label: 'Empty Boxes',
         menu: 'unload'
     },
     {
         routerlink: 'completed',
-        icon: 'fal fa-hand-holding-box',
+        icon: 'fal fa-box-check',
         label: 'Completed',
         menu: 'completed'
     },
     {
         routerlink: 'notification',
-        icon: 'fal fa-hand-holding-box',
+        icon: 'fal fa-light fa-bell',
         label: 'Notification',
         menu: 'notification'
     }
