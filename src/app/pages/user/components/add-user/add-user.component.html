@@ -8,7 +8,7 @@
                     class="closeColor">close</mat-icon></button>
         </div>
     </div>
-    <div class="main-container user-form">
+    <div class="main-container user-form p-2 pt-3">
         <div class="row inputFields">
             <div class="col-lg-6">
                 <label for="" class="label">First Name</label>
@@ -72,8 +72,8 @@
                       </mat-select>
                 </mat-form-field>
             </div> -->
-            <div class="col-lg-6 addBtn">
-                <app-add-btn [label]="this.data ? 'Update' : 'Add' " (click)="addNewUser()"></app-add-btn>
+            <div class="col-lg-12">
+                <app-add-btn class="float-end" [label]="this.data ? 'Update' : 'Add' " (click)="addNewUser()"></app-add-btn>
             </div>
         </div>
     </div>

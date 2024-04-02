@@ -8,7 +8,7 @@
                     class="closeColor">close</mat-icon></button>
         </div>
     </div>
-    <div class="main-container user-form">
+    <div class="main-container user-form p-3">
         <div class="row inputFields">
             <div class="col-lg-6">
                 <label for="" class="label">Box Name</label>
@@ -25,8 +25,8 @@
                     <mat-error *ngIf="toteBoxDetails?.get('lastName')?.hasError('required')">Barcode required</mat-error>
                 </mat-form-field>
             </div>
-            <div class="col-lg-6 addBtn">
-                <app-add-btn [label]="this.data ? 'Update' : 'Add' " (click)="addNewBox()"></app-add-btn>
+            <div class="col-lg-12">
+                <app-add-btn class="float-end" [label]="this.data ? 'Update' : 'Add' " (click)="addNewBox()"></app-add-btn>
                 <!-- <button class="addUser" (click)="addUser()">{{data ? 'Update' : 'Add'}}</button> -->
             </div>
         </div>
