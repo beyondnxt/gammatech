@@ -14,8 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class LoginComponent {
   constructor(private fb: FormBuilder,private dialog: MatDialog,private adminService:AdminService, public router: Router, public service: CommonService){}
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    email: ['jisha@gmail.com', [Validators.required, Validators.email]],
+    password: ['jisha', [Validators.required]]
   })
 
   userlLogin(){
