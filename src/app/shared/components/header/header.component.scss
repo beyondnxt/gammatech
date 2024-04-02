@@ -43,3 +43,33 @@
     width: calc(100% - 5rem);
     margin-left: 5rem;
 }
+.head-menu-item {
+    .head-menu-item-btn {
+        background-color:#ffffff;
+        font-size: 20px;
+        height: 25px;
+        width: 25px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        margin-left: 5px;
+        outline: 0;
+        color: #495057;
+    }
+}
+.notification-icon-container {
+    position: relative;
+  }
+  
+  .notification-count {
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    right: -10px; /* Adjust as needed */
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 12px;
+    height:20px;
+    width:20px;
+  }

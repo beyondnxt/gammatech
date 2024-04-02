@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
+import { WebSocketService } from 'src/app/providers/core/web-socket.service';
+import { ToteboxService } from 'src/app/providers/tote-box/totebox.service';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +12,45 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HeaderComponent {
   userName: string | null | undefined;
-  constructor(public router:Router,private dialog: MatDialog) {}
+  notifyCount: any;
+  constructor(public router:Router,private dialog: MatDialog, private websocketService:WebSocketService, private toteBoxService:ToteboxService) {}
   @Input() collapsed = true;
   @Input() screenWidth = 0;
 
   ngOnInit(){
     this.userName = localStorage.getItem('name');
+    this.getNotifyCount();
+    this.getNotificationCount();
+  }
+
+  getNotifyCount(){
+    this.toteBoxService.getNotifyCount().subscribe(
+      {
+        next: (res: any) => {
+          this.notifyCount = res.count;
+        },
+        error: (err) => {
+          console.log(err);
+         },
+        complete: () => {
+       }
+      }
+    );
+  }
+
+  getNotificationCount(){
+    this.websocketService.receiveNotificationCount().subscribe(
+      {
+        next: (res) => {
+          this.getNotifyCount();
+        },
+        error: (err) => {
+          console.log(err);
+         },
+        complete: () => {
+       }
+      }
+    );
   }
   getHeaderClass(): string {
     let styleClass = '';

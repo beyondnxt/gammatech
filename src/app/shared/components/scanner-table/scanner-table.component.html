@@ -15,9 +15,10 @@
           <ng-container *ngFor="let key of tableHeaders let i= index">
             <td>
               <ng-container *ngIf="key.key == 'checkBox'">
-                <mat-checkbox  [checked]="values['checked'] ? true : false" (change)="onCheckboxChange($event,values.id)"></mat-checkbox>
+                <mat-checkbox [checked]="values['checked'] ? true : false"
+                  (change)="onCheckboxChange($event,key.key,values.id)"></mat-checkbox>
               </ng-container>
-              
+
               <ng-container *ngIf="key.type == 'boolean' ">
                 <ng-container *ngIf="values[key.key] == true; else elseBlock">
                   <span><i class="fal fa-check"></i></span>
@@ -29,9 +30,13 @@
                 </ng-template>
               </ng-container>
 
-              <ng-container *ngIf="key.type != 'boolean' && key.type != 'form'">
-                <!-- <span *ngIf="values[key] == isEmpty " class="emtyClass"></span> -->
+              <ng-container *ngIf="key.type != 'boolean' && key.type != 'form' && key.type != 'noti'">
                 <span>{{values[key.key]}}</span>
+              </ng-container>
+
+              <ng-container *ngIf="key.type=='noti'">
+                <span
+                  [contentEditable]="values['checked'] !== undefined ? values['checked'] : 'false'" class="editable" (input)="onSpanInput($event, key.key, values.id)">{{values[key.key]}}</span>
               </ng-container>
 
               <ng-container *ngIf="key.type=='form'">
@@ -39,10 +44,13 @@
               </ng-container>
 
               <ng-container *ngIf="key.edit">
+                
+                <span><img [title]="values.isEmpty === 'Loaded' ? 'Edit not allowed for this box' : 'Click to edit'"
+                  [class.edit-icon]="values.isEmpty === 'Loaded'" src="./../../../../assets/icons/edit.svg" alt="" (click)="values.isEmpty != 'Loaded' ? edit.emit(values) : null" ></span>
 
-                <span><img src="./../../../../assets/icons/edit.svg" alt="" (click)="edit.emit(values)"></span>
-                <span><img style="margin-left: 10px;" src="./../../../../assets/icons/trash.svg" alt=""
-                    (click)="deleteItem.emit(values.id)"></span>
+                <span><img [title]="values.isEmpty === 'Loaded' ? 'Delete not allowed for this box' : 'Click to delete'"
+                  [class.edit-icon]="values.isEmpty === 'Loaded'" style="margin-left: 10px;" src="./../../../../assets/icons/trash.svg" alt=""
+                    (click)="values.isEmpty != 'Loaded' ? deleteItem.emit(values.id) : '' "></span>
 
               </ng-container>
               <ng-container *ngIf="key.viewDetail && values.timeArr.length>0">

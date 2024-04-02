@@ -12,4 +12,7 @@ export class DashboardService {
   getAllDetails(pageData: any, query: string){
     return this.http.get(environment.BASE_URL + `/work-order?page=${pageData.page}${query}`);
   }
+  getTotalCount(){
+    return this.http.get(environment.BASE_URL + `/work-order/totalCount`);
+  }
 }

@@ -37,4 +37,10 @@ export class ToteboxService {
   getAllNotifiedData(pageData: any){
     return this.http.get(environment.BASE_URL + `/work-order?isNotify=true`);
   }
+  ApproveNoOfPass(payload: any){
+    return this.http.put(environment.BASE_URL + `/work-order/updateMultiple`, payload);
+  }
+  getNotifyCount(){
+    return this.http.get(environment.BASE_URL + `/work-order/getNotifiedWorkOrderCount`);
+  }
 }

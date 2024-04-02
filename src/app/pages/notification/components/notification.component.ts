@@ -19,6 +19,7 @@ export class NotificationComponent {
   apiLoader = false;
   currentPage = 0;
   selectedIds: any = [];
+  changedValues: any[] = [];
   constructor(public service:CommonService, private toteBoxService:ToteboxService) {}
   ngOnInit(){
     this.getNotifiedData()
@@ -35,7 +36,7 @@ export class NotificationComponent {
       next: (res: any) => {
         this.apiLoader = false;
         this.tableValues = res.data;
-        this.totalCount = res.total;
+        this.totalCount = res.fetchedCount;
       },
       error: (err) => {
       },
@@ -66,6 +67,24 @@ export class NotificationComponent {
     this.scannerTableComponent.isSelectAll = false;
     this.currentPage = this.paginator.pageIndex;
     this.getNotifiedData();
+  }
+
+  onValueChanged(event: any) {
+    this.changedValues = event;
+    // console.log('event----', this.changedValues);
+  }
+
+  ApproveNotifiedData(){
+    this.toteBoxService.ApproveNoOfPass(this.changedValues).subscribe({
+      next: (res) => {
+        this.service.showSnackbar("Approved Successfully");
+        this.getNotifiedData();
+      },
+      error: (err) => {
+      },
+      complete() {
+      },
+    })
   }
 
 }

@@ -8,9 +8,18 @@
         <div class="user-logo">
             <!-- <img src="./../../../../assets/icons/user.png" alt=""> -->
             <span class="user-name">{{userName}}</span>
-            <div class="dropdown">
+
+            <div class="head-menu-item notification-icon-container">
+                <button class="head-menu-item-btn ripple">
+                    <i class="far fa-bell menu-icon">
+                        <div class="notification-count">{{this.notifyCount}}</div>
+                    </i>
+                </button>
+            </div>
+
+            <div class="dropdown head-menu-item">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                    <img src="./../../../../assets/icons/user.png" class="rounded-circle" height="25"
+                    <img src="./../../../../assets/icons/user.png" class="rounded-circle" height="15"
                         alt="Black and White Portrait of a Man" loading="lazy" />
                 </button>
                 <mat-menu #menu="matMenu">

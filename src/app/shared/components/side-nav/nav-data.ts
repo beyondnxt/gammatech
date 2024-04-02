@@ -38,14 +38,14 @@ export const navBarData = [
     {
         routerlink: 'notification',
         icon: 'fal fa-light fa-bell',
-        label: 'Notification',
+        label: 'Approval',
         menu: 'notification'
+    },
+    {
+        routerlink: 'reports',
+        icon: 'fal fa-hand-holding-box',
+        label: 'Reports',
+        menu: 'reports'
     }
-    // {
-    //     routerlink: 'work-order',
-    //     icon: 'fal fa-hand-holding-box',
-    //     label: 'Loaded Box',
-    //     menu: 'work-order'
-    // }
     
 ]

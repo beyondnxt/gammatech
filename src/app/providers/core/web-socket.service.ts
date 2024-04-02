@@ -38,6 +38,15 @@ export class WebSocketService {
       this.webSocket.emit('get-scanner-data', 'Connect');
      this.webSocket.on('get-scanner-data', (data: any) => {
         observable.next(data);
+      });
+    });
+  }
+
+  receiveNotificationCount(): Observable<any> {
+    return new Observable((observable) => {
+      this.webSocket.emit('admin_notification', 'Connect');
+     this.webSocket.on('admin_notification', (data: any) => {
+        observable.next(data);
         console.log('11----', data);
       });
     });

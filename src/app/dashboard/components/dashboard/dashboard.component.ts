@@ -16,6 +16,7 @@ import { CommonService } from 'src/app/providers/core/common.service';
 })
 export class DashboardComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  finalCount: any;
   constructor(private websocketService: WebSocketService, private dialog:MatDialog, private dashboardService:DashboardService, private dashboardHelper:DashboardHelper, public service:CommonService) {}
  tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
@@ -30,6 +31,23 @@ export class DashboardComponent {
     // this.initializeSocketConnection();
     this.receiveSocketResponse();
     this.secondScannerUpdate();
+    this.getTotalCount();
+  }
+
+  getTotalCount(){
+    this.dashboardService.getTotalCount().subscribe(
+      {
+        next: (res) => {
+          this.finalCount = (res as any).totalCounts;
+          // console.log('11----',this.finalCount);
+        },
+        error: (err) => {
+          console.log(err);
+         },
+        complete: () => {
+       }
+      }
+    );
   }
 
   getAllDetails(){

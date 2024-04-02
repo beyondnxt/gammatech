@@ -36,6 +36,7 @@
      flex-direction: row;
      align-items: center;
     margin-top: 20px;
+    margin-left: auto;
  
  }
  
@@ -90,6 +91,14 @@
 
 .form-section {
   background-color: #f0f0f0;
+}
+.dashboard-container{
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-end;
+
 }
 
  

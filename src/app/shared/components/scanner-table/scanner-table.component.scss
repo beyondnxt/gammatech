@@ -122,3 +122,37 @@
 a{
     color: var(--primary);
 }
+.editable[contenteditable="true"] {
+    /* Define the styles for the editable element */
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .editable:hover {
+    /* Define hover styles */
+    border-color: #999;
+  }
+  
+  .editable:focus {
+    /* Define focus styles */
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  .edit-icon {
+    cursor: not-allowed; /* Change cursor to indicate not clickable */
+  }
+  
+  .edit-icon:hover {
+    cursor: not-allowed; /* Change cursor on hover */
+  }
+  
+  .edit-icon[disabled] {
+    pointer-events: none; /* Disable click event */
+  }
+  

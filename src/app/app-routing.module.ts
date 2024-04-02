@@ -38,7 +38,7 @@ const routes: Routes = [
           import("./pages/user/users.module").then(m => m.UsersModule)
       },
       {
-        path: 'work-order',
+        path: 'reports',
         component: WorkOrderComponent,
         loadChildren: () =>
           import("./pages/work-order/work-order.module").then(m => m.WorkOrderModule)
