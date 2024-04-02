@@ -9,9 +9,14 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  userName: string | null | undefined;
   constructor(public router:Router,private dialog: MatDialog) {}
   @Input() collapsed = true;
   @Input() screenWidth = 0;
+
+  ngOnInit(){
+    this.userName = localStorage.getItem('name');
+  }
   getHeaderClass(): string {
     let styleClass = '';
     if (this.collapsed && this.screenWidth > 768) {
@@ -25,6 +30,8 @@ export class HeaderComponent {
   logOut(){
     localStorage.removeItem('userId');
     localStorage.removeItem('authToken');
+    localStorage.removeItem('roleId');
+    localStorage.removeItem('name');
     this.router.navigate(['login']);
   }
   changePassword(){

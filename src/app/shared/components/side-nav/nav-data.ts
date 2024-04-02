@@ -19,21 +19,33 @@ export const navBarData = [
     },
     {
         routerlink: 'tote-box',
-        icon: 'fal fa-hand-holding-box',
+        icon: 'fal fa-light fa-box',
         label: 'Tote Box',
-        menu: 'product'
-    },
-    {
-        routerlink: 'work-order',
-        icon: 'fal fa-hand-holding-box',
-        label: 'Loaded Box',
-        menu: 'work-order'
+        menu: 'toteBox'
     },
     {
         routerlink: 'unloaded-box',
-        icon: 'fal fa-hand-holding-box',
-        label: 'Unloaded Box',
-        menu: 'unloaded-box'
+        icon: 'fal fa-box-open',
+        label: 'Empty Boxes',
+        menu: 'unload'
+    },
+    {
+        routerlink: 'completed',
+        icon: 'fal fa-box-check',
+        label: 'Completed',
+        menu: 'completed'
+    },
+    {
+        routerlink: 'notification',
+        icon: 'fal fa-light fa-bell',
+        label: 'Notification',
+        menu: 'notification'
     }
+    // {
+    //     routerlink: 'work-order',
+    //     icon: 'fal fa-hand-holding-box',
+    //     label: 'Loaded Box',
+    //     menu: 'work-order'
+    // }
     
 ]

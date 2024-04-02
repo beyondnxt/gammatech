@@ -8,46 +8,54 @@ import { LayoutComponent } from '../components/layout/layout.component';
 import { BodyComponent } from '../components/body/body.component';
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { FormDataComponent } from '../components/form-data/form-data.component';
+import { SearchComponent } from '../components/search/search.component';
 import { AddBtnComponent } from '../components/add-btn/add-btn.component';
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
 import { ForgetPageComponent } from '../components/forget-page/forget-page.component';
 import { ShowDetailComponent } from '../components/show-detail/show-detail.component';
+import { RouterModule } from '@angular/router';
+import { TableLoaderComponent } from '../components/table-loader/table-loader.component';
 
 
 @NgModule({
     declarations: [
+        AddBtnComponent,
+        ChangePasswordComponent,
+        ConfirmDialogComponent,
+        ForgetPageComponent,
         HeaderComponent,
         ScannerTableComponent,
         LoginComponent,
         LayoutComponent,
         BodyComponent,
         SideNavComponent,
+        SearchComponent,
         FormDataComponent,
+        ShowDetailComponent,
+        TableLoaderComponent
+    ],
+    imports: [
+        CommonModule,
+        MatModule,
+        RouterModule
+    ],
+    exports: [
+        MatModule,
         AddBtnComponent,
         ChangePasswordComponent,
         ConfirmDialogComponent,
         ForgetPageComponent,
-        ShowDetailComponent
-    ],
-    imports: [
-        CommonModule,
-        MatModule
-    ],
-    exports: [
-        MatModule,
-        HeaderComponent, 
+        HeaderComponent,
         ScannerTableComponent,
         LoginComponent,
         LayoutComponent,
         BodyComponent,
         SideNavComponent,
+        SearchComponent,
         FormDataComponent,
-        AddBtnComponent,
-        ChangePasswordComponent,
-        ConfirmDialogComponent,
-        ForgetPageComponent,
-        ShowDetailComponent
+        ShowDetailComponent,
+        TableLoaderComponent
     ]
 })
 

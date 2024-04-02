@@ -19,9 +19,10 @@ export class AddRolesComponent {
       dashboard: [false],
       user: [false],
       role: [false],
-      barcode: [false],
+      completed: [false],
       toteBox: [false],
-      workOrder: [false],
+      unload: [false],
+      notification: [false],
     }),
   })
 
@@ -31,13 +32,13 @@ export class AddRolesComponent {
         "name": this.dialogData.name,
         "description": this.dialogData.description,
         "menuAccess": {
-          "barcode": this.dialogData.barcode,
           "dashboard": this.dialogData.dashboard,
           "user": this.dialogData.user,
           "role": this.dialogData.role,
           "toteBox": this.dialogData.toteBox,
-          "workOrder": this.dialogData.workOrder,
-
+          "unload": this.dialogData.unload,
+          "completed": this.dialogData.completed,
+          "notification": this.dialogData.notification,
         }
       };
       this.roleData.patchValue(data);
@@ -45,7 +46,6 @@ export class AddRolesComponent {
   }
 
   addRole() {
-    console.log('data-----',this.dialogData);
     this.roleData.markAllAsTouched();
     if (this.roleData.valid) {
       if (this.dialogData) {
@@ -66,7 +66,6 @@ export class AddRolesComponent {
         if (this.roleData.valid && this.validateMenuAccess()) {
           this.roleService.postRole(this.roleData.getRawValue()).subscribe({
             next: (res) => {
-              console.log("success");
               this.roleData.reset();
               this.dialogRef.close(true);
             },

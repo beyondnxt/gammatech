@@ -1,3 +1,4 @@
+@import url('../../../../utility.scss');
 .head{
     background: #0d6efdb8;
     margin: auto;
@@ -23,6 +24,15 @@
     display: grid; 
     place-items: end;
     padding:10px;
+}
+.row {
+    width:100%;
+}
+.inTimeData{
+    margin:15px;
+}
+.tableData{
+    width:100%;
 }
 // .closeAlign {
 //     display: flex;

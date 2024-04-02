@@ -1,4 +1,16 @@
 
 
 <app-add-btn [label]="'Add Role +'" (action)="addRole()"></app-add-btn>
+
+<ng-container *ngIf="apiLoader">
+    <app-table-loader [valueColumns]="this.service.calculatePaginationVal()" [columns]="tableHeaders.length"></app-table-loader>
+</ng-container>
+
+<ng-container>
 <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (edit)="editRole($event)" (deleteItem)="deleteRole($event)"></app-scanner-table>
+
+<mat-paginator #paginator [showFirstLastButtons]="true" class="demo-paginator" aria-label="Select page"
+    [pageIndex]="currentPage" (page)="onPageChange($event)" [pageSize]="service.calculatePaginationVal()"
+    [length]="totalCount">
+    </mat-paginator>
+</ng-container>

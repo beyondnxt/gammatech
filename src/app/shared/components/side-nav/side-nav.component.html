@@ -14,7 +14,7 @@
     </div>
     <ul class="sidenav-nav">
       <li class="sidenav-nav-item" *ngFor="let data of navData">
-        <ng-container >
+        <ng-container *ngIf="showMenu?.[data.menu]">
           <a class="sidenav-nav-link" [routerLink]="data.routerlink" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact:true}">
             <i class="sidenav-link-icon" [class]="data.icon"></i>

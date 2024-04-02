@@ -5,7 +5,6 @@ import { Injectable } from "@angular/core";
 })
 export class UserHelper {
     mapUserData(serviceData: any) {
-        // console.log("8-------", serviceData);
         let template:any = []
         serviceData.forEach((element: any) => {
             template.push({
@@ -17,7 +16,7 @@ export class UserHelper {
                 id:element?.id ? element.id : '',
                 roleName:element?.roleName ? element.roleName : '',
                 status:element?.status ? element.status : '',
-                roleId:element?.status ? element.status : '1',
+                roleId:element?.roleId ? element.roleId : '',
              })
         });
         return template;

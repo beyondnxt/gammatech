@@ -29,7 +29,6 @@ export class AddUserComponent {
   }
   
   ngOnInit(){
-    console.log('data----', this.data);
     this.getRoles();
     if (this.data) {
       this.userDetails.patchValue(this.data)
@@ -37,10 +36,9 @@ export class AddUserComponent {
   }
 
   getRoles(){
-    this.roleService.getRoleDetail().subscribe({
+    this.roleService.getRole().subscribe({
       next: (res:any) => {
         this.roleList = res?.roles.filter((x: any) => x.name);
-        console.log('43-------',this.roleList);
       },
       error: (err) => {
       },
@@ -73,7 +71,6 @@ export class AddUserComponent {
       else {
         this.adminService.saveNewUser(this.userDetails.getRawValue()).subscribe({
           next: (res) => {
-            console.log("success");
             this.dialogRef.close(true);
           },
           error: (err) => {
