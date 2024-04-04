@@ -19,16 +19,37 @@ export class FormDataComponent {
   formData=this.fb.group({
     boxNumber:[''],
     noofPass:[3],
-    shift:[],
+    shift:[this.getShift()],
   })
 
   ngOnInit(){
     this.from = this.data.from;
     this.data =  this.data[0];
   }
+  getShift(): string {
+    const currentTime = new Date();
+    const hour = currentTime.getHours();
+  
+    if (hour >= 6 && hour < 14) {
+      return 'Morning Shift(6AM to 2PM)';
+    } else if (hour >= 14 && hour < 22) {
+      return 'Afternoon Shift(2PM to 10PM)';
+    } else {
+      return 'Night Shift(10PM to 6AM)';
+    }
+  }
   onSubmit(){
-    const formDataValues = this.formData.getRawValue();
-    this.loadToteBox.emit(formDataValues);
+    let formData = this.formData.getRawValue();
+    if(formData.shift == 'Morning Shift(6AM to 2PM)'){
+      formData.shift = 'AM';
+    }
+    else if(formData.shift == 'Afternoon Shift(2PM to 10PM)'){
+      formData.shift = 'FN';
+    }
+    else{
+      formData.shift = 'PM';
+    }
+    this.loadToteBox.emit(formData);
   }
 
 }

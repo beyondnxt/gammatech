@@ -82,5 +82,8 @@ export class HeaderComponent {
       }
     });
   }
+  redirectToApprovalPage(){
+    this.router.navigate(['/notification']);
+  }
 
 }

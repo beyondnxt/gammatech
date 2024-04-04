@@ -17,6 +17,7 @@ import { CommonService } from 'src/app/providers/core/common.service';
 export class DashboardComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   finalCount: any;
+  tab = 'loaded';
   constructor(private websocketService: WebSocketService, private dialog:MatDialog, private dashboardService:DashboardService, private dashboardHelper:DashboardHelper, public service:CommonService) {}
  tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
@@ -27,7 +28,7 @@ export class DashboardComponent {
   count: any = '';
 
   ngOnInit(){
-    this.getAllDetails();
+    this.getDashboardDataBasedOnStatus(this.tab);
     // this.initializeSocketConnection();
     this.receiveSocketResponse();
     this.secondScannerUpdate();
@@ -50,30 +51,9 @@ export class DashboardComponent {
     );
   }
 
-  getAllDetails(){
-    this.apiLoader = true;
-    const pageData = {
-      pageSize: this.service?.calculatePaginationVal(),
-      page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
-    }
-
-    this.dashboardService.getAllDetails(pageData, this.query).subscribe({
-      next: (res: any) => {
-        this.apiLoader = false;
-        this.tableValues = this.dashboardHelper.mapUserData(res.data);
-        this.totalCount = res.total;
-        this.count = res.totalCounts;
-      },
-      error: (err) => {
-      },
-      complete() {
-      },
-    })
-  }
-
   onPageChange(event: any): void {
     this.currentPage = this.paginator.pageIndex;
-    this.getAllDetails();
+    this.getDashboardDataBasedOnStatus(this.tab);
   }
 
   viewDetails(data: any){
@@ -118,7 +98,7 @@ export class DashboardComponent {
     this.websocketService.receiveUpdateStatus().subscribe(
       {
         next: (res) => {
-          this.getAllDetails();
+          this.getDashboardDataBasedOnStatus(this.tab);
         },
         error: (err) => {
           console.log(err);
@@ -130,15 +110,41 @@ export class DashboardComponent {
    }
   
    searchBox(boxName: any){
-
     this.query='&toteBoxName='+boxName;
     (boxName && this.paginator) && ( this.paginator.pageIndex = 0);
     this.currentPage = 0;
-    this.getAllDetails();
+    this.getDashboardDataBasedOnStatus(this.tab);
   }
 
    // Disconnects socket connection
   //  disconnectSocket() {
   //   this.websocketService.disconnectSocket();
   //  }
+
+  loadData(tab: string): void {
+    this.query = '';
+    this.tab = tab;
+    this.getDashboardDataBasedOnStatus(tab);
+    }
+
+  getDashboardDataBasedOnStatus(status: any){
+    this.apiLoader = true;
+    const pageData = {
+      pageSize: this.service?.calculatePaginationVal(),
+      page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
+    }
+
+    this.dashboardService.getDashboardDataBasedOnStatus(pageData, status, this.query).subscribe({
+      next: (res: any) => {
+        this.apiLoader = false;
+        this.tableValues = this.dashboardHelper.mapUserData(res.data);
+        this.totalCount = res.fetchedCount;
+        this.count = res.totalCounts;
+      },
+      error: (err) => {
+      },
+      complete() {
+      },
+    })
+  }
 }

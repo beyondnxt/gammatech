@@ -10,7 +10,7 @@
             <span class="user-name">{{userName}}</span>
 
             <div class="head-menu-item notification-icon-container">
-                <button class="head-menu-item-btn ripple">
+                <button class="head-menu-item-btn ripple" (click)="redirectToApprovalPage()">
                     <i class="far fa-bell menu-icon">
                         <div class="notification-count">{{this.notifyCount}}</div>
                     </i>

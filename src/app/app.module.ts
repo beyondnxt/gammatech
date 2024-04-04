@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonService } from './providers/core/common.service';
 import { HttpInterceptorService } from './providers/httpinterceptor/http-interceptor.service';
-import { NotificationComponent } from './pages/notification/components/notification.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import { NotificationComponent } from './pages/notification/components/notificat
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    NgSelectModule
   ],
   providers: [
     {

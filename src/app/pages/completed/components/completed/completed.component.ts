@@ -17,10 +17,20 @@ export class CompletedComponent {
   tableHeaders = data.tableHeaders;
   tableValues = data.tableValues;
   apiLoader = false;
+  items = [
+    { id: 1, name: 'Option 1' },
+    { id: 2, name: 'Option 2' },
+    { id: 3, name: 'Option 3' }
+  ];
+  selectedItemId: any;
   constructor(private toteboxService:ToteboxService, public service:CommonService) {}
   ngOnInit(){
     this.getCompletedBoxes();
   }
+  onSelectionChange(event: any) {
+    console.log('Selected item:', event);
+  }
+  
   getCompletedBoxes(){
     this.apiLoader = true;
     this.toteboxService.getCompletedBoxes(true).subscribe({

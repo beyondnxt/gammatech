@@ -1,4 +1,4 @@
-<app-add-btn [label]="'Approve'" (action)="ApproveNotifiedData()"></app-add-btn>
+<app-add-btn class="approveBtn" [label]="'Approve'" [disableBtn]="this.selectedIds.length === 0" (action)="ApproveNotifiedData()"></app-add-btn>
 
 <ng-container *ngIf="apiLoader">
     <app-table-loader [valueColumns]="this.service.calculatePaginationVal()" [columns]="tableHeaders.length"></app-table-loader>

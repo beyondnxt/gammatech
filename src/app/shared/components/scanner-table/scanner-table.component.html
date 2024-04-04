@@ -31,7 +31,8 @@
               </ng-container>
 
               <ng-container *ngIf="key.type != 'boolean' && key.type != 'form' && key.type != 'noti'">
-                <span>{{values[key.key]}}</span>
+                <span *ngIf="key.key != 'currentStatus'">{{values[key.key]}}</span>
+                <span *ngIf="key.key === 'currentStatus'" [style.color]="getStatusColor(values[key.key])">{{values[key.key]}}</span>
               </ng-container>
 
               <ng-container *ngIf="key.type=='noti'">

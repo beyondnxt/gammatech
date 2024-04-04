@@ -7,6 +7,25 @@ export class DashboardHelper {
     mapUserData(serviceData: any) {
         let template:any = []
         serviceData.forEach((element: any) => {
+            let currentStatusText = '';
+            switch (element?.currentStatus) {
+                case 'loaded':
+                    currentStatusText = 'Loaded';
+                    break;
+                case 'inProgress':
+                    currentStatusText = 'In-Progress';
+                    break;
+                case 'empty':
+                    currentStatusText = 'Empty';
+                    break;
+                case 'completed':
+                    currentStatusText = 'Completed';
+                    break;
+                default:
+                    currentStatusText = '-';
+                    break;
+            }
+
             template.push({
                 barcode: element?.barcode ? element?.barcode : '',
                 toteBoxName: element?.toteBoxName ? element?.toteBoxName : '',
@@ -24,8 +43,8 @@ export class DashboardHelper {
                 unLoadingUser:element?.unLoading?.userName ? element?.unLoading?.userName : '-',
                 unLoadingShift:element?.unLoading?.shiftTime ? element?.unLoading?.shiftTime : '-',
                 updatedOn: element?.updatedOn ? element?.updatedOn : '-',
-                currentStatus:element?.currentStatus ? element?.currentStatus : '-',
                 timeArr:element?.time ? element?.time : '',
+                currentStatus:currentStatusText,
              })
         });
         return template;

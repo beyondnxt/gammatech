@@ -23,21 +23,18 @@
             </div>
 
             <div class="col-lg-6" *ngIf="!from">
-                {{from}}
                 <label for="" class="label">No of Pass: </label>
                 <mat-form-field class="example-full-width mb-2">
                     <input matInput placeholder="No of Pass" value=3 formControlName="noofPass">
                 </mat-form-field>
             </div>
-            <!-- <div class="col-lg-6">
-                <label for="" class="label">User Name : </label>
-                <mat-form-field class="example-full-width mb-2">
-                    <mat-select placeholder="Select User" formControlName="userName" floatlLabel="never">
-                        <mat-option *ngFor="let user of users" [value]="user?.id">{{user?.firstName }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div> -->
             <div class="col-lg-6">
+                <label for="" class="label">Shift : </label>
+                <mat-form-field class="example-full-width mb-2">
+                    <input matInput placeholder="No of Pass" formControlName="shift" readonly>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-lg-6">
                 <label for="" class="label">Shift : </label>
                 <mat-form-field class="example-full-width mb-2">
                         <mat-select placeholder="Shift" formControlName="shift">
@@ -46,7 +43,7 @@
                             <mat-option value="N">Night Shift(10PM to 6AM)</mat-option>
                         </mat-select>
                 </mat-form-field>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="btnAlign mb-2">

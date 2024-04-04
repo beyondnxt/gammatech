@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import * as data from './work-order';
 import { WebSocketService } from 'src/app/providers/core/web-socket.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,8 @@ import { DashboardHelper } from 'src/app/dashboard/components/dashboard/dashboar
 import { CommonService } from 'src/app/providers/core/common.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { ShowDetailComponent } from 'src/app/shared/components/show-detail/show-detail.component';
+import { FormBuilder } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-work-order',
@@ -23,34 +25,138 @@ export class WorkOrderComponent {
   totalCount = 0;
   count: any = '';
   query = '';
-  category: { name: string; }[] = [
-    { name: 'Category 1' },
-    { name: 'Category 2' },
-    { name: 'Category 3' },
-    // Add more dummy data as needed
+  filter = this.fb.group({
+    shift: [''],
+    user: [''],
+    noofPass: [''],
+    currentStatus: ['']
+  });
+  selectedOptions: string[] = [];
+  shift = [
+    { id: 'AM', name: 'AM' },
+    { id: 'FN', name: 'FN' },
+    { id: 'PM', name: 'PM' }
   ];
-  
-  constructor(private websocketService: WebSocketService, private dialog:MatDialog, private dashboardService:DashboardService, private dashboardHelper:DashboardHelper, public service:CommonService) {}
+  selectedItems = [];
+  shiftQry = '';
+  userQry = '';
+  passQry = '';
+  statusQry = '';
+  noofPass: any;
+  user: any;
+  currentStatus: any;
+  fromDate = '';
+  toDate = '';
 
+  constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService, private fb: FormBuilder) { }
+  @ViewChild('fromDateInput') fromDateInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('toDateInput') toDateInput!: ElementRef<HTMLInputElement>;
 
-  ngOnInit(){
+  ngOnInit() {
     this.getAllDetails();
+    this.getAllDetailsForFilter();
     this.secondScannerUpdate();
     this.getTotalCount();
   }
 
-  getAllDetails(){
+  getShift(shift: any) {
+    this.shiftQry = `&shiftTime=${shift}`;
+    this.getAllDetails();
+  }
+  users(user: any) {
+    this.userQry = `&userName=${user}`;
+    this.getAllDetails();
+  }
+  noOfPass(pass: any) {
+    this.passQry = `&noOfPass=${pass}`;
+    this.getAllDetails();
+  }
+  getCurrentStatus(status: any) {
+    this.statusQry = `&currentStatus=${status}`;
+    this.getAllDetails();
+  }
+
+  getAllDetailsForFilter() {
+    this.dashboardService.getFilterData().subscribe(
+      {
+        next: (res: any) => {
+          if (Array.isArray(res.data)) {
+            const uniqueUsers = new Set();
+            const uniquepass = new Set();
+            const uniqueStatus = new Set();
+            res.data.forEach((item: any) => {
+              if (item.loading && item.loading.userName) {
+                uniqueUsers.add(item.loading.userName);
+              }
+              if (item.noOfPass) {
+                uniquepass.add(item.noOfPass);
+              }
+              if (item.currentStatus) {
+                uniqueStatus.add(item.currentStatus);
+              }
+            });
+            this.user = Array.from(uniqueUsers);
+            this.noofPass = Array.from(uniquepass);
+            this.currentStatus = Array.from(uniqueStatus);
+            console.log(this.noofPass);
+          }
+        },
+        error: (err) => {
+        },
+        complete: () => {
+        }
+      }
+    );
+  }
+
+  onFromDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.fromDate = this.dateFormat(event.value);
+    this.dateCheck();
+  }
+  onToDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.toDate = this.dateFormat(event.value);
+    this.dateCheck();
+  }
+
+  dateFormat(date: any) {
+    if (date != null) {
+      const year = date.getFullYear();
+      const month = ('0' + (date.getMonth() + 1)).slice(-2);
+      const day = ('0' + date.getDate()).slice(-2);
+      const formattedDate = `${year}-${month}-${day}`;
+      return formattedDate;
+    }
+    else {
+      return date;
+    }
+  }
+
+  dateCheck(){
+    if (!this.fromDate || !this.toDate) {
+      return;
+    }
+    if (this.fromDate > this.toDate) {
+      this.fromDate = this.toDate = '';
+      this.fromDateInput.nativeElement.value = '';
+      this.toDateInput.nativeElement.value = '';
+      this.getAllDetails();
+      this.service.showSnackbar("End date should be greater than start date");
+      return;
+    }
+    this.getAllDetails();
+  }
+  
+  getAllDetails() {
     this.apiLoader = true;
     const pageData = {
       pageSize: this.service?.calculatePaginationVal(),
       page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
     }
-
-    this.dashboardService.getAllDetails(pageData, this.query).subscribe({
+    this.dashboardService.getAllDetails(pageData, this.query, this.shiftQry, this.userQry, this.passQry, this.statusQry,this.fromDate, this.toDate).subscribe({
       next: (res: any) => {
         this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
-        this.totalCount = res.total;
+        this.totalCount = res.fetchedCount;
         this.count = res.totalCounts;
       },
       error: (err) => {
@@ -60,7 +166,7 @@ export class WorkOrderComponent {
     })
   }
 
-  secondScannerUpdate(){
+  secondScannerUpdate() {
     this.websocketService.receiveUpdateStatus().subscribe(
       {
         next: (res) => {
@@ -68,14 +174,14 @@ export class WorkOrderComponent {
         },
         error: (err) => {
           console.log(err);
-         },
+        },
         complete: () => {
-       }
+        }
       }
     );
-   }
+  }
 
-   getTotalCount(){
+  getTotalCount() {
     this.dashboardService.getTotalCount().subscribe(
       {
         next: (res) => {
@@ -84,35 +190,35 @@ export class WorkOrderComponent {
         },
         error: (err) => {
           console.log(err);
-         },
+        },
         complete: () => {
-       }
+        }
       }
     );
   }
 
-   onPageChange(event: any): void {
+  onPageChange(event: any): void {
     this.currentPage = this.paginator.pageIndex;
     this.getAllDetails();
   }
 
-  viewDetails(data: any){
+  viewDetails(data: any) {
     this.dialog.open(ShowDetailComponent, {
       width: '700px',
       height: 'max-content',
       disableClose: true,
       panelClass: 'user-dialog-container',
-      data:data,
+      data: data,
     }).afterClosed().subscribe((res) => {
-      if(res){
+      if (res) {
       }
     });
   }
 
-  searchBox(boxName: any){
+  searchBox(boxName: any) {
 
-    this.query='&toteBoxName='+boxName;
-    (boxName && this.paginator) && ( this.paginator.pageIndex = 0);
+    this.query = '&toteBoxName=' + boxName;
+    (boxName && this.paginator) && (this.paginator.pageIndex = 0);
     this.currentPage = 0;
     this.getAllDetails();
   }

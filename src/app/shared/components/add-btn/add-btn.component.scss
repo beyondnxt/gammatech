@@ -41,3 +41,15 @@
   .btn-15:active {
     top: 2px;
   }
+  .disaable-btn{
+    border: 1px solid #0d6efd;
+    background: none !important;
+    color: #000000;
+    cursor: not-allowed;
+  }
+  .disaable-btn:hover:after {
+    color: #000 !important;
+  }
+  .disaable-btn:hover {
+    color: #000 !important;
+  }

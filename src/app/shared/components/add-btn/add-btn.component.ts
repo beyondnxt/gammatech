@@ -9,5 +9,5 @@ export class AddBtnComponent {
 
   @Input() label = '';
   @Output() action = new EventEmitter();
-  
+  @Input() disableBtn = false;
 }

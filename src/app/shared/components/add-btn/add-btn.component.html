@@ -1,1 +1,1 @@
-<button type="button" (click)="action.emit()" class="custom-btn btn-15">{{label}}</button>
+<button type="button" (click)="action.emit()" [disabled]="disableBtn" class="custom-btn btn-15" [ngClass]="{'disaable-btn': disableBtn}">{{label}}</button>

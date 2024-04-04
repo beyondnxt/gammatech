@@ -55,7 +55,7 @@ import { TableLoaderComponent } from '../components/table-loader/table-loader.co
         SearchComponent,
         FormDataComponent,
         ShowDetailComponent,
-        TableLoaderComponent
+        TableLoaderComponent,
     ]
 })
 

@@ -48,16 +48,16 @@
     <div class="tabs-align">
         <div class="center-align">
 
-            <input type="radio" name="size" id="size_1" value="small" checked />
+            <input type="radio" name="size" id="size_1" value="small" checked (change)="loadData('loaded')" />
             <label for="size_1">Loaded Box</label>
 
-            <input type="radio" name="size" id="size_2" value="small" />
+            <input type="radio" name="size" id="size_2" value="small" (change)="loadData('inProgress')" />
             <label for="size_2">In Progress</label>
 
-            <input type="radio" name="size" id="size_3" value="small" />
+            <input type="radio" name="size" id="size_3" value="small" (change)="loadData('completed')" />
             <label for="size_3">Completed</label>
 
-            <input type="radio" name="size" id="size_4" value="small" />
+            <input type="radio" name="size" id="size_4" value="small" (change)="loadData('empty')" />
             <label for="size_4">Empty Boxes</label>
 
         </div>
