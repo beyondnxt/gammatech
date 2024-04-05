@@ -1,10 +1,11 @@
 @import url('../../../../utility.scss');
 .head{
-    background: #0d6efdb8;
+    background: #2F4FCD;
     margin: auto;
     color: white;
     display: flex;
     justify-content: space-between;
+    padding:2px;
 }
 .pl{
     padding-left: 10px;
@@ -34,7 +35,17 @@
 .tableData{
     width:100%;
 }
+.tableData tbody, td, tfoot, th, thead, tr{
+    padding:5px;
+}
+.tableData .headerClass{
+    border-bottom:1px solid #ccc;
+}
 // .closeAlign {
 //     display: flex;
 //     justify-content: space-between;
 // }
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface{
+    --mdc-dialog-container-shape:20px!important;
+    border-radius:var(--mdc-dialog-container-shape, 4px);
+}

@@ -1,8 +1,8 @@
 .body{
     width: calc(100% - 5rem);
-    height: 100vh!important;
+    height: auto!important;
     margin-left: 5rem;
-    padding-top: 72px;
+    padding-top: 60px;
     z-index: 0;
     position: relative;
     top: 0px;
@@ -21,5 +21,5 @@
 
 .set-trimmed{
     margin-left: 15rem;
-    width: calc(100% - 15rem);
+    width: calc(100% - 20rem);
 }

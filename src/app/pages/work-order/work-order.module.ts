@@ -15,7 +15,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         SharedModule,
         WorkOrderRoutingModule,
         ReactiveFormsModule,
-        NgSelectModule
+        NgSelectModule,
         ]
 })
 export class WorkOrderModule { }

@@ -25,29 +25,31 @@ export class FormDataComponent {
   ngOnInit(){
     this.from = this.data.from;
     this.data =  this.data[0];
+    console.log(this.data);
+    console.log(this.data);
   }
   getShift(): string {
     const currentTime = new Date();
     const hour = currentTime.getHours();
   
     if (hour >= 6 && hour < 14) {
-      return 'Morning Shift(6AM to 2PM)';
+      return '1st Shift(6AM to 2PM)';
     } else if (hour >= 14 && hour < 22) {
-      return 'Afternoon Shift(2PM to 10PM)';
+      return '2nd Shift(2PM to 10PM)';
     } else {
-      return 'Night Shift(10PM to 6AM)';
+      return '3rd Shift(10PM to 6AM)';
     }
   }
   onSubmit(){
     let formData = this.formData.getRawValue();
     if(formData.shift == 'Morning Shift(6AM to 2PM)'){
-      formData.shift = 'AM';
+      formData.shift = '1';
     }
     else if(formData.shift == 'Afternoon Shift(2PM to 10PM)'){
-      formData.shift = 'FN';
+      formData.shift = '2';
     }
     else{
-      formData.shift = 'PM';
+      formData.shift = '3';
     }
     this.loadToteBox.emit(formData);
   }

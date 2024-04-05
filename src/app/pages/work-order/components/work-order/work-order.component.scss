@@ -25,12 +25,7 @@
    font-size: 14px;
    padding: 10px 15px 10px 15px;
  }
- input[type="radio"]:checked + label{
-   background-color: var(--primary);
-   color: white;
-   font-size: 14px;
-   padding: 10px 15px 10px 15px;
- }
+
  .searchBar {
      width: 100%;
      display: flex;
@@ -105,11 +100,14 @@
   border:1px solid #0d6efd;
   padding:5px;
   border-radius:5px;
+
 }
 ::ng-deep .ng-dropdown-panel{
   border:1px solid #0d6efd;
   padding:5px;
-  background-color:#dae1eb;
+  background-color:#ffffff;
+  border-radius:5px;
+  margin-top:3px;
 }
 
 // ::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
@@ -128,7 +126,8 @@
 //   // background-color: var(--secondary);
 // }
 .mrBtn {
-  margin-left: 20px;
+  margin-left: 5px;
+  line-height:28px;
 }
 ::ng-deep .ng-select.ng-select-opened>.ng-select-container .ng-arrow{
   top: -2px;
@@ -142,11 +141,55 @@
   border-width:5px 5px 2.5px;
 }
 ::ng-deep .cdk-overlay-pane{
-  background: #ffffff;
+  // background: #ffffff;
   z-index: 1;
 }
 ::ng-deep .ng-option{
   padding:8px 10px !important;
+}
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border:1px solid #0d6efd;
+}
+::ng-deep .datePicker .mat-mdc-form-field .mat-mdc-input-element::placeholder {
+  color: #000000 !important;
+}
+::ng-deep .datePicker .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input{
+  color: #000000!important;
+}
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+  font-size: .9em;
+  margin-bottom: 5px;
+  color: #333;
+  background-color: #8dbeee;
+  border-radius: 2px;
+  margin-right: 5px;
+  padding:2px;
+}
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon.left{
+  border-right:1px solid #b8dbff;
+  padding:0px 2px;
+}
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-label, .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon{
+  display: inline-block;
+  padding: 1px 5px;
+}
+// .mrBtn {
+//   margin-right: 5px; /* Adjust the spacing between elements */
+// }
+.mrBtn {
+  display: inline-block; /* or display: inline; */
+  margin-right: 10px; /* Adjust margin as needed */
+  
+}
+
+.full-width {
+  width: 100%; /* Make sure the datepicker inputs occupy full width */
+}
+.filterClass{
+  padding:0px!important;
+}
+.row{
+  margin:20px;
 }
 
  

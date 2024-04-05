@@ -1,7 +1,8 @@
 .logo {
     display: flex;
     justify-content: space-between;
-    padding: 20px 50px 20px 50px;
+    // padding: 20px 50px 20px 50px;
+    background:var(--primary);
 
     .company-logo,
     .user-logo {
@@ -15,7 +16,7 @@
         font-size: 22px;
     }
     .user-name{
-        color: var(--secondary);
+        color: #ffffff;
         font-weight: 500;
         font-size: 18px;
     }
@@ -45,7 +46,7 @@
 }
 .head-menu-item {
     .head-menu-item-btn {
-        background-color:#ffffff;
+        background-color:#2F4FCD;
         font-size: 20px;
         height: 25px;
         width: 25px;
@@ -54,7 +55,7 @@
         border-radius: 50%;
         margin-left: 5px;
         outline: 0;
-        color: #495057;
+        color: #ffffff;
     }
 }
 .notification-icon-container {

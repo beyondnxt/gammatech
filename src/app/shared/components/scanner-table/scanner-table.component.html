@@ -31,8 +31,8 @@
               </ng-container>
 
               <ng-container *ngIf="key.type != 'boolean' && key.type != 'form' && key.type != 'noti'">
-                <span *ngIf="key.key != 'currentStatus'">{{values[key.key]}}</span>
-                <span *ngIf="key.key === 'currentStatus'" [style.color]="getStatusColor(values[key.key])">{{values[key.key]}}</span>
+                <span *ngIf="key.key != 'currentStatus'">{{ key.key === 'createdOn' ? (values[key.key] | date: 'MMM d, y') : values[key.key] }}</span>
+                <span *ngIf="key.key === 'currentStatus'" class="status" [style.color]="getStatusColor(values[key.key])">{{ key.key === 'createdOn' ? (values[key.key] | date: 'MMM d, y') : values[key.key] }}</span>
               </ng-container>
 
               <ng-container *ngIf="key.type=='noti'">
@@ -41,7 +41,8 @@
               </ng-container>
 
               <ng-container *ngIf="key.type=='form'">
-                <span (click)="detail.emit()">{{values[key.key]}}</span>
+                
+                <span (click)="detail.emit()">{{ key.key === 'createdOn' ? (values[key.key] | date: 'MMM d, y') : values[key.key] || '-' }}</span>
               </ng-container>
 
               <ng-container *ngIf="key.edit">

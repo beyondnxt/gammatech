@@ -72,16 +72,15 @@ export class ScannerTableComponent {
         noOfPass: event.target.textContent
       });
       this.valueChanged.emit(this.changedValue);
-      console.log('Changed values:', this.changedValue);
   }
 
   getStatusColor(status: any){
-    switch (status) {
-      case 'Loaded':
+    switch (status.toLowerCase()) {
+      case 'loaded':
         return 'rgba(147, 18, 222, 0.88)';//#FFB100
-      case 'In-Progress':
+      case 'in-progress':
         return 'rgb(7 182 219)';//#4DB6AC
-      case 'Completed':
+      case 'completed':
         return 'rgb(0, 244, 125)';//#FFB100
       default:
         return 'rgb(228, 21, 21)';

@@ -12,7 +12,7 @@
 .rwd-table {
     //   margin: auto;
     // margin: 10px 50px 10px 50px;
-    min-width: 300px;
+    // min-width: 300px;
     //   max-width: 100%;
     width: 100%;
     border-collapse: collapse;
@@ -154,5 +154,11 @@ a{
   
   .edit-icon[disabled] {
     pointer-events: none; /* Disable click event */
+  }
+  .status{
+    font-weight:bold;
+  }
+  ::ng-deep .rwd-table tr:nth-child(odd) {
+    background-color: #f6faff !important; /* Apply background color to even rows */
   }
   

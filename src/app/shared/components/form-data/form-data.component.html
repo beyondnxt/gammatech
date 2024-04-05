@@ -1,34 +1,26 @@
 <!-- <h2>Form</h2>
 <p>Selected Box: {{ data.name }}</p> -->
-
 <div class="flex-container" [formGroup]="formData">
 
-    <div class="col-lg-12 closeAlign head">
-        <div>
-            <p class="pt-3 pl">{{data?.name}}</p>
-        </div>
-        <!-- <div>
-            <button mat-icon-button mat-dialog-close tabindex="-1" class="close-button"><mat-icon
-                    class="closeColor">close</mat-icon></button>
-        </div> -->
-
-    </div>
-    <div class="main-container">
+    <div class="main-container">    
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
+                <h2>{{data?.toteBoxName}}</h2>
+            </div>
+            <div class="col-lg-12">
                 <label for="" class="label">Barcode: </label>
                 <mat-form-field class="example-full-width mb-2">
                     <input matInput placeholder="Box Number" [readonly]="true" [(ngModel)]="data.barcode" formControlName="boxNumber">
                 </mat-form-field>
             </div>
 
-            <div class="col-lg-6" *ngIf="!from">
+            <div class="col-lg-12" *ngIf="!from">
                 <label for="" class="label">No of Pass: </label>
                 <mat-form-field class="example-full-width mb-2">
                     <input matInput placeholder="No of Pass" value=3 formControlName="noofPass">
                 </mat-form-field>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <label for="" class="label">Shift : </label>
                 <mat-form-field class="example-full-width mb-2">
                     <input matInput placeholder="No of Pass" formControlName="shift" readonly>
@@ -46,7 +38,7 @@
             </div> -->
         </div>
     </div>
-    <div class="btnAlign mb-2">
+    <div class="btnAlign mb-2 d-flex justify-content-end">
 
         <app-add-btn [label]="lable" (click)="onSubmit()"></app-add-btn>
 

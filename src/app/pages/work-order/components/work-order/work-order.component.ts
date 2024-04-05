@@ -25,11 +25,15 @@ export class WorkOrderComponent {
   totalCount = 0;
   count: any = '';
   query = '';
+  selectedCityIds: string[] | undefined;
+
   filter = this.fb.group({
     shift: [''],
     user: [''],
     noofPass: [''],
-    currentStatus: ['']
+    currentStatus: [''],
+    fromDate: [''],
+    toDate: ['']
   });
   selectedOptions: string[] = [];
   shift = [
@@ -42,11 +46,13 @@ export class WorkOrderComponent {
   userQry = '';
   passQry = '';
   statusQry = '';
+  pageCount = 0;
   noofPass: any;
   user: any;
   currentStatus: any;
   fromDate = '';
   toDate = '';
+  
 
   constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService, private fb: FormBuilder) { }
   @ViewChild('fromDateInput') fromDateInput!: ElementRef<HTMLInputElement>;
@@ -55,8 +61,8 @@ export class WorkOrderComponent {
   ngOnInit() {
     this.getAllDetails();
     this.getAllDetailsForFilter();
-    this.secondScannerUpdate();
-    this.getTotalCount();
+    // this.secondScannerUpdate();
+    // this.getTotalCount();
   }
 
   getShift(shift: any) {
@@ -96,7 +102,7 @@ export class WorkOrderComponent {
               }
             });
             this.user = Array.from(uniqueUsers);
-            this.noofPass = Array.from(uniquepass);
+            this.noofPass = Array.from(uniquepass).sort((a: any, b: any) => a - b);
             this.currentStatus = Array.from(uniqueStatus);
             console.log(this.noofPass);
           }
@@ -158,6 +164,7 @@ export class WorkOrderComponent {
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
         this.totalCount = res.fetchedCount;
         this.count = res.totalCounts;
+        this.pageCount = pageData.pageSize;
       },
       error: (err) => {
       },
@@ -181,21 +188,21 @@ export class WorkOrderComponent {
     );
   }
 
-  getTotalCount() {
-    this.dashboardService.getTotalCount().subscribe(
-      {
-        next: (res) => {
-          this.finalCount = (res as any).totalCounts;
-          // console.log('11----',this.finalCount);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => {
-        }
-      }
-    );
-  }
+  // getTotalCount() {
+  //   this.dashboardService.getTotalCount().subscribe(
+  //     {
+  //       next: (res) => {
+  //         this.finalCount = (res as any).totalCounts;
+  //         // console.log('11----',this.finalCount);
+  //       },
+  //       error: (err) => {
+  //         console.log(err);
+  //       },
+  //       complete: () => {
+  //       }
+  //     }
+  //   );
+  // }
 
   onPageChange(event: any): void {
     this.currentPage = this.paginator.pageIndex;

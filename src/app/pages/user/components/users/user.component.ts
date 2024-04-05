@@ -22,6 +22,7 @@ export class UserComponent {
   tableValues = data.tableValues;
   currentPage = 0;
   totalCount = 0;
+  pageCount = 0;
   apiLoader = false;
   ngOnInit(){
     this.getAllUsers();
@@ -38,6 +39,7 @@ export class UserComponent {
         this.apiLoader = false;
         this.tableValues = this.userHelper.mapUserData(res.data);
         this.totalCount = res.total;
+        this.pageCount = pageData.pageSize;
       },
       error: (err) => {
         this.apiLoader = false;

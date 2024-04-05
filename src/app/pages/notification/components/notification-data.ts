@@ -24,6 +24,11 @@ export const tableHeaders = [
         name: 'Current Pass',
         key: 'runningPass',
         // type:'noti',
+    },
+    {
+        name: 'Created Date',
+        key: 'createdOn',
+        // type:'noti',
     }
 ]
 

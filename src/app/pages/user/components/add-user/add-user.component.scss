@@ -1,9 +1,10 @@
 .head{
-    background: #0d6efdb8;
+    background: #2F4FCD;
     margin: auto;
     color: white;
     display: flex;
     justify-content: space-between;
+    padding:2px;
 }
 .pl{
     padding-left: 10px;
@@ -29,6 +30,10 @@
 //     justify-content: space-between;
 // }
 ::ng-deep .cdk-overlay-pane{
-    background: #ffffff;
+    // background: #ffffff;
     z-index: 1;
+}
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface{
+    --mdc-dialog-container-shape:20px!important;
+    border-radius:var(--mdc-dialog-container-shape, 4px);
 }

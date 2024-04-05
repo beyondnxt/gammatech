@@ -18,6 +18,7 @@ export class NotificationComponent {
   totalCount = 0;
   apiLoader = false;
   currentPage = 0;
+  pageCount = 0;
   selectedIds: any = [];
   changedValues: any[] = [];
   constructor(public service:CommonService, private toteBoxService:ToteboxService) {}
@@ -37,6 +38,7 @@ export class NotificationComponent {
         this.apiLoader = false;
         this.tableValues = res.data;
         this.totalCount = res.fetchedCount;
+        this.pageCount = pageData.pageSize;
       },
       error: (err) => {
       },

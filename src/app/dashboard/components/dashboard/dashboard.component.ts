@@ -19,14 +19,14 @@ export class DashboardComponent {
   finalCount: any;
   tab = 'loaded';
   constructor(private websocketService: WebSocketService, private dialog:MatDialog, private dashboardService:DashboardService, private dashboardHelper:DashboardHelper, public service:CommonService) {}
- tableHeaders = data.tableHeaders;
+  tableHeaders = data.tableHeadersForLoaded;
   tableValues = data.tableValues;
   currentPage = 0;
   totalCount = 0;
+  pageCount: any;
   apiLoader = false;
   query = '';
   count: any = '';
-
   ngOnInit(){
     this.getDashboardDataBasedOnStatus(this.tab);
     // this.initializeSocketConnection();
@@ -58,7 +58,7 @@ export class DashboardComponent {
 
   viewDetails(data: any){
     this.dialog.open(ShowDetailComponent, {
-      width: '700px',
+      width: '500px',
       height: 'max-content',
       disableClose: true,
       panelClass: 'user-dialog-container',
@@ -122,6 +122,24 @@ export class DashboardComponent {
   //  }
 
   loadData(tab: string): void {
+    this.tableHeaders = [];
+    this.tableValues = [];
+    switch (tab) {
+      case 'loaded':
+        this.tableHeaders = data.tableHeadersForLoaded;
+        break;
+      case 'inProgress':
+        this.tableHeaders = data.tableHeadersForInProgress;
+        break;
+      case 'completed':
+        this.tableHeaders = data.tableHeadersForCompleted;
+        break;
+      case 'empty':
+        this.tableHeaders = data.tableHeadersForEmpty;
+        break;
+      default:
+        this.tableHeaders = []; // Set to empty array if no matching tab
+    }
     this.query = '';
     this.tab = tab;
     this.getDashboardDataBasedOnStatus(tab);
@@ -140,6 +158,7 @@ export class DashboardComponent {
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
         this.totalCount = res.fetchedCount;
         this.count = res.totalCounts;
+        this.pageCount = pageData.pageSize;
       },
       error: (err) => {
       },

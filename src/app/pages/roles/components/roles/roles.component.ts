@@ -20,6 +20,7 @@ export class RolesComponent {
   tableValues = data.tableValues;
   totalCount = 0;
   currentPage = 0;
+  pageCount = 0;
   apiLoader = false;
   ngOnInit(){
     this.getRoleDetails();
@@ -41,6 +42,7 @@ export class RolesComponent {
         this.apiLoader = false;
         this.tableValues = this.roleHelper.mapUserData(res.roles);
         this.totalCount = res.total;
+        this.pageCount = pageData.pageSize;
       },
       error: (err) => {
       },

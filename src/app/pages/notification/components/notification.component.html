@@ -1,14 +1,21 @@
-<app-add-btn class="approveBtn" [label]="'Approve'" [disableBtn]="this.selectedIds.length === 0" (action)="ApproveNotifiedData()"></app-add-btn>
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="approvalHeader">Approval</h1>
+    <app-add-btn class="approveBtn" [label]="'Approve'" [disableBtn]="this.selectedIds.length === 0" (action)="ApproveNotifiedData()"></app-add-btn>
+</div>
+
+<app-scanner-table #childRef [tableHeaders]="tableHeaders" [tableValues]="tableValues"
+(checkBoxes)="selectAll($event)" (emitIds)="getIds($event)"
+(valueChanged)="onValueChanged($event)"></app-scanner-table>
 
 <ng-container *ngIf="apiLoader">
-    <app-table-loader [valueColumns]="this.service.calculatePaginationVal()" [columns]="tableHeaders.length"></app-table-loader>
+    <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"
+        [columns]="tableHeaders.length"></app-table-loader>
 </ng-container>
 
-<ng-container>
-    <app-scanner-table #childRef [tableHeaders]="tableHeaders" [tableValues]="tableValues" (checkBoxes) = "selectAll($event)"  (emitIds)="getIds($event)" (valueChanged)="onValueChanged($event)"></app-scanner-table>
-    
-    <mat-paginator #paginator [showFirstLastButtons]="true" class="demo-paginator" aria-label="Select page"
+<!-- <ng-container> -->
+
+    <mat-paginator *ngIf="this.totalCount>this.pageCount" #paginator [showFirstLastButtons]="true" class="demo-paginator" aria-label="Select page"
         [pageIndex]="currentPage" (page)="onPageChange($event)" [pageSize]="service.calculatePaginationVal()"
         [length]="totalCount">
-        </mat-paginator>
-    </ng-container>
+    </mat-paginator>
+<!-- </ng-container> -->

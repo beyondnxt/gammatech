@@ -71,7 +71,7 @@ export class HeaderComponent {
   }
   changePassword(){
     this.dialog.open(ChangePasswordComponent, {
-      width: '800px',
+      width: '500px',
       height: 'max-content',
       disableClose: true,
       data:{changePwd:true},

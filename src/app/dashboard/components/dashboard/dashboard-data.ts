@@ -1,10 +1,10 @@
-export const tableHeaders = [
+export const tableHeadersForLoaded = [
     {
         name: 'Box Number',
         key: 'toteBoxName',
     },
     {
-        name: 'Loading',
+        name: 'Loading Time',
         key: 'loadingTime',
     },
     {
@@ -16,12 +16,60 @@ export const tableHeaders = [
         key: 'loadingUser',
     },
     {
-        name: 'Current Pass',
-        key: 'runningPass',
+        name: 'No of pass',
+        key: 'noOfPass',
+    },
+    {
+        name: 'Current Status',
+        key: 'currentStatus',
+    }
+]
+export const tableHeadersForInProgress = [
+    {
+        name: 'Box Number',
+        key: 'toteBoxName',
+    },
+    {
+        name: 'Loading Time',
+        key: 'loadingTime',
+    },
+    {
+        name: 'Shift',
+        key: 'loadingShift',
+    },
+    {
+        name: 'User',
+        key: 'loadingUser',
     },
     {
         name: 'No of pass',
         key: 'noOfPass',
+    },
+    {
+        name: 'Current Pass',
+        key: 'runningPass',
+    },
+    {
+        name: 'Current Status',
+        key: 'currentStatus',
+    }
+]
+export const tableHeadersForCompleted = [
+    {
+        name: 'Box Number',
+        key: 'toteBoxName',
+    },
+    {
+        name: 'Loading',
+        key: 'loading',
+    },
+    {
+        name: 'No of pass',
+        key: 'noOfPass',
+    },
+    {
+        name: 'Current Pass',
+        key: 'runningPass',
     },
     {
         name: 'Current Status',
@@ -29,20 +77,22 @@ export const tableHeaders = [
     },
     {
         name: 'Unloading',
-        key: 'unLoadingTime',
+        key: 'unloading',
     },
     {
-        name: 'Shift',
-        key: 'unLoadingShift',
+        name: 'View',
+        key: 'action',
+        viewDetail:'true'
+    },
+]
+export const tableHeadersForEmpty = [
+    {
+        name: 'Box Number',
+        key: 'toteBoxName',
     },
     {
-        name: 'User',
-        key: 'unLoadingUser',
-    },
-    {
-        name:'Action',
-        key:'action',
-        viewDetail:true,
+        name: 'Current Status',
+        key: 'currentStatus',
     }
 ]
 

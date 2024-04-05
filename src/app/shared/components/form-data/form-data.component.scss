@@ -17,6 +17,19 @@
     border: 1px solid #0d6efd;
     margin: 5px;
 }
+.flex-container{
+    border-radius:20px;
+    background-color:#dbe5f5;
+    padding:20px;
+}
+
+.main-container{
+    background:#dbe5f5;
+}
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
+    border-radius:10px!important;
+}
+
 
 
 

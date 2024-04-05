@@ -6,23 +6,32 @@
             </div>
         </div>
     </div>
-    </div>
-    <div class="mt-3">
-        <div class="row">
-            <div class="col-lg-4">
-                
-                <ng-container *ngIf="apiLoader">
-                    <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"
-                        [columns]="tableHeaders.length"></app-table-loader>
-                </ng-container>
+</div>
+<div class="mt-3">
+    <div class="row">
+        <div class="col-lg-5">
 
-                <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (detail)="openForm()"></app-scanner-table>
-            </div>
-            <div class="col-lg-8" *ngIf="isShow">
-                <div class="form-section">
-                    <app-form-data [data]="tableValues" [lable]="'Load'" (loadToteBox)="loadToteBox($event)"></app-form-data>
-                  </div>
+            <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues"
+                (detail)="openForm()"></app-scanner-table>
+
+            <ng-container *ngIf="apiLoader">
+                <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"
+                    [columns]="tableHeaders.length"></app-table-loader>
+            </ng-container>
+
+            <mat-paginator *ngIf="this.totalCount>this.pageCount" #paginator [showFirstLastButtons]="true"
+                class="demo-paginator" aria-label="Select page" [pageIndex]="currentPage" (page)="onPageChange($event)"
+                [pageSize]="service.calculatePaginationVal()" [length]="totalCount">
+            </mat-paginator>
+
+        </div>
+        <!-- <div class="col-lg-4"></div> -->
+        <div class="col-lg-5" *ngIf="isShow">
+            <div class="form-section">
+                <app-form-data [data]="tableValues" [lable]="'Load'"
+                    (loadToteBox)="loadToteBox($event)"></app-form-data>
             </div>
         </div>
-        
     </div>
+
+</div>

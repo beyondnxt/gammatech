@@ -21,7 +21,7 @@ export class ToteboxComponent {
   currentPage = 0;
   totalCount = 0;
   apiLoader = false;
-
+  pageCount = 0
   ngOnInit() {
     this.getAllBoxes();
   }
@@ -39,6 +39,7 @@ export class ToteboxComponent {
         const toteBoxes = (res as any).data;
         this.tableValues = this.boxHelper.mapUserData(toteBoxes);
         this.totalCount = (res as any).total;
+        this.pageCount = pageData.pageSize;
       },
       error: (err) => {
 
@@ -50,6 +51,7 @@ export class ToteboxComponent {
   }
 
   onPageChange(event: any): void {
+    this.tableValues = [];
     this.currentPage = this.paginator.pageIndex;
     this.getAllBoxes();
   }

@@ -5,16 +5,16 @@ export const tableHeaders = [
     },
     {
         name: 'Loading',
-        key: 'loadingTime',
+        key: 'loading',
     },
-    {
-        name: 'Shift',
-        key: 'loadingShift',
-    },
-    {
-        name: 'User',
-        key: 'loadingUser',
-    },
+    // {
+    //     name: 'Shift',
+    //     key: 'loadingShift',
+    // },
+    // {
+    //     name: 'User',
+    //     key: 'loadingUser',
+    // },
     {
         name: 'Current Pass',
         key: 'runningPass',
@@ -29,18 +29,18 @@ export const tableHeaders = [
     },
     {
         name: 'Unloading',
-        key: 'unLoadingTime',
+        key: 'unloading',
     },
+    // {
+    //     name: 'Shift',
+    //     key: 'unLoadingShift',
+    // },
+    // {
+    //     name: 'User',
+    //     key: 'unLoadingUser',
+    // },
     {
-        name: 'Shift',
-        key: 'unLoadingShift',
-    },
-    {
-        name: 'User',
-        key: 'unLoadingUser',
-    },
-    {
-        name:'Action',
+        name:'View',
         key:'action',
         viewDetail:true,
     }
