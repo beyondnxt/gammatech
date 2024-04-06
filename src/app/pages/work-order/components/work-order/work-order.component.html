@@ -1,67 +1,86 @@
-
-    <div class="row mt-3" [formGroup]="filter" >
-        <div class="col-lg-1 filterClass">
-            <div class="mrBtn d-flex justify-content-center">
-                <ng-select [items]="shift" bindLabel="name" bindValue="name" [multiple]="true" formControlName="shift" placeholder="Shift" [clearable]="true" (change)="getShift(filter.value.shift)">
-                </ng-select>
-            </div>
-        </div>
-        <div class="col-lg-1 filterClass">
-            <div class="mrBtn ">
-                <ng-select [items]="user" bindLabel="name" bindValue="name" [multiple]="true" formControlName="user"
-                    placeholder="User" [clearable]="true" (change)="users(filter.value.user)">
-                </ng-select>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="mrBtn">
-                <ng-select [items]="noofPass" bindLabel="noofPass" bindValue="noofPass" [multiple]="true" formControlName="noofPass"
-                    placeholder="No of Pass" [clearable]="true" (change)="noOfPass(filter.value.noofPass)">
-                </ng-select>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="mrBtn">
-                <ng-select [items]="currentStatus" bindLabel="name" bindValue="name" [multiple]="true" formControlName="currentStatus"
-                    placeholder="Current status" [clearable]="true" (change)="getCurrentStatus(filter.value.currentStatus)">
-                </ng-select>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <mat-form-field class="full-width datePicker">
-                <input #fromDateInput matInput [matDatepicker]="fromDatepicker"
-                    placeholder="From date" formControlName="fromDate"
-                    (dateChange)="onFromDateChange($event)">
-                <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
-                <mat-datepicker #fromDatepicker></mat-datepicker>
-            </mat-form-field>
-        </div>
-        <div class="col-lg-2">
-            <mat-form-field class="full-width datePicker">
-                <input #toDateInput matInput [matDatepicker]="toDatepicker" placeholder="To date"
-                formControlName="toDate" (dateChange)="onToDateChange($event)">
-                <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
-                <mat-datepicker #toDatepicker></mat-datepicker>
-            </mat-form-field>
-        </div>
-        <div class="col-lg-2">
-            <app-search (searchData)="searchBox($event)"></app-search>
-        </div>
+<div class="workOrder d-flex flex-wrap justify-content-center  align-items-center">
+    <div class="mrBtn col-lg-1 col-md-6 mb-2">
+        <!-- <ng-select [items]="shift" bindLabel="name" bindValue="name" [multiple]="true" formControlName="shift"
+            placeholder="Shift" [clearable]="true" (change)="getShift(filter.value.shift)">
+        </ng-select> -->
+        <mat-form-field>
+            <mat-select placeholder="Shift"  multiple (selectionChange)="getShift($event)">
+              <mat-option *ngFor="let option of shift" [value]="option.name">{{ option.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
-    <div class="mt-3">
+    <div class="mrBtn col-lg-1 col-md-6 mb-2">
+        <!-- <ng-select [items]="user" bindLabel="name" bindValue="name" [multiple]="true" formControlName="user"
+            placeholder="User" [clearable]="true" (change)="users(filter.value.user)">
+        </ng-select> -->
 
-        <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues"
+        <mat-form-field>
+            <mat-select placeholder="User"  multiple (selectionChange)="users($event)">
+              <mat-option *ngFor="let userName of user" [value]="userName">{{ userName }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+    </div>
+    <div class="mrBtn col-lg-2 col-md-6 mb-2">
+        <!-- <ng-select [items]="noofPass" bindLabel="noofPass" bindValue="noofPass" [multiple]="true"
+            formControlName="noofPass" placeholder="No of Pass" [clearable]="true"
+            (change)="noOfPass(filter.value.noofPass)">
+        </ng-select> -->
+
+        <mat-form-field>
+            <mat-select placeholder="No of Pass"  multiple (selectionChange)="noOfPass($event)">
+              <mat-option *ngFor="let pass of noofPass" [value]="pass">{{ pass }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="mrBtn col-lg-2 col-md-6 mb-2">
+        <!-- <ng-select [items]="currentStatus" bindLabel="name" bindValue="name" [multiple]="true"
+            formControlName="currentStatus" placeholder="Current status" [clearable]="true"
+            (change)="getCurrentStatus(filter.value.currentStatus)">
+        </ng-select> -->
+
+        <mat-form-field>
+            <mat-select placeholder="Current status"  multiple (selectionChange)="getCurrentStatus($event)">
+              <mat-option *ngFor="let status of currentStatus" [value]="status">{{ status }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+    </div>
+    <div class="mrBtn col-lg-2 col-md-6 mb-2">
+        <mat-form-field class="full-width datePicker">
+            <input #fromDateInput matInput [matDatepicker]="fromDatepicker" placeholder="From date"
+                formControlName="fromDate" (dateChange)="onFromDateChange($event)">
+            <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #fromDatepicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="mrBtn col-lg-2 col-md-6 mb-2">
+        <mat-form-field class="full-width datePicker">
+            <input #toDateInput matInput [matDatepicker]="toDatepicker" placeholder="To date" formControlName="toDate"
+                (dateChange)="onToDateChange($event)">
+            <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #toDatepicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="mrBtn col-lg-2 col-md-6 mb-2">
+        <app-search (searchData)="searchBox($event)"></app-search>
+    </div>
+</div>
+
+<div class="mt-3">
+
+    <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues"
         (viewDetail)="viewDetails($event)"></app-scanner-table>
 
-        <ng-container *ngIf="apiLoader">
-            <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"
-                [columns]="tableHeaders.length"></app-table-loader>
-        </ng-container>
-        <ng-container>
+    <ng-container *ngIf="apiLoader">
+        <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"
+            [columns]="tableHeaders.length"></app-table-loader>
+    </ng-container>
+    <ng-container>
 
-            <mat-paginator *ngIf="this.count>this.pageCount" #paginator [showFirstLastButtons]="true" class="demo-paginator" aria-label="Select page"
-                [pageIndex]="currentPage" (page)="onPageChange($event)" [pageSize]="service.calculatePaginationVal()"
-                [length]="totalCount">
-            </mat-paginator>
-        </ng-container>
-    </div>
+        <mat-paginator *ngIf="this.count>this.pageCount" #paginator [showFirstLastButtons]="true" class="demo-paginator"
+            aria-label="Select page" [pageIndex]="currentPage" (page)="onPageChange($event)"
+            [pageSize]="service.calculatePaginationVal()" [length]="totalCount">
+        </mat-paginator>
+    </ng-container>
+</div>

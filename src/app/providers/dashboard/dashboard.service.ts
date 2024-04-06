@@ -25,6 +25,6 @@ export class DashboardService {
     return this.http.get(environment.BASE_URL + `/user/filter`);
   }
   getDashboardDataBasedOnStatus(pageData: any, status: any, query: any){
-    return this.http.get(environment.BASE_URL + `/work-order?currentStatus=${status}${query}`);
+    return this.http.get(environment.BASE_URL + `/work-order?page=${pageData.page}${status}${query}`);
   }
 }

@@ -17,7 +17,7 @@ import { CommonService } from 'src/app/providers/core/common.service';
 export class DashboardComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   finalCount: any;
-  tab = 'loaded';
+  tab = '&currentStatus=loaded';
   constructor(private websocketService: WebSocketService, private dialog:MatDialog, private dashboardService:DashboardService, private dashboardHelper:DashboardHelper, public service:CommonService) {}
   tableHeaders = data.tableHeadersForLoaded;
   tableValues = data.tableValues;
@@ -127,22 +127,25 @@ export class DashboardComponent {
     switch (tab) {
       case 'loaded':
         this.tableHeaders = data.tableHeadersForLoaded;
+        this.tab = '&currentStatus='+tab;
         break;
       case 'inProgress':
         this.tableHeaders = data.tableHeadersForInProgress;
+        this.tab = '&currentStatus='+tab;
         break;
       case 'completed':
         this.tableHeaders = data.tableHeadersForCompleted;
+        this.tab = '&currentStatus='+tab;
         break;
       case 'empty':
         this.tableHeaders = data.tableHeadersForEmpty;
+        this.tab = '&toteIsEmpty=true';
         break;
       default:
         this.tableHeaders = []; // Set to empty array if no matching tab
     }
     this.query = '';
-    this.tab = tab;
-    this.getDashboardDataBasedOnStatus(tab);
+    this.getDashboardDataBasedOnStatus(this.tab);
     }
 
   getDashboardDataBasedOnStatus(status: any){
@@ -156,8 +159,8 @@ export class DashboardComponent {
       next: (res: any) => {
         this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
-        this.totalCount = res.fetchedCount;
-        this.count = res.totalCounts;
+        this.totalCount = res.total;
+        this.count = res.total;
         this.pageCount = pageData.pageSize;
       },
       error: (err) => {

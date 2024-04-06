@@ -7,7 +7,7 @@ import { DashboardHelper } from 'src/app/dashboard/components/dashboard/dashboar
 import { CommonService } from 'src/app/providers/core/common.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { ShowDetailComponent } from 'src/app/shared/components/show-detail/show-detail.component';
-import { FormBuilder } from '@angular/forms';
+// import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
@@ -27,14 +27,6 @@ export class WorkOrderComponent {
   query = '';
   selectedCityIds: string[] | undefined;
 
-  filter = this.fb.group({
-    shift: [''],
-    user: [''],
-    noofPass: [''],
-    currentStatus: [''],
-    fromDate: [''],
-    toDate: ['']
-  });
   selectedOptions: string[] = [];
   shift = [
     { id: 'AM', name: 'AM' },
@@ -52,9 +44,9 @@ export class WorkOrderComponent {
   currentStatus: any;
   fromDate = '';
   toDate = '';
-  
+  // selectedOptions = new FormControl([]);
 
-  constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService, private fb: FormBuilder) { }
+  constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService) { }
   @ViewChild('fromDateInput') fromDateInput!: ElementRef<HTMLInputElement>;
   @ViewChild('toDateInput') toDateInput!: ElementRef<HTMLInputElement>;
 
@@ -66,19 +58,19 @@ export class WorkOrderComponent {
   }
 
   getShift(shift: any) {
-    this.shiftQry = `&shiftTime=${shift}`;
+    this.shiftQry = `&shiftTime=${shift.value}`;
     this.getAllDetails();
   }
   users(user: any) {
-    this.userQry = `&userName=${user}`;
+    this.userQry = `&userName=${user.value}`;
     this.getAllDetails();
   }
   noOfPass(pass: any) {
-    this.passQry = `&noOfPass=${pass}`;
+    this.passQry = `&noOfPass=${pass.value}`;
     this.getAllDetails();
   }
   getCurrentStatus(status: any) {
-    this.statusQry = `&currentStatus=${status}`;
+    this.statusQry = `&currentStatus=${status.value}`;
     this.getAllDetails();
   }
 
@@ -104,7 +96,6 @@ export class WorkOrderComponent {
             this.user = Array.from(uniqueUsers);
             this.noofPass = Array.from(uniquepass).sort((a: any, b: any) => a - b);
             this.currentStatus = Array.from(uniqueStatus);
-            console.log(this.noofPass);
           }
         },
         error: (err) => {
@@ -162,8 +153,8 @@ export class WorkOrderComponent {
       next: (res: any) => {
         this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
-        this.totalCount = res.fetchedCount;
-        this.count = res.totalCounts;
+        this.totalCount = res.total;
+        this.count = res.total;
         this.pageCount = pageData.pageSize;
       },
       error: (err) => {
@@ -205,6 +196,7 @@ export class WorkOrderComponent {
   // }
 
   onPageChange(event: any): void {
+    this.tableValues = [];
     this.currentPage = this.paginator.pageIndex;
     this.getAllDetails();
   }
@@ -230,4 +222,7 @@ export class WorkOrderComponent {
     this.getAllDetails();
   }
 
+  onSelectionChange(data: any){
+
+  }
 }

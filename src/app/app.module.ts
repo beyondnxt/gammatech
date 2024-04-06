@@ -7,7 +7,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonService } from './providers/core/common.service';
 import { HttpInterceptorService } from './providers/httpinterceptor/http-interceptor.service';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -19,8 +18,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule,
-    NgSelectModule
+    HttpClientModule    
   ],
   providers: [
     {
