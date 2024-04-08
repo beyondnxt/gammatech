@@ -19,6 +19,7 @@ export class NotificationComponent {
   apiLoader = false;
   currentPage = 0;
   pageCount = 0;
+  showOrHide = false;
   selectedIds: any = [];
   changedValues: any[] = [];
   constructor(public service:CommonService, private toteBoxService:ToteboxService) {}
@@ -27,6 +28,7 @@ export class NotificationComponent {
   }
 
   getNotifiedData(){
+    this.showOrHide = false;
     this.apiLoader = true;
     const pageData = {
       pageSize: this.service?.calculatePaginationVal(),
@@ -35,6 +37,7 @@ export class NotificationComponent {
 
     this.toteBoxService.getAllNotifiedData(pageData).subscribe({
       next: (res: any) => {
+        !res.data.length && (this.showOrHide = true);
         this.apiLoader = false;
         this.tableValues = res.data;
         this.totalCount = res.fetchedCount;

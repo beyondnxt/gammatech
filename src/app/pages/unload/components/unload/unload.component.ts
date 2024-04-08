@@ -14,6 +14,7 @@ export class UnloadComponent {
   isShow = false;
   query = '';
   // query: any;
+  showOrHide = false;
   selectedBoxData: any;
   lable: any = "Load";
   showFrom = false;
@@ -29,7 +30,7 @@ export class UnloadComponent {
   }
   getUnloadBoxes(){
     this.apiLoader = true;
-
+    this.showOrHide = false;
     const pageData = {
       pageSize: this.service?.calculatePaginationVal(),
       page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
@@ -38,6 +39,7 @@ export class UnloadComponent {
       next: (res) => {
         this.apiLoader = false;
         const toteBoxes = (res as any).data;
+        !toteBoxes.length && (this.showOrHide = true);
         this.tableValues = toteBoxes;
         (toteBoxes.length == 1 && this.query != '') && (this.showFrom=true);
         this.totalCount = (res as any).fetchedCount;

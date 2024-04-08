@@ -3,9 +3,12 @@
     <app-add-btn class="approveBtn" [label]="'Approve'" [disableBtn]="this.selectedIds.length === 0" (action)="ApproveNotifiedData()"></app-add-btn>
 </div>
 
+
 <app-scanner-table #childRef [tableHeaders]="tableHeaders" [tableValues]="tableValues"
 (checkBoxes)="selectAll($event)" (emitIds)="getIds($event)"
 (valueChanged)="onValueChanged($event)"></app-scanner-table>
+
+<div *ngIf="showOrHide" class="no-data text-center py-3 bold-text">No Records Found</div>
 
 <ng-container *ngIf="apiLoader">
     <app-table-loader [valueColumns]="this.service.calculatePaginationVal()"

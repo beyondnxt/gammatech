@@ -22,11 +22,13 @@ export class ToteboxComponent {
   totalCount = 0;
   apiLoader = false;
   pageCount = 0
+  showOrHide = false;
   ngOnInit() {
     this.getAllBoxes();
   }
 
   getAllBoxes() {
+    this.showOrHide = false;
     this.apiLoader = true;
     const pageData = {
       pageSize: this.service?.calculatePaginationVal(),
@@ -37,6 +39,7 @@ export class ToteboxComponent {
       next: (res) => {
         this.apiLoader = false;
         const toteBoxes = (res as any).data;
+        !toteBoxes.length && (this.showOrHide = true);
         this.tableValues = this.boxHelper.mapUserData(toteBoxes);
         this.totalCount = (res as any).total;
         this.pageCount = pageData.pageSize;

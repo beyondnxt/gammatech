@@ -26,7 +26,7 @@ export class WorkOrderComponent {
   count: any = '';
   query = '';
   selectedCityIds: string[] | undefined;
-
+  showOrHide = false;
   selectedOptions: string[] = [];
   shift = [
     { id: 'AM', name: 'AM' },
@@ -144,6 +144,7 @@ export class WorkOrderComponent {
   }
   
   getAllDetails() {
+    this.showOrHide = false;
     this.apiLoader = true;
     const pageData = {
       pageSize: this.service?.calculatePaginationVal(),
@@ -151,6 +152,7 @@ export class WorkOrderComponent {
     }
     this.dashboardService.getAllDetails(pageData, this.query, this.shiftQry, this.userQry, this.passQry, this.statusQry,this.fromDate, this.toDate).subscribe({
       next: (res: any) => {
+        !res.data.length && (this.showOrHide = true);
         this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
         this.totalCount = res.total;

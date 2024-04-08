@@ -6,6 +6,8 @@
 <!-- <ng-container> -->
 <app-scanner-table [tableHeaders]="tableHeaders" [tableValues]="tableValues" (edit)="editBoxDetails($event)" (deleteItem)="deleteBoxDetails($event)"></app-scanner-table>
 
+<div *ngIf="showOrHide" class="no-data text-center py-3 bold-text">No Boxes Found</div>
+
 <ng-container *ngIf="apiLoader">
     <app-table-loader [valueColumns]="this.service.calculatePaginationVal()" [columns]="tableHeaders.length"></app-table-loader>
 </ng-container>

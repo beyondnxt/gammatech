@@ -24,11 +24,13 @@ export class UserComponent {
   totalCount = 0;
   pageCount = 0;
   apiLoader = false;
+  showOrHide = false;
   ngOnInit(){
     this.getAllUsers();
   }
 
   getAllUsers(){
+    this.showOrHide = false;
     this.apiLoader = true;
     const pageData = {
       pageSize: this.service?.calculatePaginationVal(),
@@ -36,6 +38,7 @@ export class UserComponent {
     }
     this.userService.getUsers(pageData).subscribe({
       next: (res) => {
+        !res.data.length && (this.showOrHide = true);
         this.apiLoader = false;
         this.tableValues = this.userHelper.mapUserData(res.data);
         this.totalCount = res.total;

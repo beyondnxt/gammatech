@@ -22,6 +22,7 @@ export class CompletedComponent {
   pageCount = 0;
   currentPage = 0;
   totalCount = 0;
+  showOrHide = false;
   pageData = {
     pageSize: this.service?.calculatePaginationVal(),
     page: isNaN(this.paginator?.pageIndex) ? 1 : this.paginator?.pageIndex + 1 // 1-based index
@@ -41,11 +42,13 @@ export class CompletedComponent {
   }
   
   getCompletedBoxes(){
+    this.showOrHide = false;
     this.apiLoader = true;
     this.toteboxService.getCompletedBoxes(true, this.pageData).subscribe({
       next: (res) => {
         this.apiLoader = false;
         const toteBoxes = (res as any).data;
+        !toteBoxes.length && (this.showOrHide = true);
         this.tableValues = toteBoxes;
         // console.log('value---', res);
         this.totalCount = (res as any).fetchedCount;

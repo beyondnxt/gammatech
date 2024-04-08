@@ -22,6 +22,7 @@ export class RolesComponent {
   currentPage = 0;
   pageCount = 0;
   apiLoader = false;
+  showOrHide = false;
   ngOnInit(){
     this.getRoleDetails();
   }
@@ -31,6 +32,7 @@ export class RolesComponent {
   }
 
   getRoleDetails(){
+    this.showOrHide = false;
     this.apiLoader = true;
     const pageData = {
       pageSize: this.service?.calculatePaginationVal(),
@@ -39,6 +41,7 @@ export class RolesComponent {
 
     this.roleService.getRoleDetail(pageData).subscribe({
       next: (res: any) => {
+        !res.roles.length && (this.showOrHide = true);
         this.apiLoader = false;
         this.tableValues = this.roleHelper.mapUserData(res.roles);
         this.totalCount = res.total;
