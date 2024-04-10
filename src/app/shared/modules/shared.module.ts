@@ -16,6 +16,7 @@ import { ForgetPageComponent } from '../components/forget-page/forget-page.compo
 import { ShowDetailComponent } from '../components/show-detail/show-detail.component';
 import { RouterModule } from '@angular/router';
 import { TableLoaderComponent } from '../components/table-loader/table-loader.component';
+import { ScannerPortConnectComponent } from '../components/scanner-port-connect/scanner-port-connect.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { TableLoaderComponent } from '../components/table-loader/table-loader.co
         SearchComponent,
         FormDataComponent,
         ShowDetailComponent,
-        TableLoaderComponent
+        TableLoaderComponent,
+        ScannerPortConnectComponent
     ],
     imports: [
         CommonModule,
@@ -56,6 +58,7 @@ import { TableLoaderComponent } from '../components/table-loader/table-loader.co
         FormDataComponent,
         ShowDetailComponent,
         TableLoaderComponent,
+        ScannerPortConnectComponent,
     ]
 })
 

@@ -4,6 +4,8 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 import { MatDialog } from '@angular/material/dialog';
 import { WebSocketService } from 'src/app/providers/core/web-socket.service';
 import { ToteboxService } from 'src/app/providers/tote-box/totebox.service';
+import { ScannerPortConnectComponent } from '../scanner-port-connect/scanner-port-connect.component';
+import { SettingService } from 'src/app/providers/setting/setting.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,12 @@ import { ToteboxService } from 'src/app/providers/tote-box/totebox.service';
 export class HeaderComponent {
   userName: string | null | undefined;
   notifyCount: any;
-  constructor(public router:Router,private dialog: MatDialog, private websocketService:WebSocketService, private toteBoxService:ToteboxService) {}
+  scannerData: any;
+  scanner1: any;
+  scanner2: any;
+  scanner3: any;
+  scanner4: any;
+  constructor(public router:Router,private dialog: MatDialog, private websocketService:WebSocketService, private toteBoxService:ToteboxService, private settingService:SettingService) {}
   @Input() collapsed = true;
   @Input() screenWidth = 0;
 
@@ -21,6 +28,7 @@ export class HeaderComponent {
     this.userName = localStorage.getItem('name');
     this.getNotifyCount();
     this.getNotificationCount();
+    this.getScannerConnection();
   }
 
   getNotifyCount(){
@@ -82,8 +90,50 @@ export class HeaderComponent {
       }
     });
   }
+  connectScannerAndPort(){
+    this.dialog.open(ScannerPortConnectComponent, {
+      width: '500px',
+      height: 'max-content',
+      disableClose: true,
+      data:{changePwd:true},
+      panelClass: 'inward-dialog-container',
+    }).afterClosed().subscribe((res) => {
+      if (res) {
+
+      }
+    });
+  }
+
+  getScannerConnection(){
+    this.settingService.getConnectionDetail().subscribe({
+      next: (res: any) => {
+        console.log("hiiii");
+        this.scannerData = res.data;
+        this.scanner1 = this.scannerData[0]['status'];
+        this.scanner2 = this.scannerData[1]['status'];
+        this.scanner3 = this.scannerData[2]['status'];
+        this.scanner4 = this.scannerData[3]['status'];
+      },
+      error: (err) => {
+      },
+      complete: () => {
+      }
+    })
+  }
+
   redirectToApprovalPage(){
     this.router.navigate(['/notification']);
   }
+
+  getStatusColor(status: any) {
+    console.log('status', status);
+    // switch (status) {
+    //   case true:
+    //     return 'rgb(77 199 12)';//#FFB100
+    //   default:
+    //     return 'rgb(228, 21, 21)';
+    // }
+  }
+
 
 }

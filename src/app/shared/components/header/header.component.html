@@ -45,6 +45,32 @@
                       </button> -->
                 </mat-menu>
             </div>
+
+            <div class="dropdown head-menu-item">
+                <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="Example icon-button with a menu">
+                    <img src="./../../../../assets/icons/setting.png" class="rounded-circle" height="15"
+                        alt="Black and White Portrait of a Man" loading="lazy" style="filter: grayscale(100%) invert(100%); color: #ffffff;"/>
+                </button>
+                <mat-menu #menu1="matMenu">
+                    <div class="headerNav">
+                        <div mat-menu-item class="headerDiv logoutBorder">
+                            <span class="headerMenu">
+                                <mat-icon class="pt-1">qr_code_scanner</mat-icon>
+                                <mat-icon class="pt-1" [ngClass]="{ 'true-class': scanner1 === true, 'false-class': scanner1 === false }">looks_one</mat-icon>
+                                <mat-icon class="pt-1" [ngClass]="{ 'true-class': scanner2 === true, 'false-class': scanner2 === false }">looks_two</mat-icon>
+                                <mat-icon class="pt-1" [ngClass]="{ 'true-class': scanner3 === true, 'false-class': scanner3 === false }">looks_3</mat-icon>
+                                <mat-icon class="pt-1" [ngClass]="{ 'true-class': scanner4 === true, 'false-class': scanner4 === false }">looks_4</mat-icon>
+                            </span>
+                        </div>
+                        <div mat-menu-item (click)="connectScannerAndPort()" class="headerDiv">
+                            <span class="headerMenu">
+                                <mat-icon class="pt-1">device_hub</mat-icon><span>Scanner Connection</span>
+                            </span>
+                        </div>
+                    </div>
+                </mat-menu>
+            </div>
+
         </div>
         </div>
     </div>

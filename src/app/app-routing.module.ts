@@ -11,6 +11,7 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
 import { UnloadComponent } from './pages/unload/components/unload/unload.component';
 import { CompletedComponent } from './pages/completed/components/completed/completed.component';
 import { NotificationComponent } from './pages/notification/components/notification.component';
+import { ScannerPortConnectComponent } from './shared/components/scanner-port-connect/scanner-port-connect.component';
 
 const routes: Routes = [
   {

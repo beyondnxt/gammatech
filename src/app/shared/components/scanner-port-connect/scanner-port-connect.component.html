@@ -1,0 +1,83 @@
+<div class="col-lg-12" [formGroup]="portDetails" *ngIf="!scannerData">
+    <div class="col-lg-12 closeAlign head">
+        <div>
+            <p class="pt-3 pl">Scanner port connection</p>
+        </div>
+        <div>
+            <button mat-icon-button mat-dialog-close tabindex="-1" class="close-button"><mat-icon
+                    class="closeColor">close</mat-icon></button>
+        </div>
+    </div>
+    <div class="main-container user-form p-2 pt-3">
+        <div class="row inputFields">
+            <div class="col-lg-6">
+                <label for="" class="label">Scanner 1</label>
+                <mat-form-field>
+                    <mat-select placeholder="Select Role" formControlName="scanner1" floatlLabel="never">
+                        <mat-option *ngFor="let port of portLiat" [value]="port?.name">{{port?.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Scanner 2</label>
+                <mat-form-field>
+                    <mat-select placeholder="Select Role" formControlName="scanner2" floatlLabel="never">
+                        <mat-option *ngFor="let port of portLiat" [value]="port?.name">{{port?.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Scanner 3</label>
+                <mat-form-field>
+                    <mat-select placeholder="Select Role" formControlName="scanner3" floatlLabel="never">
+                        <mat-option *ngFor="let port of portLiat" [value]="port?.name">{{port?.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="label">Scanner 4</label>
+                <mat-form-field>
+                    <mat-select placeholder="Select Role" formControlName="scanner4" floatlLabel="never">
+                        <mat-option *ngFor="let port of portLiat" [value]="port?.name">{{port?.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-lg-12">
+                <app-add-btn class="float-end" [label]="'Save'" (click)="connectScannerAndPort()"></app-add-btn>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="scannerData">
+    <div class="col-lg-12 closeAlign head">
+        <div>
+            <p class="pt-3 pl">Scanner Connection</p>
+        </div>
+        <div>
+            <button mat-icon-button mat-dialog-close tabindex="-1" class="close-button"><mat-icon
+                    class="closeColor">close</mat-icon></button>
+        </div>
+    </div>
+    <div class="row tableScannerData">
+        <div class="col-lg-12">
+            <div class="inTimeData d-flex justify-content-center">
+                <table class="tableData centered-table">
+                    <tr class="headerClass">
+                        <th>Scnanner</th>
+                        <th>Port</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr *ngFor="let scan of scannerData">
+                        <td>{{scan.scanner}}</td>
+                        <td>{{scan.port}}</td>
+                        <td class = "scannerStatus" [style.color]="getStatusColor(scan.status)" >{{scan.status}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
