@@ -14,6 +14,7 @@ export class ScannerPortConnectComponent {
   scannersData: any;
   transformedData1: { scanner: number, port: string }[] = [];
   scannerData: any;
+  count = 0;
   constructor(private fb: FormBuilder, private settingService: SettingService, private service: CommonService, public dialogRef: MatDialogRef<ConfirmDialogComponent>) { }
   portDetails = this.fb.group({
     scanner1: [''],
@@ -21,22 +22,60 @@ export class ScannerPortConnectComponent {
     scanner3: [''],
     scanner4: ['']
   })
-
-  portLiat = [
-    { id: 1, name: 'COM1' },
-    { id: 2, name: 'COM2' },
-    { id: 3, name: 'COM3' },
-    { id: 3, name: 'COM4' }
-  ];
+  selectedPorts: Set<string> = new Set();
+  portList: string[] = ['com1', 'com2', 'com3', 'com4'];
+  // portList: any
 
   ngOnInit() {
-    this.getConnectionDetail()
+    this.getConnectionDetail();
+    // this.getAvailablePorts();
+
+    this.portDetails.valueChanges.subscribe(() => {
+      this.updateSelectedPorts();
+    });
+
+  }
+
+  updateSelectedPorts() {
+    this.selectedPorts.clear(); // Clear the set of selected ports
+
+    for (let key in this.portDetails.controls) {
+      if (this.portDetails.controls.hasOwnProperty(key)) {
+        const port = this.portDetails.get(key)?.value;
+        if (port) {
+          this.selectedPorts.add(port);
+        }
+      }
+    }
+  }
+
+  getAvailablePort(scannerKey: string): string[] {
+    const currentPort = this.portDetails.get(scannerKey)?.value;
+    if (!currentPort) {
+      return this.portList.filter(port => !this.selectedPorts.has(port));
+    } else {
+      // Filter out already selected ports except for the current port selection
+      return this.portList.filter(port => port === currentPort || !this.selectedPorts.has(port));
+    }
+  }
+
+  getAvailablePorts(){
+    this.settingService.getAvailablePorts().subscribe({
+      next: (res: any) => {
+        this.portList = res;
+      },
+      error: (err) => {
+      },
+      complete: () => {
+      }
+    })
   }
 
   getConnectionDetail() {
     this.settingService.getConnectionDetail().subscribe({
       next: (res: any) => {
-        this.scannerData = res.data;
+        this.scannerData = res.data;  
+        this.count = this.scannerData.length;
       },
       error: (err) => {
       },

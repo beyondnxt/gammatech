@@ -16,5 +16,8 @@ export class SettingService {
   getConnectionDetail(){
     return this.http.get(environment.BASE_URL + `/settings`);
   }
+  getAvailablePorts(){
+    return this.http.get(environment.BASE_URL + `/settings/ports`);
+  }
   
 }

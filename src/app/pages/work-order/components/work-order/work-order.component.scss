@@ -152,7 +152,7 @@
 ::ng-deep .workOrder .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   border:1px solid #ecf3fd;
   background-color:#ecf3fd !important;
-  padding-top:5px;
+  // padding-top:5px;
 }
 ::ng-deep .workOrder .datePicker .mat-mdc-form-field .mat-mdc-input-element::placeholder {
   color: #000000 !important;
@@ -217,5 +217,10 @@
 }
 ::ng-deep .workOrder .mat-mdc-select-placeholder{
   color:black!important;
+}
+::ng-deep .mrBtn .mat-mdc-icon-button.mat-mdc-button-base{
+  // background-color:azure !important;
+  padding:0px 10px 0px 0px !important;
+  --mdc-icon-button-state-layer-size:24px !important;
 }
  

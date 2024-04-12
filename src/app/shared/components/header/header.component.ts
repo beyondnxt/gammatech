@@ -16,10 +16,10 @@ export class HeaderComponent {
   userName: string | null | undefined;
   notifyCount: any;
   scannerData: any;
-  scanner1: any;
-  scanner2: any;
-  scanner3: any;
-  scanner4: any;
+  scanner1 = false;
+  scanner2 = false;
+  scanner3 = false;
+  scanner4 = false;
   constructor(public router:Router,private dialog: MatDialog, private websocketService:WebSocketService, private toteBoxService:ToteboxService, private settingService:SettingService) {}
   @Input() collapsed = true;
   @Input() screenWidth = 0;
@@ -105,14 +105,16 @@ export class HeaderComponent {
   }
 
   getScannerConnection(){
+    console.log("hiiii");
     this.settingService.getConnectionDetail().subscribe({
       next: (res: any) => {
-        console.log("hiiii");
         this.scannerData = res.data;
+        if(this.scannerData.length > 0){
         this.scanner1 = this.scannerData[0]['status'];
         this.scanner2 = this.scannerData[1]['status'];
         this.scanner3 = this.scannerData[2]['status'];
         this.scanner4 = this.scannerData[3]['status'];
+        }
       },
       error: (err) => {
       },
