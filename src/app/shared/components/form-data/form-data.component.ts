@@ -42,10 +42,10 @@ export class FormDataComponent {
   }
   onSubmit(){
     let formData = this.formData.getRawValue();
-    if(formData.shift == 'Morning Shift(6AM to 2PM)'){
+    if(formData.shift == '1st Shift(6AM to 2PM)'){
       formData.shift = '1';
     }
-    else if(formData.shift == 'Afternoon Shift(2PM to 10PM)'){
+    else if(formData.shift == '2nd Shift(2PM to 10PM)'){
       formData.shift = '2';
     }
     else{
