@@ -46,6 +46,15 @@ export class WebSocketService {
     });
   }
 
+  receiveScannerLoadUnloadData(): Observable<any> {
+    return new Observable((observable) => {
+      this.webSocket.emit('get-scanner-load-unload-data', 'Connect');
+      this.webSocket.on('get-scanner-load-unload-data', (data: any) => {
+        observable.next(data);
+      });
+    });
+  }
+
   receiveNotificationCount(): Observable<any> {
     return new Observable((observable) => {
       this.webSocket.emit('admin_notification', 'Connect');
