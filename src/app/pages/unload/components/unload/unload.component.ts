@@ -83,6 +83,7 @@ export class UnloadComponent {
   }
 
   loadToteBox(data: any) {
+    console.log('data-----', data);
     const transformedValues = {
       barcode: data.boxNumber,
       noOfPass: data.noofPass,
@@ -90,6 +91,7 @@ export class UnloadComponent {
         shiftTime: data.shift,
       },
     };
+    console.log('94-----', transformedValues);
     this.toteboxService.loadToteBox(transformedValues).subscribe({
       next: (res) => {
         this.isShow = false;

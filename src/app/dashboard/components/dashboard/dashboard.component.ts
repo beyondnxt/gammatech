@@ -32,7 +32,7 @@ export class DashboardComponent {
     // this.initializeSocketConnection();
     this.receiveSocketResponse();
     this.secondScannerUpdate();
-    this.getTotalCount();
+    // this.getTotalCount();
   }
 
   getTotalCount(){
@@ -40,7 +40,7 @@ export class DashboardComponent {
       {
         next: (res) => {
           this.finalCount = (res as any).totalCounts;
-          // console.log('11----',this.finalCount);
+          console.log('11----',this.finalCount);
         },
         error: (err) => {
           console.log(err);
@@ -157,11 +157,14 @@ export class DashboardComponent {
 
     this.dashboardService.getDashboardDataBasedOnStatus(pageData, status, this.query).subscribe({
       next: (res: any) => {
+        // console.log('160----', res);
         this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
         this.totalCount = res.total;
         this.count = res.total;
         this.pageCount = pageData.pageSize;
+        this.finalCount = res.totalCounts;
+        // console.log('167--------', this.finalCount);
       },
       error: (err) => {
       },

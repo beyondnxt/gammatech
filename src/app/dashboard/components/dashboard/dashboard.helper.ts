@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class DashboardHelper {
     mapUserData(serviceData: any) {
-        let template:any = []
+        let template: any = []
         serviceData.forEach((element: any) => {
             let currentStatusText = '';
             switch (element?.currentStatus) {
@@ -20,6 +20,9 @@ export class DashboardHelper {
                     break;
                 case 'completed':
                     currentStatusText = 'Completed';
+                    break;
+                case 'unloaded':
+                    currentStatusText = 'Empty';
                     break;
                 default:
                     currentStatusText = '-';
@@ -64,24 +67,24 @@ export class DashboardHelper {
                 isCompleted: element?.isCompleted ? element?.isCompleted : '',
                 isEmpty: element?.isEmpty ? element?.isEmpty : '',
                 loadingTime: element?.loading?.time ? element?.loading?.time : '-',
-                loadingUser:element?.loading?.userName ? element?.loading?.userName : '-',
-                loadingShift:lshiftTime,
+                loadingUser: element?.loading?.userName ? element?.loading?.userName : '-',
+                loadingShift: lshiftTime,
 
-                loading: lshiftTime ? 'Loading at '+(element?.loading?.time)+ ' (' + (lshiftTime)+ ') ' +' by '+ (element?.loading?.userName) : '',
-                
+                loading: lshiftTime ? 'Loading at ' + (element?.loading?.time) + ' (' + (lshiftTime) + ') ' + ' by ' + (element?.loading?.userName) : '',
+
                 noOfPass: element?.noOfPass ? element?.noOfPass : '-',
                 runningPass: element?.runningPass ? element?.runningPass : '-',
                 shiftTime: element?.shiftTime ? element?.shiftTime : '-',
                 unLoadingTime: element?.unLoading?.time ? element?.unLoading?.time : '-',
-                unLoadingUser:element?.unLoading?.userName ? element?.unLoading?.userName : '-',
-                unLoadingShift:ushiftTime,
+                unLoadingUser: element?.unLoading?.userName ? element?.unLoading?.userName : '-',
+                unLoadingShift: ushiftTime,
 
-                unloading: element?.unLoading?.time ? 'Unloading at '+(element?.unLoading?.time)+ ' (' + (ushiftTime)+ ') ' +' by '+ (element?.unLoading?.userName) : '-',
+                unloading: element?.unLoading?.time ? 'Unloading at ' + (element?.unLoading?.time) + ' (' + (ushiftTime) + ') ' + ' by ' + (element?.unLoading?.userName) : '-',
 
                 updatedOn: element?.updatedOn ? element?.updatedOn : '-',
-                timeArr:element?.time ? element?.time : '',
-                currentStatus:currentStatusText,
-             })
+                timeArr: element?.time ? element?.time : '',
+                currentStatus: currentStatusText,
+            })
         });
         return template;
     }
