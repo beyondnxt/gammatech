@@ -25,7 +25,7 @@ export class FormDataComponent {
   ngOnInit(){
     this.from = this.data.from;
     this.data =  this.data[0];
-    console.log(this.data);
+    console.log(this.from);
     console.log(this.data);
   }
   getShift(): string {
