@@ -12,5 +12,6 @@ export class ShowDetailComponent {
   timeArr: any;
   ngOnInit(){
     this.timeArr = this.data.timeArr;
+    console.log('timeData----', this.timeArr);
   }
 }
