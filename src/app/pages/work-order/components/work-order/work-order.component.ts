@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ShowDetailComponent } from 'src/app/shared/components/show-detail/show-detail.component';
 // import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-work-order',
@@ -45,9 +46,16 @@ export class WorkOrderComponent {
   fromDate = '';
   toDate = '';
   excel: boolean = false;
+  reportsForm: FormGroup;
   // selectedOptions = new FormControl([]);
 
-  constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService) { }
+  constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService) { 
+    this.reportsForm = new FormGroup({
+      fromDate: new FormControl(''),
+      toDate: new FormControl('')
+    });
+
+  }
   @ViewChild('fromDateInput') fromDateInput!: ElementRef<HTMLInputElement>;
   @ViewChild('toDateInput') toDateInput!: ElementRef<HTMLInputElement>;
 
