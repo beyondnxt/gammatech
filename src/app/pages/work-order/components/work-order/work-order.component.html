@@ -62,10 +62,18 @@
             <mat-datepicker #toDatepicker></mat-datepicker>
         </mat-form-field>
     </div>
-    <div class="mrBtn col-lg-2 col-md-6 mb-2">
+</div>
+
+<div class="reports d-flex flex-wrap  align-items-center">
+    <div class="mrBtn col-lg-4 col-md-6 mb-2">
         <app-search (searchData)="searchBox($event)"></app-search>
     </div>
+    <div class="mrBtn col-lg-4 col-md-6 mb-2">
+        <app-add-btn [label]="'Export As Excel '" (action)="exportAsExcel()"></app-add-btn>
+    </div>
 </div>
+
+
 
 <div class="mt-3">
 

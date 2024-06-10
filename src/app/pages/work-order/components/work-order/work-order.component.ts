@@ -44,6 +44,7 @@ export class WorkOrderComponent {
   currentStatus: any;
   fromDate = '';
   toDate = '';
+  excel: boolean = false;
   // selectedOptions = new FormControl([]);
 
   constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService) { }
@@ -158,6 +159,8 @@ export class WorkOrderComponent {
         this.totalCount = res.total;
         this.count = res.total;
         this.pageCount = pageData.pageSize;
+        this.excel && this.dashboardService.exportToExcel(this.tableValues, 'my_data', 'Sheet1');
+        this.excel=false;
       },
       error: (err) => {
       },
@@ -208,7 +211,7 @@ export class WorkOrderComponent {
       width: '700px',
       height: 'max-content',
       disableClose: true,
-      panelClass: 'user-dialog-container',
+      panelClass: 'work-order-container',
       data: data,
     }).afterClosed().subscribe((res) => {
       if (res) {
@@ -221,6 +224,11 @@ export class WorkOrderComponent {
     this.query = '&toteBoxName=' + boxName;
     (boxName && this.paginator) && (this.paginator.pageIndex = 0);
     this.currentPage = 0;
+    this.getAllDetails();
+  }
+
+  exportAsExcel(){
+    this.excel=true;
     this.getAllDetails();
   }
 
