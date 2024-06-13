@@ -47,6 +47,7 @@ export class WorkOrderComponent {
   toDate = '';
   excel: boolean = false;
   reportsForm: FormGroup;
+  excelData: any;
   // selectedOptions = new FormControl([]);
 
   constructor(private websocketService: WebSocketService, private dialog: MatDialog, private dashboardService: DashboardService, private dashboardHelper: DashboardHelper, public service: CommonService) { 
@@ -164,10 +165,12 @@ export class WorkOrderComponent {
         !res.data.length && (this.showOrHide = true);
         this.apiLoader = false;
         this.tableValues = this.dashboardHelper.mapUserData(res.data);
+        this.excelData = this.dashboardHelper.exportJsonToExcel(res.data);
+        // console.log('excelData-----', this.excelData);
         this.totalCount = res.total;
         this.count = res.total;
         this.pageCount = pageData.pageSize;
-        this.excel && this.dashboardService.exportToExcel(this.tableValues, 'my_data', 'Sheet1');
+        this.excel && this.dashboardService.exportToExcel(this.excelData, 'my_data', 'Sheet1');
         this.excel=false;
       },
       error: (err) => {
