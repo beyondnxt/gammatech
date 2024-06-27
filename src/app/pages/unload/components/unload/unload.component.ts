@@ -85,7 +85,7 @@ export class UnloadComponent {
   loadToteBox(data: any) {
     console.log('data-----', data);
     const transformedValues = {
-      toteId: 99,
+      toteId: data.id,
       barcode: data.boxNumber,
       noOfPass: data.noofPass,
       loading: {

@@ -14,24 +14,24 @@ export class FormDataComponent {
   @Output() loadToteBox = new EventEmitter();
   users: any;
   from: any;
-  constructor(private fb:FormBuilder, private userService:UserService, private userHelper:UserHelper) {}
+  constructor(private fb: FormBuilder, private userService: UserService, private userHelper: UserHelper) { }
 
-  formData=this.fb.group({
-    boxNumber:[''],
-    noofPass:[3],
-    shift:[this.getShift()],
+  formData = this.fb.group({
+    boxNumber: [''],
+    noofPass: [3],
+    shift: [this.getShift()],
   })
 
-  ngOnInit(){
+  ngOnInit() {
     this.from = this.data.from;
-    this.data =  this.data[0];
+    this.data = this.data[0];
     console.log(this.from);
     console.log(this.data);
   }
   getShift(): string {
     const currentTime = new Date();
     const hour = currentTime.getHours();
-  
+
     if (hour >= 6 && hour < 14) {
       return '1st Shift(6AM to 2PM)';
     } else if (hour >= 14 && hour < 22) {
@@ -40,18 +40,21 @@ export class FormDataComponent {
       return '3rd Shift(10PM to 6AM)';
     }
   }
-  onSubmit(){
+  onSubmit() {
     let formData = this.formData.getRawValue();
-    if(formData.shift == '1st Shift(6AM to 2PM)'){
+    if (formData.shift == '1st Shift(6AM to 2PM)') {
       formData.shift = '1';
     }
-    else if(formData.shift == '2nd Shift(2PM to 10PM)'){
+    else if (formData.shift == '2nd Shift(2PM to 10PM)') {
       formData.shift = '2';
     }
-    else{
+    else {
       formData.shift = '3';
     }
-    this.loadToteBox.emit(formData);
+    let sendData: any = formData
+    sendData.id = this.data.id;
+    console.log('1..', sendData)
+    this.loadToteBox.emit(sendData);
   }
 
 }
