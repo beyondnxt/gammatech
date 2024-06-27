@@ -89,113 +89,145 @@ export class DashboardHelper {
         });
         return template;
     }
-
-    // mapExcelData(flattenedData: any) {
-    //     // Create a new Excel workbook
-    //     let wb = XLSX.utils.book_new();
-    
-    //     // Convert data to worksheet
-    //     let wsData = flattenedData.map((entry: any) => {
-    //         let rowData = [
-    //             entry.id,
-    //             entry.barcode,
-    //             entry.toteBoxName,
-    //             entry.noOfPass,
-    //             entry.isEmpty,
-    //             entry.isCompleted,
-    //             entry.runningPass,
-    //             entry.loading.userName,
-    //             entry.loading.time,
-    //             entry.loading.shiftTime,
-    //             entry.unLoading.userName,
-    //             entry.unLoading.time,
-    //             entry.unLoading.shiftTime,
-    //             entry.createdBy.userId,
-    //             entry.createdBy.userName,
-    //             JSON.stringify(entry.time), // Store time array as JSON string
-    //             entry.currentStatus,
-    //             entry.isNotify,
-    //             entry.createdOn,
-    //             entry.updatedOn
-    //         ];
-    //         return rowData;
-    //     });
-    
-    //     // Insert header row
-    //     let headerRow = [
-    //         'ID',
-    //         'Barcode',
-    //         'Tote Box Name',
-    //         'No of Pass',
-    //         'Is Empty',
-    //         'Is Completed',
-    //         'Running Pass',
-    //         'Loading User Name',
-    //         'Loading Time',
-    //         'Loading Shift Time',
-    //         'Unloading User Name',
-    //         'Unloading Time',
-    //         'Unloading Shift Time',
-    //         'Created By User ID',
-    //         'Created By User Name',
-    //         'Time (JSON)', // Header for the time array column as JSON string
-    //         'Current Status',
-    //         'Is Notify',
-    //         'Created On',
-    //         'Updated On'
-    //     ];
-    
-    //     wsData.unshift(headerRow);
-    
-    //     // Convert array of arrays to Excel worksheet
-    //     let ws = XLSX.utils.aoa_to_sheet(wsData);
-    
-    //     // Add the worksheet to the workbook
-    //     XLSX.utils.book_append_sheet(wb, ws, 'Flattened Data');
-    
-    //     // Write the workbook to a file named flattened_data.xlsx
-    //     XLSX.writeFile(wb, 'flattened_data.xlsx');
-    // }
-    
-    
-
-    exportJsonToExcel(data: any[]): any[] {
-
-        let flattenedData: any[] = [];
-
-        data.forEach((item: any) => {
-
-            let times = item.time.map((timeEntry: any) => ({
-                'pass': timeEntry.pass_number,
-                'in_time': new Date(timeEntry.scanner_two_in_time).toLocaleString(),
-                'out_time': new Date(timeEntry.scanner_three_out_time).toLocaleString()
-            }));
-
-            let entry: any = {
-                // id: item.id,
-                // barcode: item.barcode,
-                'Box Name': item.toteBoxName,
-                'No of pass': item.noOfPass,
-                // isEmpty: item.isEmpty,
-                // isCompleted: item.isCompleted,
-                // runningPass: item.runningPass,
-                // loadingUserName: item.loading.userName,
-                // loadingTime: item.loading.time,
-                // loadingShiftTime: item.loading.shiftTime,
-                'Unloading User': item.unLoading.userName,
-                // unLoadingTime: item.unLoading.time,
-                'Unloading Shift': item.unLoading.shiftTime,
-                // createdByUserId: item.createdBy.userId,
-                // createdByUserName: item.createdBy.userName,
-                // createdOn: item.createdOn,
-                // updatedOn: item.updatedOn,
-                'Current Status': item.currentStatus,
-                'Time': JSON.stringify(times)
-
-            };
-            flattenedData.push(entry);
+    exportAsExcelFile(json: any[], excelFileName: string): void {
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+        const workbook: XLSX.WorkBook = {
+            Sheets: { data: worksheet },
+            SheetNames: ['data'],
+        };
+        const excelBuffer: any = XLSX.write(workbook, {
+            bookType: 'xlsx',
+            type: 'array',
         });
-        return flattenedData;
-
+        this.saveAsExcelFile(excelBuffer, excelFileName);
     }
+
+    private saveAsExcelFile(buffer: any, fileName: string): void {
+        const EXCEL_TYPE =
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+        const EXCEL_EXTENSION = '.xlsx';
+        const data: Blob = new Blob([buffer], {
+            type: EXCEL_TYPE,
+        });
+        const file = new File([data], fileName + EXCEL_EXTENSION, {
+            type: EXCEL_TYPE,
+        });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(file);
+        link.download = file.name;
+        link.click();
+    }
+
+// const EXCEL_TYPE =
+//   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+// const EXCEL_EXTENSION = '.xlsx';
+
+// mapExcelData(flattenedData: any) {
+//     // Create a new Excel workbook
+//     let wb = XLSX.utils.book_new();
+
+//     // Convert data to worksheet
+//     let wsData = flattenedData.map((entry: any) => {
+//         let rowData = [
+//             entry.id,
+//             entry.barcode,
+//             entry.toteBoxName,
+//             entry.noOfPass,
+//             entry.isEmpty,
+//             entry.isCompleted,
+//             entry.runningPass,
+//             entry.loading.userName,
+//             entry.loading.time,
+//             entry.loading.shiftTime,
+//             entry.unLoading.userName,
+//             entry.unLoading.time,
+//             entry.unLoading.shiftTime,
+//             entry.createdBy.userId,
+//             entry.createdBy.userName,
+//             JSON.stringify(entry.time), // Store time array as JSON string
+//             entry.currentStatus,
+//             entry.isNotify,
+//             entry.createdOn,
+//             entry.updatedOn
+//         ];
+//         return rowData;
+//     });
+
+//     // Insert header row
+//     let headerRow = [
+//         'ID',
+//         'Barcode',
+//         'Tote Box Name',
+//         'No of Pass',
+//         'Is Empty',
+//         'Is Completed',
+//         'Running Pass',
+//         'Loading User Name',
+//         'Loading Time',
+//         'Loading Shift Time',
+//         'Unloading User Name',
+//         'Unloading Time',
+//         'Unloading Shift Time',
+//         'Created By User ID',
+//         'Created By User Name',
+//         'Time (JSON)', // Header for the time array column as JSON string
+//         'Current Status',
+//         'Is Notify',
+//         'Created On',
+//         'Updated On'
+//     ];
+
+//     wsData.unshift(headerRow);
+
+//     // Convert array of arrays to Excel worksheet
+//     let ws = XLSX.utils.aoa_to_sheet(wsData);
+
+//     // Add the worksheet to the workbook
+//     XLSX.utils.book_append_sheet(wb, ws, 'Flattened Data');
+
+//     // Write the workbook to a file named flattened_data.xlsx
+//     XLSX.writeFile(wb, 'flattened_data.xlsx');
+// }
+
+
+
+exportJsonToExcel(data: any[]): any[] {
+
+    let flattenedData: any[] = [];
+
+    data.forEach((item: any) => {
+
+        let times = item.time.map((timeEntry: any) => ({
+            'pass': timeEntry.pass_number,
+            'in_time': new Date(timeEntry.scanner_two_in_time).toLocaleString(),
+            'out_time': new Date(timeEntry.scanner_three_out_time).toLocaleString()
+        }));
+
+        let entry: any = {
+            // id: item.id,
+            // barcode: item.barcode,
+            'Box Name': item.toteBoxName,
+            'No of pass': item.noOfPass,
+            // isEmpty: item.isEmpty,
+            // isCompleted: item.isCompleted,
+            // runningPass: item.runningPass,
+            // loadingUserName: item.loading.userName,
+            // loadingTime: item.loading.time,
+            // loadingShiftTime: item.loading.shiftTime,
+            'Unloading User': item.unLoading.userName,
+            // unLoadingTime: item.unLoading.time,
+            'Unloading Shift': item.unLoading.shiftTime,
+            // createdByUserId: item.createdBy.userId,
+            // createdByUserName: item.createdBy.userName,
+            // createdOn: item.createdOn,
+            // updatedOn: item.updatedOn,
+            'Current Status': item.currentStatus,
+            'Time': JSON.stringify(times)
+
+        };
+        flattenedData.push(entry);
+    });
+    return flattenedData;
+
+}
 }

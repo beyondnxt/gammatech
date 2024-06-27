@@ -170,6 +170,7 @@ export class WorkOrderComponent {
         this.totalCount = res.total;
         this.count = res.total;
         this.pageCount = pageData.pageSize;
+        // this.exportAsExcelFile(this.excelData, 'my_data');
         this.excel && this.dashboardService.exportToExcel(this.excelData, 'my_data', 'Sheet1');
         this.excel=false;
       },
