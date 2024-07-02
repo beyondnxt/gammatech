@@ -197,7 +197,7 @@ exportJsonToExcel(data: any[]): any[] {
 
     data.forEach((item: any) => {
 
-        let times = item.time.map((timeEntry: any) => ({
+        let times = item.time?.map((timeEntry: any) => ({
             'pass': timeEntry.pass_number,
             'in_time': new Date(timeEntry.scanner_two_in_time).toLocaleString(),
             'out_time': new Date(timeEntry.scanner_three_out_time).toLocaleString()
@@ -215,7 +215,7 @@ exportJsonToExcel(data: any[]): any[] {
             // loadingTime: item.loading.time,
             // loadingShiftTime: item.loading.shiftTime,
             'Unloading User': item.unLoading?.userName ? item.unLoading?.userName : '',
-            // unLoadingTime: item.unLoading.time,
+            'Unloading Time': item.unLoading?.time ? item.unLoading?.time : '',
             'Unloading Shift': item.unLoading?.shiftTime ? item.unLoading?.shiftTime : '',
             // createdByUserId: item.createdBy.userId,
             // createdByUserName: item.createdBy.userName,
