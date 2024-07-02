@@ -206,8 +206,8 @@ exportJsonToExcel(data: any[]): any[] {
         let entry: any = {
             // id: item.id,
             // barcode: item.barcode,
-            'Box Name': item.toteBoxName,
-            'No of pass': item.noOfPass,
+            'Box Name': item?.toteBoxName ? item?.toteBoxName : '',
+            'No of pass': item?.noOfPass ? item?.noOfPass : item?.noOfPass,
             // isEmpty: item.isEmpty,
             // isCompleted: item.isCompleted,
             // runningPass: item.runningPass,
@@ -221,7 +221,7 @@ exportJsonToExcel(data: any[]): any[] {
             // createdByUserName: item.createdBy.userName,
             // createdOn: item.createdOn,
             // updatedOn: item.updatedOn,
-            'Current Status': item.currentStatus,
+            'Current Status': item?.currentStatus ? item?.currentStatus: '',
             'Time': JSON.stringify(times)
 
         };
