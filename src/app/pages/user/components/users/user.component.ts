@@ -41,7 +41,7 @@ export class UserComponent {
         !res.data.length && (this.showOrHide = true);
         this.apiLoader = false;
         this.tableValues = this.userHelper.mapUserData(res.data);
-        this.totalCount = res.total;
+        this.totalCount = res.fetchedCount;
         this.pageCount = pageData.pageSize;
       },
       error: (err) => {

@@ -25,14 +25,14 @@ export class ToteboxService {
   getToteBoxes(data: boolean, query: any, pageData: any){
     return this.http.get(environment.BASE_URL + `/tote?page=${pageData.page}&isEmpty=${data}${query}`);
   }
-  findOneToteBox(query: any){
-    return this.http.get(environment.BASE_URL + `/tote?${query}`);
+  findOneToteBox(staus: any, query: any){
+    return this.http.get(environment.BASE_URL + `/tote?isEmpty=${staus}&${query}`);
   }
   loadToteBox(payload: any){
     return this.http.post(environment.BASE_URL + `/work-order`, payload);
   }
-  getCompletedBoxes(data: boolean, pageData: any){
-    return this.http.get(environment.BASE_URL + `/work-order?isCompleted=true&isEmpty=false&page=${pageData.page}`);
+  getCompletedBoxes(data: boolean, pageData: any, query: any){
+    return this.http.get(environment.BASE_URL + `/work-order?isCompleted=true&isEmpty=false&page=${pageData.page}${query}`);
   }
   unloadToteBox(payload: any, barCode: any){
     return this.http.put(environment.BASE_URL + `/work-order/updateUnloadingTime/${barCode}`, payload);

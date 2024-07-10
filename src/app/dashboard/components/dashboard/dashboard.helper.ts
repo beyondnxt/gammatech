@@ -75,6 +75,7 @@ export class DashboardHelper {
 
                 noOfPass: element?.noOfPass ? element?.noOfPass : '-',
                 runningPass: element?.runningPass ? element?.runningPass : '-',
+                // runningPass: `${element?.runningPass ? element.runningPass : '-'} (${element?.position ? element.position : '-'})`,
                 shiftTime: element?.shiftTime ? element?.shiftTime : '-',
                 unLoadingTime: element?.unLoading?.time ? element?.unLoading?.time : '-',
                 unLoadingUser: element?.unLoading?.userName ? element?.unLoading?.userName : '-',

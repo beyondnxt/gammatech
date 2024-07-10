@@ -13,7 +13,7 @@ import { WebSocketService } from "src/app/providers/core/web-socket.service";
 export class CompletedComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   isShow = false;
-  query: any;
+  query: any='';
   boxData: any;
   selectedBoxData: any;
   showFrom = false;
@@ -59,13 +59,15 @@ export class CompletedComponent {
   getCompletedBoxes() {
     this.showOrHide = false;
     this.apiLoader = true;
-    this.toteboxService.getCompletedBoxes(true, this.pageData).subscribe({
+    this.toteboxService.getCompletedBoxes(true, this.pageData, this.query).subscribe({
       next: (res) => {
         this.apiLoader = false;
         const toteBoxes = (res as any).data;
         !toteBoxes.length && (this.showOrHide = true);
         this.tableValues = toteBoxes;
         // console.log('value---', res);
+        toteBoxes.length == 1 && this.query != "" && (this.showFrom = true);
+        toteBoxes.from = "completed";
         this.totalCount = (res as any).fetchedCount;
         this.pageCount = this.pageData.pageSize;
       },
@@ -82,19 +84,22 @@ export class CompletedComponent {
   searchBox(barCode: any) {
     console.log('search bar code', barCode);
     this.isShow = false;
-    this.query = "barcode=" + barCode;
-    this.toteboxService
-      .findOneToteBox(this.query)
-      .subscribe({
-        next: (res) => {
-          const toteBoxes = (res as any).data;
-          toteBoxes.from = "completed";
-          this.tableValues = toteBoxes;
-          toteBoxes.length == 1 && (this.showFrom = true);
-        },
-        error: (err) => {},
-        complete() {},
-      });
+    this.query = "&barcode=" + barCode;
+    barCode && this.paginator && (this.paginator.pageIndex = 0);
+    this.currentPage = 0; 
+    this.getCompletedBoxes();
+    // this.toteboxService
+    //   .findOneToteBox(false, this.query)
+    //   .subscribe({
+    //     next: (res) => {
+    //       const toteBoxes = (res as any).data;
+    //       toteBoxes.from = "completed";
+    //       this.tableValues = toteBoxes;
+    //       toteBoxes.length == 1 && (this.showFrom = true);
+    //     },
+    //     error: (err) => {},
+    //     complete() {},
+    //   });
   }
 
   unLoadToteBox(data: any) {

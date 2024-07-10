@@ -41,10 +41,10 @@ export class RolesComponent {
 
     this.roleService.getRoleDetail(pageData).subscribe({
       next: (res: any) => {
-        !res.roles.length && (this.showOrHide = true);
+        !res.data.length && (this.showOrHide = true);
         this.apiLoader = false;
-        this.tableValues = this.roleHelper.mapUserData(res.roles);
-        this.totalCount = res.total;
+        this.tableValues = this.roleHelper.mapUserData(res.data);
+        this.totalCount = res.fetchedCount;
         this.pageCount = pageData.pageSize;
       },
       error: (err) => {

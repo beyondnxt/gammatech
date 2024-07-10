@@ -78,7 +78,7 @@ export class UnloadComponent {
     this.isShow = false;
     this.query = "&barcode=" + barCode;
     barCode && this.paginator && (this.paginator.pageIndex = 0);
-    this.currentPage = 0;
+    this.currentPage = 0; 
     this.getUnloadBoxes();
   }
 
