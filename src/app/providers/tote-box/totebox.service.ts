@@ -25,6 +25,9 @@ export class ToteboxService {
   getToteBoxes(data: boolean, query: any, pageData: any){
     return this.http.get(environment.BASE_URL + `/tote?page=${pageData.page}&isEmpty=${data}${query}`);
   }
+  findOneToteBox(query: any){
+    return this.http.get(environment.BASE_URL + `/tote?${query}`);
+  }
   loadToteBox(payload: any){
     return this.http.post(environment.BASE_URL + `/work-order`, payload);
   }

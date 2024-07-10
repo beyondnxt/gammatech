@@ -80,10 +80,11 @@ export class CompletedComponent {
   }
 
   searchBox(barCode: any) {
+    console.log('search bar code', barCode);
     this.isShow = false;
-    this.query = "&barcode=" + barCode;
+    this.query = "barcode=" + barCode;
     this.toteboxService
-      .getToteBoxes(false, this.query, this.pageData)
+      .findOneToteBox(this.query)
       .subscribe({
         next: (res) => {
           const toteBoxes = (res as any).data;
