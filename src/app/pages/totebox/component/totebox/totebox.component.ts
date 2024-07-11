@@ -41,7 +41,7 @@ export class ToteboxComponent {
         const toteBoxes = (res as any).data;
         !toteBoxes.length && (this.showOrHide = true);
         this.tableValues = this.boxHelper.mapUserData(toteBoxes);
-        this.totalCount = (res as any).total;
+        this.totalCount = (res as any).totalCount;
         this.pageCount = pageData.pageSize;
       },
       error: (err) => {

@@ -38,7 +38,7 @@ export class AddUserComponent {
   getRoles(){
     this.roleService.getRole().subscribe({
       next: (res:any) => {
-        this.roleList = res?.roles.filter((x: any) => x.name);
+        this.roleList = res?.data.filter((x: any) => x.name);
       },
       error: (err) => {
       },

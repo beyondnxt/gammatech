@@ -44,7 +44,7 @@ export class RolesComponent {
         !res.data.length && (this.showOrHide = true);
         this.apiLoader = false;
         this.tableValues = this.roleHelper.mapUserData(res.data);
-        this.totalCount = res.fetchedCount;
+        this.totalCount = res.total;
         this.pageCount = pageData.pageSize;
       },
       error: (err) => {
