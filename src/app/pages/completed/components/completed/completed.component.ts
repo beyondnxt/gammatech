@@ -68,7 +68,7 @@ export class CompletedComponent {
         // console.log('value---', res);
         toteBoxes.length == 1 && this.query != "" && (this.showFrom = true);
         toteBoxes.from = "completed";
-        this.totalCount = (res as any).fetchedCount;
+        this.totalCount = (res as any).total;
         this.pageCount = this.pageData.pageSize;
       },
       error: (err) => {},

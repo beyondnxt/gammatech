@@ -43,6 +43,7 @@ export class ToteboxComponent {
         this.tableValues = this.boxHelper.mapUserData(toteBoxes);
         this.totalCount = (res as any).totalCount;
         this.pageCount = pageData.pageSize;
+        console.log('46----',  this.pageCount);
       },
       error: (err) => {
 

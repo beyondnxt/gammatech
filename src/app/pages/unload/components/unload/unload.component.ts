@@ -59,7 +59,7 @@ export class UnloadComponent {
         !toteBoxes.length && (this.showOrHide = true);
         this.tableValues = toteBoxes;
         toteBoxes.length == 1 && this.query != "" && (this.showFrom = true);
-        this.totalCount = (res as any).fetchedCount;
+        this.totalCount = (res as any).totalCount;
         this.pageCount = pageData.pageSize;
       },
       error: (err) => {},
